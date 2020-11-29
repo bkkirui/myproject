@@ -1,0 +1,218 @@
+---
+title: "STRUCTURE OF THE ECONOMY AND TAX TO GDP RATIO"
+author: "RKM&CP"
+date: "2 September 2019"
+output:
+  word_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+rm(list = ls())
+options(scipen=999)  # turn-off scientific notation like 1e+48
+library(readxl)
+library(tidyverse)
+library(zoo)
+library(ggrepel)
+library(data.table)
+library(hrbrthemes)
+library(lubridate)
+library(flextable)
+library(officer)
+theme_set(theme_classic())  # pre-set the bw theme.
+```
+
+# Introduction
+
+This research report sought to decompose real and nominal GDP performance for the past five years and reconcile it with revenue performance. In doing so, this report answers the following questions:
+
+1. What is the source of nominal and real GDP growth?
+
+2. What is the sectoral composition of revenue performance?
+
+3. How does the shift in the structure of the economy affect the relationship between economic performance and revenue performance?
+
+In addressing the above questions, this study computed quarterly weighted average growth in GDP and revenue collection for all the sectors in the economy. Then used a simple correlation analysis of annual revenue and GDP series to determine the relationship between the contribution of different sectors to the economic and to revenue.
+
+In summary, this study found that the disproportionate increase in the agricultural sector GDP deflator caused a shift in the structure of the economy. This shift exerted upward pressure on the agricultural sector nominal GDP leading to shrinkage in the taxable component of GDP. This disproportionate increase in the agricultural sector GDP deflator cannot be explained by changes in prices of marketed agricultural sector’s products. Due to shrinkage in taxable component of GDP, the tax-to-GDP ratio shows a decline when expressed as a percentage of the overall GDP but when shrinkage is constrained tax-to-GDP ratio shows an increase.
+
+# Source of Nominal and Real GDP
+
+The source of GDP growth was determined by computing the average and weighted average growth for the five biggest sectors in the economy. Table 1.1 on page 2 present the average growth in real and nominal GDP while Table 1.2 on page 3 presents the weighted average growth in real and nominal GDP.
+
+**Table 1.1: Average real and nominal GDP growth (2013/14 – 2017/18)**
+
+
+```{r GDP}
+# Import Data ----
+sheetlist = c('Constant Price Kshs.', 'Constant Price (%)', 'Current Price Kshs.', 'Deflators')
+GDP <- data.frame()
+
+for (sh in sheetlist) {
+  GDP_Data <- read_excel(here::here("data/Updated GDP Data (06 04 2020).xlsx"),
+                         sheet = sh, 
+                         skip = 3)
+  #View(GDP_Data)
+  GDP_Data <- GDP_Data %>% filter(!c(is.na(Year) & is.na(Quarter)))
+  GDP_Data <- GDP_Data %>% mutate(Year = na.locf(Year)) %>% 
+    select(-c(Year2, Quarter2))  %>% select(Year : `GDP at market prices`)
+  # Reshape the data to long format
+  GDP_Data <- GDP_Data %>% gather(key = 'Sector', value = 'GDP', -c(Year, Quarter))
+  # Generate series to identify the variables
+  GDP_Data$Series <- sh
+  #Append the data
+  GDP <- rbind(GDP, GDP_Data)
+}
+rm(GDP_Data, sh, sheetlist)
+# Converting Data to wide format
+GDP <- GDP %>% spread(key = 'Series', value = 'GDP')
+# Splitting data into annual and monthly
+# Calendar Year Data ----
+Ann_GDP_CY <- GDP %>% filter(is.na(Quarter)) %>% mutate(Quarter = NULL)
+# Quarterly Data ----
+Quart_GDP <- GDP %>% filter(!is.na(Quarter))
+#mapping calender quarters to financial quarters
+#Generating financial year Quarters
+Quart_GDP$FY_Qtr <- as.yearqtr(paste0(Quart_GDP$Year,'-', 
+                                      with(Quart_GDP, case_when(Quarter == 3 ~ 1, 
+                                                                Quarter == 4 ~ 2, 
+                                                                Quarter == 1 ~ 3, 
+                                                                TRUE ~ 4))))
+#generating lags to create financial years lag(value, order_by = year)
+Quart_GDP <- Quart_GDP %>% arrange(Sector, Year, Quarter) %>% 
+  mutate(FY = paste0(lag(Year, 2, order_by = c(Sector)), '/', 
+                     as.numeric(lag(Year, 2, order_by = c(Sector)))+1))
+sect <- c("Accommodation and restaurant", "Agriculture", "Construction", "Education", "Electricity and water supply", "Financial and insurance", "Health", "Information and communication", "Manufacturing", "Mining and quarrying", "Professional, admin and support services", "Public administration", "Real estate", "Transport and storage", "Wholesale and retail trade", "Other services", "GDP at market prices")
+# Financial Year Data ----
+Ann_GDP_FY <- Quart_GDP %>% 
+  filter(!is.na(FY), FY!='NA/NA') %>%  filter(Sector %in% sect) %>%
+  group_by(FY, Sector) %>% 
+  summarise(`Constant Price Kshs.` = sum(`Constant Price Kshs.`),
+            `Current Price Kshs.` = sum(`Current Price Kshs.`),
+            Deflators = mean(Deflators),
+            `Constant Price (%)` = mean(`Constant Price (%)`)) %>% 
+  arrange(Sector, FY)
+
+RGr <- Ann_GDP_FY %>% ungroup() %>% mutate(Year = substr(FY,6,10)) %>% arrange(Sector, Year) %>% mutate(Real_GDP = 100*((`Constant Price Kshs.`-lag(`Constant Price Kshs.`))/lag(`Constant Price Kshs.`)), Nom_GDP = 100*((`Current Price Kshs.`-lag(`Current Price Kshs.`))/lag(`Current Price Kshs.`))) %>% filter(Year >= 2018) %>% select(FY, Sector, Real_GDP) %>% spread(key = FY, value = Real_GDP) 
+RGr <- RGr %>% mutate(Ave. = rowMeans(RGr[,2:dim(RGr)[2]], na.rm = T))
+
+NGr <- Ann_GDP_FY %>% ungroup() %>% mutate(Year = substr(FY,6,10)) %>% arrange(Sector, Year) %>% mutate(Real_GDP = 100*((`Constant Price Kshs.`-lag(`Constant Price Kshs.`))/lag(`Constant Price Kshs.`)), Nom_GDP = 100*((`Current Price Kshs.`-lag(`Current Price Kshs.`))/lag(`Current Price Kshs.`))) %>% filter(Year >= 2018) %>% select(FY, Sector, Nom_GDP) %>% spread(key = FY, value = Nom_GDP) 
+NGr <- NGr %>% mutate(Ave. = rowMeans(NGr[,2:dim(NGr)[2]], na.rm = T))
+df <- merge(RGr, NGr, by = 'Sector')
+df <- df[,colSums(is.na(df))<nrow(df)]
+df <- df %>% mutate(Sector = factor(Sector, levels = sect, ordered = T)) %>% arrange(Sector)
+colnames(df) <- trimws(gsub("/20", "/", paste(if_else(colnames(df) == "Sector", "", substr(names(df),1,str_length(names(df))-2)),  case_when(substr(names(df),str_length(names(df))-1,str_length(names(df))) == ".x" ~ "Real GDP (%)", substr(names(df),str_length(names(df))-1,str_length(names(df)))  == ".y" ~ "Nom. GDP (%)", TRUE ~ "Sector"))))
+n <- data.frame(name = names(df), no = 1:dim(df)[2])
+write.table(df, file = "df.csv", append = FALSE, quote = TRUE, sep = ",", row.names = F)
+library(knitr)
+library(kableExtra)
+kable(df, digits = 1, format = "markdown", longtable = TRUE, align = c('l', rep('r',times=dim(df)[2]-1))) #%>% kable_styling(bootstrap_options = "striped", full_width = F, position = "float_right", font_size = 10) %>% column_spec(n[n$name=="Sector",2], bold = T, border_right = T) %>% column_spec(c(n[n$name=="Ave. Real GDP (%)",2], n[n$name=="Ave. Nom. GDP (%)",2]), background = "lightgrey", bold = T, italic = T, border_right = T) %>% row_spec(c(0,dim(df)[1]), bold = T, background = "lightgrey")
+```
+
+Table 1.2 reveal a mismatch where sectors with high nominal growth rate have low real GDP growth rate. These sectors include Agriculture and Financial & insurance. This implies that these sectors experienced rapid increase in price levels compared to other sectors. Other sectors that recorded above average increase in price levels include Electricity & water supply. Table 1.2 summarizes the 5-year weighted average growth for real and nominal GDP focusing on high growth sectors in nominal GDP.
+
+**Table 1.2: Average growth in real and nominal GDP**
+
+
+Table 1.2 reveal the following:
+
+
+* **Significant increase in GDP Deflator in some sectors:** Agriculture accounts for about 46% of the change in GDP deflator, and this translates to a weighted GDP deflator of 3.7%. That is, agriculture contributes 3.7 percent of the 5-years average percentage change in GDP deflator of 8.1 percent. Agriculture, however, contributes 1 percent to the overall growth in real GDP of 5.6 percent, which translates to about 18 percent. Excluding Agriculture sector, the GDP deflator falls to 4.3 percent and further to 3.2 percent when three high inflation sectors are excluded. These three sectors are Agriculture, Electricity & water supply and Financial & insurance;
+
+* **Deflation in some sectors:** Information and communication, mining and quarrying, and accommodation and restaurant sectors experienced deflation as shown by higher average growth in real GDP relative to growth in nominal GDP. Starting from FY 2016/17, accommodation and restaurant sector recorded improved performance and is on a recovery path, which comes after a series of downturn caused by terrorist attacks and worsened by adverse travel advisories;
+
+* **Two sectors drive real GDP growth:** Key sectors driving real output in the economy are Information and communication - which has experienced deflation - and construction with GDP deflator (%) below the overall GDP deflator (%). The two sectors 5-years average growth in real GDP is 10.9 and 9.9 percent, respectively.
+
+To understand how high price levels in agriculture has impacted on overall GDP deflator and nominal GDP, Figure 1.1 plots the trend in percentage change of overall GDP deflator, agricultural sector GDP deflator and overall GDP deflator excluding that of agricultural sector while Figure 1.2 graphs GDP deflator for high inflation sectors with a base of Q2 2009.
+
+**Figure 1.1: Change (%) in GDP Deflator – 2012/13 – 2017/18**
+
+Figure 1.1 shows a sharp increase in GDP deflator for Agriculture sector that started in 2012/13 and ended in 2016/17. The disproportionate increase in agricultural sector GDP deflator exerted upward pressure on overall GDP deflator as shown by the dashed line in Figure 1.1. A 1 percentage change in agricultural sector GDP deflator changes overall GDP deflator by 0.241 percent. 
+
+Figure 1.2 goes beyond Agriculture and highlight other sectors that drive overall GDP deflator.
+
+
+**Figure 1.2: Trend in GDP Deflator – 2009Q2 – 2017/18** 
+
+
+Figure 1.2 present the sectoral GDP deflators for sectors whose deflators are above the overall GDP deflator. These sectors include:
+1.	Agriculture (GDP deflator index of 292.36 in 2017/18)
+2.	Finance & insurance (GDP deflator index of 226.85 in 2017/18)
+3.	Transport & storage (GDP deflator index of 197.24 in 2017/18)
+4.	Public administration (GDP deflator index of 195.53 in 2017/18)
+5.	Electricity & water supply (GDP deflator index of 185.34 in 2017/18)
+
+# Structural change in the Kenyan economy and tax-to-GDP Ratio
+
+## Shift in Agricultural sector’s share in real and nominal GDP
+Share of nominal agricultural sector GDP rose from 26.7% in 2011/12 to 34.2% in 2016/17 as shown in Figure 2.1. In contrast, share of real agricultural sector GDP declined from 22.8% in 2011/12 to 21.2% in 2017/18. The implication is that the significant increase in agricultural sector contribution to GDP was driven by the disproportionate increase in price levels in the sector.
+
+**Figure 2.1: Share of nominal and real agricultural sector GDP** 
+
+To understand how high price levels in agriculture has impacted on overall GDP deflator and nominal GDP, we refer back to Figure 1.1, which plots the trend in percentage change of overall GDP deflator, agricultural sector GDP deflator and overall GDP deflator excluding that of agricultural sector. Figure 1.1 shows a sharp increase in GDP deflator for Agriculture sector that started in 2012/13 and ended in 2016/17. The disproportionate increase in agricultural sector GDP deflator exerted upward pressure on overall GDP deflator as shown by the dashed line.
+
+## Revenue Collection and GDP performance per sector
+This section analyses the relationship between revenue collection from sectors and the performance of the economy. To this end, a simple correlation analysis between economic and revenue performance per sector is used. Figure 2.3 presents a scatter plot for two-year average (2016/17 to 2017/18) contribution to GDP and two-year average (2016/17 to 2017/18) contribution to revenues of different sectors of the economy.
+
+**Figure 2.3: Revenue collection and economic performance per sector**
+
+```{r scatterplot, echo=FALSE}
+Rev_GDP <- read_excel(here::here("output/Contribution to Rev. & GDP.xlsx"), 
+                      sheet = "contribution")
+Rev_GDP <- Rev_GDP %>% filter(SID!="")
+
+# Scatter plot with labels per color
+ggplot(Rev_GDP, aes(`Contribution to GDP (%)`, `Contribution to Revenue (%)`, label = `SID`)) + 
+  geom_point() + geom_line(aes(`GDP 45 degrees`, `Rev 45 degrees`)) +
+  geom_text_repel(color = dplyr::case_when(round(Rev_GDP$`Contribution to Revenue (%)`, 0) > round(Rev_GDP$`Contribution to GDP (%)`, 0) ~ 'blue', round(Rev_GDP$`Contribution to Revenue (%)`, 0) == round(Rev_GDP$`Contribution to GDP (%)`, 0) ~ 'black', TRUE ~ 'red')) + 
+  theme_classic() + 
+  annotate("text", x = 30, y=20, label="Higher contribution to \n GDP than to revenue") +
+  annotate("text", x = 15, y=35, label="Higher contribution to \n revenue than to GDP")
+```
+
+The 450 diagonal line plots the points where the contribution of the sector to GDP is equal to the contribution of the sector to revenue. The points to the left of the 450 line represents areas where the contribution to revenue is more than the contribution to GDP and vice versa. Thus, the sectors with names coloured in blue contributes more to revenues that it contributes to GDP while the contribution of sectors with names coloured in red to revenue is lower than their contribution to GDP. The sectors with names coloured in black have equal contribution (+/- 1%) to GDP and revenue.
+
+There are three observations from Figure 2.3:
+
+* **Sectors whose contribution to GDP is close to their contribution to revenues.** These sectors include mining and quarrying, and construction.
+
+* **Sectors whose contribution to GDP exceeds their contribution to revenues.** In this category, Agriculture is an outlier. Its contribution to GDP is about 34% while its contribution to revenue is a paltry 2.4%. Others include real estate, public administration, education, other services, transport and storage, and wholesale and trade. Public service based sectors such as public administration and education mainly pay PAYE.
+
+* **Sectors whose contribution to GDP fall short of their contribution to revenues.** These sectors include manufacturing, finance and insurance, information and communication, professional, admin and support services, health, accommodation & restaurant, and electricity and water supply.
+
+Moreover, the further away the sector is from the origin (point 0, 0) the higher is the contribution. Thus, agriculture contributes significantly to GDP but less to revenue. On the other hand, significant contributors to revenue include manufacturing, finance and insurance, and information and communication; although their relative contribution to GDP (relative to revenue) is lower.
+
+## Baseline Scenario and Scenarios with GDP deflator for agricultural sector “growing at the same level as other sectors and CPI”
+
+To understand how the disproportionate increase in the GDP deflator for agricultural sector impacted on the overall GDP deflator, nominal GDP and tax-to-GDP ratio, we constrained the GDP deflator for agricultural sector to:
+
+1.	increase at the average percentage change for non-agriculture sectors of the economy (Scenario I), and
+
+2.	increase at the rate of inflation (Scenario II)
+
+In Scenario I, we use the GDP deflator for overall GDP excluding agriculture of 4.4% in 2013/14, 5.3% in 2014/15, 4.9% in 2015/16, 4.8% in 2016/17 and 2.2% in 2017/18 to adjust the GDP series from 2012/13; the year Agricultural GDP deflator started accelerating. 
+
+In Scenario II, we computed average annual inflation rate (financial year) and apply it as in scenario I to generate adjusted series. The inflation figures are 7.05% for 2013/14, 6.63% for 2014/15, 6.47% for 2015/16, 8.13% for 2016/17 and 5.14% for 2017/18. 
+
+We then compare these scenarios with the baseline scenario using GDP series as published by KNBS. Figure 2.4 presents exchequer revenue-to-GDP for the original GDP series and the GDP series with constrained agriculture sector GDP deflator.
+Figure 2.4: Exchequer revenue-to-GDP under baseline, Scenario I & II 
+
+**Figure 2.4: Exchequer revenue-to-GDP under baseline, Scenario I & II** 
+
+```{r}
+
+```
+# Summary and Conclusion
+
+The key findings are:
+
+* Share of nominal agricultural sector GDP has significantly increased while the share of real agricultural sector GDP has declined. The significant growth in nominal share of agriculture was driven by the disproportionate increase in the agricultural sector’s GDP deflator, which exerted upward pressure on overall GDP deflator,
+
+* The change in prices of marketed agricultural sector products does not explain the disproportionate increase in the agricultural sector’s GDP deflator. This leaves non-marketed products as the only possible explanation of the disproportionate increase in the agricultural sector’s GDP deflator *(results contained in a separate report)*,
+
+* The significant increase in the share of nominal agricultural sector GDP has led to shrinkage in the taxable component of GDP from 74% in 2012/13 to 66% in 2017/18. This has led to decline in tax-to-GDP ratio,
+
+* Constraining the GDP deflator for agricultural sector to: (i) increase at the average percentage change for non-agriculture sectors of the economy (**Scenario I**), and (ii) increase at the rate of inflation (**Scenario II**), the tax-to-GDP ratio shows an increase as opposed to the decline as found in the Baseline Scenario (where GDP is used in the computation of tax-to-GDP ratio as reported by KNBS)
+
+We therefore conclude that the disproportionate increase in the agricultural sector GDP deflator has exerted upward pressure on the agricultural sector nominal GDP leading to shrinkage in the taxable component of GDP. This disproportionate increase in the agricultural sector GDP deflator cannot be explained by changes in prices of marketed agricultural sector’s products. Due to shrinkage in taxable component of GDP, the tax-to-GDP ratio shows a decline when expressed as a percentage of the overall GDP but when shrinkage is constrained tax-to-GDP ratio shows an increase.
