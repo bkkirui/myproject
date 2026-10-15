@@ -1,6 +1,31 @@
 # Change log
 
-## Part 1: v2 → v3 (round-2 reviews)
+## Part 1: v3 → v4 (round-3 reviews)
+Codes: R3-L livestock, R3-A agronomy, R3-G governance, R3-E economics (MAJOR items). "PLAN" = PLAN.md; "A"/"B" = appendices. Section numbers in PLAN follow v4 (the v3 sections 6, 7 and 9 were folded or renumbered).
+
+| Item | Where / how addressed |
+|---|---|
+| R3-L1 poultry red hair-trigger | A1 poultry triage (red = lockdown plus vet phone triage within 2 h; report only on specific signs or if the vet cannot attribute a cause); A2: "whichever is smaller" removed, N-bird floors, week-1 carve-out, doubling floor, intake/egg-drop reds raised to 20% with amber at 10%; power/temperature failure is a welfare emergency, not notifiable. All vet-calibrated defaults |
+| R3-A1 troughs contradict | PLAN section 3: one hemisphere-conditional table gives peaks, troughs, manager start and earliest A3 (S Jun–Jul 2027; N Nov 2027 or covered start from June with interim lead through Oct). A3 restated: Q3 2028 (S, N covered), Q1 2029 (N trough). Interim lead term, pricing (management cost) and contract-manager fallback defined |
+| R3-A2 memo not operable | Decision sheet actions name the agronomist and interim lead; PLAN section 8 "window memo": input-spend cap rule, where it counts (operating budget, outside the pre-G1 cap; shrinkage counts to the loss limit), interim payment controls until G2, named reconciler, rolling refresh at each season boundary (next 1 Dec), Dec–Feb seed/winter-feed commitments default to the agronomist's minimum |
+| R3-A3 Farm Model owner/signers | G0 exit names the Farm Model owner with hours and fee; pre-G1 cost covers agronomist, nutritionist/vet, hydrogeologist input (or documented conditional G1); "WP" references removed; offer on a conditional pass is probation-length or contingent on first re-confirmation |
+| R3-G1 interim financial control | Day-7 financial pack (B0): mandates, new-payee freeze, redirected statements, credentials inventory, **independent opening count** (also in the PLAN baseline audit), named reconciler, lawyer clears incumbent handling and candidate notice before the search is visible (manager search now starts ~5 Nov) |
+| R3-G2 representative/T2 conflict | One rule: T2 owner-approved; representative approves discretionary T2 only after 48 h silence within 1.5% AOB/30 days; scheduled recurring payments are a separate pre-approved class executed against a schedule (B1, B2); named delegate for 14 days, then entity alternate mandate; emergency review by someone other than the approver; 2-h representative window now applies to emergencies only |
+| R3-G3 preparer independence | B3: exception rules run in the bank platform, whitelist/payee-change log held by bank and accountant, quarterly non-preparer reconciliation in the core and small band, vendor-bank vs employee-master match, registry lookups by the accountant, seasonal baselines replace the flat +10% |
+| R3-E1 hours table | PLAN section 5 rebuilt: year 1 defined (15 Oct 2026 to 14 Oct 2027), rows sum to ~391 h (range 330–450), gaps and crisis reserve included, owner-only control tasks inside routine hours; kill trigger now trailing-13-week hours vs the schedule |
+| R3-E2 goal honesty | Decision sheet opens by stating no-involvement is not achievable; ~5 h/week at A3, hours never zero; lease/contract grazing/management company with indicative hours as first-class G1 options |
+| R3-E3 cost figures | Decision sheet: pre-G1 indicative 2–4% of revenue (+1–3% if no incumbent), fixed owner-set cap (proposal 5%, worked example), steady-state overhead (controls 7–10% plus manager and deputy pay), feasibility screen for small farms |
+| R3-E4 G1 hurdle | PLAN section 4 criterion 1: owner time at a declared shadow price, one-off set-up costs amortised over 3–5 years, invested capital defined, like-for-like alternative; plus a control-cost share of gross margin test |
+
+**Rejected or modified:**
+- R3-E (word count): the body is about 2,100 words including tables, still above 2,000. Sections were moved to the appendices (technology to B11, Day-7 packs to A0/B0), but the decision sheet, hours table and season table are what the owner needs.
+- R3-G1: I did not make the owner personally the freeze authority for all payees; the freeze is on *new* payees only, and existing payments continue to avoid stalling payroll.
+- R3-A5(b) (pre-authorising drought rows) is accepted but only inside the G1-signed drought plan with sale ceilings, not at Day 7.
+- R3-G7 asked that a "failed" spot-count be defined; it is defined as a variance persisting beyond red after the 48-h recount. Percentages remain defaults.
+
+**MINORs folded in:** R3-L2 ruminant sign scoping (A1); R3-L3 Day-7 safety additions (A0); R3-L4 trough wording; R3-L5 emergency cap carve-outs (B5); R3-L6 medicines (A3); R3-L7 poultry vet competence, vaccination, necropsy, housing order; R3-L8 triage fallbacks; R3-L9 standstill mechanics and late-pregnancy counting (A1, A6); R3-L10 vet-only red resets; R3-L11 reporting not waiting for lawyer, euthanasia means, rabies, windrow composting; R3-A4 paper/tabletop tests in peaks; R3-A5 season-points and pre-authorised staged rows; R3-A6 interim lead and consultants placed in B10; R3-A7 control hours in labour model, leave in troughs (B11); R3-A8 feed-flow operator named (manager); R3-A9 interim poultry rules; R3-A10 hours and dates reconciled; R3-A11 conditional offers; R3-A12 incumbent exclusion rule; R3-G4 emergency payment instrument and independent approver; R3-G5 evidence layer (entity devices, clock flag, independent reviewer); R3-G6 independent registry lookups; R3-G7 graded recount; R3-G8 hotline route and alternate lead; R3-G9 lawyer scope items; R3-G10 T1 on audited lines, candidate notice; R3-G11 feasibility screen; R3-G12 owner-only tasks itemised and second admin; R3-E5 troughs; R3-E6 margin share test and USD reference; R3-E7 dates "9–15 weeks", conditional pass expected; R3-E8 A3 defined at first use; R3-E9 auditors do spot-counts.
+
+## Part 2: v2 → v3 (round-2 reviews)
 Codes: R2-L livestock, R2-A agronomy, R2-G governance, R2-E economics (MAJOR items). "PLAN" = PLAN.md; "A"/"B" = appendices. Cheap MINORs are listed at the end.
 
 | Item | Where / how addressed |
@@ -32,7 +57,7 @@ Codes: R2-L livestock, R2-A agronomy, R2-G governance, R2-E economics (MAJOR ite
 
 **MINORs folded in (cheap):** R2-L4 act-first; R2-L5 missing signs and abortion scaling, baselines tighten only (A1/A2); R2-L6 tag stays on suspect carcass (A1); R2-L7/R2-A4; R2-L8 withdrawal-check line on gate pass (A3); R2-L9 notifiable scenario in G1 and kill trigger excludes emergencies; R2-L10 vet access in G1; R2-L11 water thresholds relative to design; R2-L12 drench exceptions; R2-L13 welfare lines; R2-A6 G1 pass definitions; R2-A7 crop/feed signals; R2-A8 chemical column; R2-A9 forage separate from cash crops; R2-A10 machinery; R2-A11 "other" column; R2-A12 combined outbreak-in-peak tabletop; R2-A13 yield verification; R2-A14 capital lines; R2-G6 core set; R2-G7 leave in charter and A3 criteria; R2-G8 privacy/labour row; R2-G9 gate log reporting line; R2-G10 small-staff controls; R2-G11 auditor biosecurity; R2-G12 MFA/call-back; R2-E6 coordinator; R2-E7 charter variant and wage test; R2-E8 representative vetting; R2-E9 "clean" defined, spot-count frequency, whitelist benchmarking; R2-E10 levels renamed A1–A3 and codes disambiguated; R2-E11 presence front-loaded.
 
-## Part 2: v1 → v2 (round-1 reviews)
+## Part 3: v1 → v2 (round-1 reviews)
 Section numbers (S4, S5...) refer to PLAN-v2.md; their content now lives in the PLAN.md sections and appendices indicated in Part 1. Codes: R1-L livestock, R1-P poultry/crops, R1-G governance, R1-E economics.
 Codes: L = livestock, P = poultry-crops, G = governance, E = economics. Minor items were folded in where cheap (e.g. L13–20, P14–25, G13–24, E13–19); Stata/R dropped and deliverables made testable.
 

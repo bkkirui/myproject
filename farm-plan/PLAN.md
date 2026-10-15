@@ -1,116 +1,120 @@
-# Farm Autonomy Plan — v3 (for owner decision)
+# Farm Autonomy Plan — v4 (for owner decision)
 
-Date: 2026-10-15. Detail lives in [PLAN-appendix-thresholds.md](PLAN-appendix-thresholds.md) (Appendix A: health, biosecurity, alerts, feed/crops), [PLAN-appendix-controls.md](PLAN-appendix-controls.md) (Appendix B: authority, fraud controls) and [CHANGELOG.md](CHANGELOG.md). All numbers are **defaults to be calibrated** by the named professional, not advice. Season logic is conditional: **after Gate 0, pick your column** (section 9).
+Date: 2026-10-15. Detail in [Appendix A](PLAN-appendix-thresholds.md) (health, biosecurity, alerts, feed/crops, Day-7 safety pack), [Appendix B](PLAN-appendix-controls.md) (authority, payments, fraud response, Day-7 financial pack, technology) and [CHANGELOG.md](CHANGELOG.md). All numbers are **defaults to be calibrated** by the named professional, not advice. Currency: USD-equivalent.
 
-## Decision sheet: what you are approving
+## Decision sheet
 
-**Recommendation: approve Gate 0 and Gate 1 only, with a capped pre-G1 spend.** Not yet: the full programme, a manager offer, SOP writing.
+**Your goal, stated plainly.** "No involvement" is not achievable under self-run or managed operation. The achievable goal is **no daily involvement**: at autonomy level **A3** (quarterly owner review; the manager runs routine operations) you spend about 5 hours a week (~280 h/yr including a crisis reserve), and A3 is not reached before Q3 2028 (plan on Q1 2029). Hours never reach zero. The only near-zero routes are **lease, contract grazing or a management company** (indicative owner hours: ~20–40, ~40–80, ~80–150 h/yr), and G1 evaluates them as first-class options, not fallbacks.
+
+**Recommendation: approve Gate 0 and Gate 1 only.** Not yet: the full programme, a manager offer, SOP writing.
 
 | Item | Detail |
 |---|---|
-| Scope approved | Gate 0 (intake, baseline, Day-7 safety pack) and Gate 1 (viability decision) |
-| Pre-G1 spend cap | You set it. Quote: baseline audit with vet review; lawyer; accountant; agronomist memo; interim lead; coordinator; manager search (no offer). Proposed default cap: the lesser of the quoted total and ~1.5% of last year's gross revenue. Any quote above the cap returns to you. |
-| Your hours to G1 | 20–30 h over ~8 weeks |
-| G1 outcomes | **Proceed**, **restructure** (lease, contract grazing, manager-operator with equity, management company) or **exit**. If self-run fails the hurdle in section 4, the default is the best-ranked alternative. |
-| Stop points | (1) Day-7 pack cannot be completed; (2) tenure, debt or legal blocker at G0; (3) spend reaches cap; (4) G1 fails the hurdle |
-| Dates (earliest, not promised) | G1 decision 17 Dec 2026 (plan on 29 Jan 2027). Manager in post ~Apr–Jun 2027, in a trough. **Earliest autonomy level A3: Q3 2028; plan on Q1 2029.** |
-| Honest owner time | ~400–450 h in year 1 (~8 h/week averaged), falling to ~260 h/yr (~5 h/week incl. crisis reserve) at A3. Section 5. |
+| Feasibility screen (days 1–3) | Base revenue under ~250k probably fails the control-cost test (B10). Such farms go straight to the restructure comparison before further spend |
+| Pre-G1 cost | Indicative **2–4% of last year's gross revenue** for professionals (baseline and vet review, opening count, lawyer, accountant, agronomist, nutritionist/vet, hydrogeologist input, Farm Model owner and coordinator hours), plus **1–3%** if no incumbent can act as interim lead. You set a fixed cap after quotes (proposal: 5%); quotes above it return to you. Example at 500k revenue: 10–20k, plus 5–15k, cap 25k. Quotes replace these defaults |
+| Steady-state overhead | Controls 7–10% of revenue (B10) **plus manager and deputy pay**, priced from local quotes at G1 |
+| Your hours | ~390 h in the first 12 months (~7.5 h/week; section 5), falling to ~280 h/yr at A3 |
+| G1 outcomes | **Proceed**, **restructure** (lease, contract grazing, manager-operator with equity, management company) or **exit**. Failing the hurdle makes the best alternative the default. A conditional pass (some inputs still assumed) is the expected year-1 result |
+| Dates (earliest) | G1 decision 17 Dec 2026, plan 29 Jan 2027 (a 9–15 week process). Manager start and A3 depend on hemisphere (section 3) |
+| Stop points | (1) Day-7 packs not completable; (2) tenure, debt or legal blocker; (3) spend reaches your cap; (4) G1 fails the hurdle |
 
-**Five actions this month:** (1) answer the Gate 0 intake by 22 Oct; (2) name a representative candidate, unrelated to staff and suppliers; (3) engage a lawyer; (4) authorise the baseline audit and sign the emergency-spend and reporting letter; (5) confirm your hours, response windows and the spend cap.
+**Five actions this month:** (1) answer the Gate 0 intake by 22 Oct; (2) engage a lawyer first (incumbent handling, candidate notice, emergency-reporting letter); (3) engage a baseline vet and an agronomist/extension officer (this-season memo), and name the interim lead and the Farm Model owner; (4) approve the Day-7 safety and financial packs and sign the letter; (5) name a representative candidate (unrelated to staff and suppliers) and confirm hours and cap.
 
 ## 1. Principles
-Management by exception, not absence (the owner keeps independent eyes on money, stock and data). Autonomy is earned by measurable gates, not calendar. Economics and scope before SOPs: nothing in the appendices is built until G1. Safety acts first and notifies in parallel. Any one person, including the representative and the owner's own accounts, can be wrong, absent or compromised.
+Management by exception, not absence. Autonomy is earned by measurable gates, not calendar. Economics and scope before SOPs: sections 6 onward and the appendices are design defaults, not for approval now. Safety acts first and notifies in parallel. Any one person, including the representative and the owner's own accounts, can be wrong, absent or compromised.
 
-## 2. Gate 0: intake, baseline, Day-7 safety pack
-**Intake** (unknowns allowed only if the baseline audit resolves them): location, hemisphere, rainfall regime; stock, hectares, poultry type and numbers; 2–3 years of accounts and purchase records; tenure, debts, licences, entity; current manager, staff, relatives among staff/suppliers; water, power, signal, irrigation; markets and cash sales; your budget, risk tolerance, realistic hours, trusted contacts, will, power of attorney, bank signatories; veterinary authority, 24-h number, notifiable list; vet distance and out-of-hours cover.
+## 2. Gate 0
+**Intake** (unknowns allowed only if the baseline audit resolves them): location and rainfall regime; stock, hectares, poultry; 2–3 years of accounts and purchases; tenure, debts, licences, entity; manager, staff and relatives among staff/suppliers; water, power, signal; markets and cash sales; your budget, risk tolerance, hours, trusted contacts, will, power of attorney, signatories; veterinary authority and notifiable list; vet distance, poultry competence, out-of-hours cover.
 
-**Baseline audit** by a local professional including a **vet-led health review** (test status, vaccination history, worm-resistance baseline, facilities, movement restrictions, drug-store legality), soil sampling started, water check, books review.
+**Baseline audit** (vet-led health review, books review, soil and water checks started) **including an independent opening count** of livestock against tags and registers, feed, grain, fuel and drugs by someone other than the incumbent, signed by both.
 
-**Day-7 safety pack (G0 exit criterion):** vet-of-record with 24-h cover; authority number verified by live call; one-page suspect/standstill/do-not-open card at each site; signed owner letter pre-authorising emergency spend and reporting (lawyer confirms the manager may report for the holder); named person authorised to euthanise; water/power/vaccine-fridge status check; drug-store inventory reconciled. Unmet items are escalated to you on day 8.
+**Day-7 safety pack** (Appendix A0): vet-of-record with 24-h cover, verified authority number, standstill card at each site, emergency-spend and reporting letter, euthanasia person with means and licence, drug-store reconciliation, interim withdrawal and live-season checks, and interim poultry rules if poultry exist.
+**Day-7 financial pack** (Appendix B0): owner on bank mandates and releasing above a small float; new-payee freeze; statements redirected to owner and accountant; credentials inventory; named reconciler.
 
-## 3. Gates and dated critical path
-Durations are earliest-possible. Recruitment 3–6 months, entity and insurance 2–3 months.
+**G0 exit:** intake complete; audit and both packs done; lawyer engaged and incumbent handling cleared; coordinator and **Farm Model owner named, with hours and fee**; interim lead named.
 
-| Earliest date | Step |
-|---|---|
-| 15–22 Oct 2026 | Intake; Day-7 pack; manager search starts (test wage expectations of 3–5 candidates against the control set) |
-| by 29 Oct | **This-season memo** (section 9); interim lead named |
-| ~5 Nov | **G0 exit:** intake complete, baseline audit and Day-7 pack done, lawyer engaged, coordinator named |
-| 17 Dec (plan 29 Jan 2027) | **G1** decision (section 4). Manager offer only on "proceed" |
-| G1 + ~10 weeks | **G2:** SOPs for retained enterprises signed (section 8) and tested by an **interim lead** (the incumbent on a retention agreement, or a contract farm manager) plus workers; entity, mandates, vendor/employee master files, insurance in place; tabletops (outbreak during a peak, theft, manager exit, owner unreachable, power/water failure) including a live call to the vet and authority |
-| Manager start, ~Apr–Jun 2027 | Moved to a **trough** (N temperate Jun–Aug or Nov–Jan; S temperate Jan–Feb or Jun–Jul; other: agronomist decides). Interim lead stays through any peak |
-| Manager weeks 1–8 | **G2b:** shadowing; SOP tests needing the manager; manager-exit and leave tabletops |
-| ≥8 weeks after G2b | **G3 pilot:** not started inside a birthing/planting/harvest peak unless the interim lead runs it |
-| After G3 | A1 to A2 |
-| ≥12 months from manager start | A2 to A3 (conditions below); earliest Q3 2028 |
+## 3. Season table and dated critical path
+One table is the source of truth for peaks, troughs and starts. Tropics and other climates: the agronomist builds the calendar at G0.
 
-**G2 exit:** signatures per section 8; each SOP completed from the sheet alone by a non-author; alert chain tested end to end. **G3 exit (all):** raw-submission completeness >=95% for 8 weeks; stock within ±2% of independent count; cash above floor; no unreported incidents; two unannounced spot-counts "clean" (variance within ±2%, no unreported incident), so pilot spot-counts run at least fortnightly, costed; owner hours within budget.
-
-| Autonomy | Owner role | Advance when |
+| | N temperate | S temperate |
 |---|---|---|
-| A1 | Approves all Tier 2+ items, weekly review | After G3 |
-| A2 | Monthly review, exception alerts | Same, after 3 clean months |
-| A3 | Quarterly review plus permanent minimum | >=12 months from manager start covering a breeding/birthing event, weaning, a planting and harvest, annual count and tax close, **and a real manager leave (10 working days) with the books reviewed during it**; consultant stockman/agronomist retained for the whole first cycle |
+| Peaks | Mar–Sep (calving/lambing, planting, hay, harvest, count) | Aug–Dec (lambing/calving, planting); Mar–May (harvest, autumn breeding) |
+| Trough | Nov–Jan | Jun–Jul |
+| Now–Nov | Tupping, winter-feed check | Lambing/calving, planting |
+| Dec–Feb | Winter feed; order spring seed | Hay, weaning, dry-season stocking |
+| **Manager start** | Nov 2027, or a covered start from Jun 2027 with the interim lead through Oct | Jun–Jul 2027 |
+| **Earliest A3** | Q1 2029 (covered start: Q3 2028) | Q3 2028 |
 
-**Permanent minimum at A3:** owner/representative bank mandates, bank and supplier feeds direct to owner, annual external review, 2–4 unannounced visits a year, quarterly alert-chain test.
-**Kill/pivot triggers:** cumulative loss beyond the G1-signed limit (pre-G1 spend counts); second manager exit in 12 months; owner hours above 150% of the section 5 phase total (declared-emergency days excluded; post-incident review instead). A failed spot-count starts the fraud-response protocol (Appendix B §8). A trigger forces a decision: scale down, restructure or exit.
+Durations are earliest-possible (recruitment 3–6 months; entity and insurance 2–3 months).
+
+| Date | Step |
+|---|---|
+| 15–22 Oct 2026 | Intake, feasibility screen, Day-7 packs, lawyer engaged |
+| by 29 Oct | **Window memo** (section 8) and interim payment controls live |
+| ~5 Nov | G0 exit. Manager search begins only after the lawyer clears incumbent handling and a candidate notice |
+| each season boundary (next 1 Dec) | Window memo refreshed until G2 |
+| 17 Dec (plan 29 Jan) | **G1** |
+| G1 + ~10–15 wks | **G2:** SOPs signed (section 7) and tested by the interim lead and workers; SOPs whose season is in a peak get a paper/tabletop test, the field test waits for the next trough; entity, mandates, vendor/employee master files, insurance; tabletops incl. outbreak during a peak, with a live call to vet and authority |
+| Manager start (table) | **G2b**, weeks 1–8: shadowing, tests needing the manager, exit and leave tabletops |
+| >=8 wks after G2b | **G3 pilot:** not started in a peak unless the interim lead runs it |
+| >=12 months from manager start | **A3** (below) |
+
+**Interim lead:** from G0 exit until the manager has completed one full peak after start plus a 4-week handover; priced at G1 as management cost. The incumbent may serve only if the baseline finds no related-party or unreconciled-stock issue; otherwise a contract manager (lead time default 6–10 weeks, sourced before G1).
+
+**G3 exit:** raw-submission completeness >=95% for 8 weeks; stock within ±2% of independent count; cash above floor; no unreported incidents; two clean unannounced spot-counts (auditors perform them, at least fortnightly in the pilot).
+
+| Level | Owner role | Advance when |
+|---|---|---|
+| A1 | Approves Tier 2+, weekly review | After G3 |
+| A2 | Monthly review, exception alerts | After 3 clean months |
+| A3 | Quarterly review plus permanent minimum | >=12 months from manager start covering a breeding/birthing event, weaning, planting and harvest, annual count and tax close, and a real 10-day manager leave in a trough with books reviewed; consultant stockman/agronomist retained for the cycle |
+
+**Permanent minimum:** owner/representative mandates, direct bank feeds, quarterly non-preparer reconciliation, annual external audit, 2–4 owner visits a year, quarterly alert test.
+**Kill/pivot triggers:** cumulative loss beyond the G1-signed limit (pre-G1 spend counts); second manager exit in 12 months; trailing-13-week owner hours above 150% of the section 5 schedule (crisis reserve and declared emergencies excluded; post-incident review instead). A failed spot-count starts Appendix B §8. A trigger forces a decision.
 
 ## 4. G1: viability and scope
-**Shared Farm Model** (one named owner, version log, signed per section 8): herd/flock dynamics, monthly feed balance, labour by month, water (including irrigation), machinery and contractor capacity, 24-month cash flow. It starts with regional defaults and WP outputs overwrite them. **Every input is tagged measured / regional benchmark / assumed.** If yield, carrying capacity or water supply is "assumed", G1 can only pass as **conditional**, with a margin of safety (default 15%) and a re-confirmation trigger (first harvest, first dry season) before restocking or expansion.
+**Farm Model** (owner named at G0, version log, section 7 signers): herd/flock dynamics, monthly feed balance, labour by month **including control and compliance hours**, water (incl. irrigation), machinery and contractors, 24-month cash flow. Starts on regional defaults; each input is tagged measured / benchmark / assumed. Any assumed yield, carrying capacity or water supply gives only a **conditional pass** (15% margin of safety; re-confirmation at first harvest, dry season, birthing season). **A manager offer on a conditional pass is probation-length or contingent on the first re-confirmation.**
 
 **Pass criteria (all):**
-1. **Hurdle:** base-case net margin after management and control cost exceeds the best alternative's net income (lease, contract or sale proceeds' return) **plus a risk premium** (default 3–5% of invested capital; owner sets). Stress cases lose no more than the signed cumulative-loss limit. Scenarios: price and yield −20%; drought −30% yield; disease −10% stock; inputs +25%; **notifiable event** (full poultry loss, zero holding sales for 90 days, 6–12 month compensation lag).
-2. **Control cost** (definition and scale bands in Appendix B §10) fits the band cap and the **core control set is never dropped**; if the core does not fit, scale down or lease. Optional controls pass an **expected-loss test** (cost below leakage prevented); you sign residual risk.
-3. **Feed:** every month of base and drought cases covered by budgeted purchases. **Water:** reliable supply >= demand in the 1-in-10 driest month, plus 72 h storage. **Labour:** peak month <=85% of rostered hours after leave, named casual sources for the rest.
-4. **Enterprises:** rank by gross margin per labour-hour, supervision need and downside; default 2–3 in year 1; forage/feed (tied to the ruminant decision) screened separately from cash crops; poultry needs positive justification; surplus stock sold down on a season-timed plan.
-5. **Capital lines** with build-before-need dates (manure store, grain storage, water backup, handling).
-6. **Vet access** adequate (response time, out-of-hours), else second practice or paraprofessional protocol.
-7. **Insurance** (including crop/forage), entity and licences confirmed.
+1. **Hurdle:** base-case net margin after management and control cost, **less your time at your hourly shadow price** (you declare it) and **less one-off set-up costs amortised over 3–5 years** (entity, legal, SOPs, tools, interim lead, consultant backstop, pre-G1 spend, ramp-up), exceeds the best alternative's net income (lease, contract, sale; computed like for like including its owner hours) plus a risk premium (default 3–5% of **invested capital = market value of land, stock, machinery**). Stress losses stay within the signed limit: price and yield −20%; drought −30%; disease −10% stock; inputs +25%; **notifiable event** (full poultry loss, no holding sales 90 days, 6–12 month compensation lag).
+2. **Control cost** fits the Appendix B §10 band cap **and** is at most one-third of pre-management gross margin; the core set is never dropped (if it does not fit, scale down or lease). Optional controls pass an expected-loss test.
+3. **Feed:** every month of base and drought cases covered by budgeted purchases. **Water:** supply >= demand in the 1-in-10 driest month, plus 72 h storage. **Labour:** peak month <=85% of rostered hours after leave and control tasks.
+4. **Enterprises:** rank by gross margin per labour-hour and supervision need; default 2–3 in year 1; forage screened separately from cash crops; poultry needs positive justification; surplus stock sold down on a season-timed plan.
+5. **Capital lines** with build-before-need dates; **vet access** adequate, including a poultry-competent vet or lab route; **insurance** and drought plan (staged responses pre-authorised with sale ceilings) decided.
 
-## 5. Owner time (one reconciled budget)
+## 5. Owner time (year 1 = 15 Oct 2026 to 14 Oct 2027; reference path: manager starts Jun 2027)
 
-| Phase | Hours | Contents |
-|---|---|---|
-| G0–G1 | 20–30 total | Intake, audit liaison, G1 decision |
-| G2/G2b | 40–60 total | Interviews, offer, entity/mandates, tabletops, appointing auditor/bookkeeper |
-| Pilot (A1) | 3–4 h/week + ~70 h site presence | Weekly review, approval queue, payment batch, alerts |
-| A2 | 2–3 h/week | |
-| A3 | ~1.75 h/week routine + monthly 3 h + quarterly 8 h + visits 24–48 h + crisis reserve 64 h | ~260 h/yr |
-| Year 1 total | ~400–450 h | ~8 h/week averaged |
-
-Presence is front-loaded (G1 sign-off, manager's first 8 weeks, first stock count, first audit); otherwise the representative attends. **Approval queue:** at G0 count purchase lines over 24 months; set Tier 1 so >=90% of lines fall within it, and use pre-approved annual supply agreements (price bands, quantity caps) for feed/drugs/fuel so call-offs stay Tier 1. Target Tier 2 queue: 30–45 min/week. You answer in your next scheduled slot; the representative acts after 2 h. If this budget is infeasible, that favours a lease or management-company option at G1.
-
-## 6. Authority and controls (summary; detail in Appendix B)
-- Tiers T0–T3; T3 (owner only) includes **all vendor creation and whitelist entry**. A "manager cannot" list (release payments, sign, be sole stock recorder or data source). Representative has caps and dual approval. Emergency envelope has an aggregate cap and a non-payee approver. Core controls are non-waivable (Appendix B §10); fraud-response protocol: Appendix B §8.
-- **Notifiable disease:** two-step sudden-death triage; the reporting duty never waits for you (Appendix A §1).
-- Worker safety, medicines and withdrawal checks at load-out, individual ID, fallen stock, and the feed-flow rule (no medicated poultry feed or litter reaching ruminants): Appendix A.
-
-## 7. Technology
-Paper-first for **recording**; all **transmission** goes through a path the manager cannot edit: unit leads photograph the same-day sheet and tagged carcass (in-app capture, no gallery uploads, server timestamp) to an entity-owned store; with no signal, an SMS count plus paper audited at spot-counts. The manager's report is secondary; completeness is measured on raw submissions. Life-critical alarms (poultry house temperature/power, vaccine fridge, water) run on stand-alone GSM units. Fallbacks: two recipients per alert; dead-man's switch (24 h silence to the deputy, 48 h to the representative); SIM-expiry and 3-day power-out drills; paper power/water procedures. Dashboard: 8–12 KPIs, each with method and data owner.
-
-## 8. Human sign-off matrix
-Agents draft; licensed humans decide; sources and assumptions recorded.
-
-| Output | Vet | Agronomist | Lawyer | Accountant | Others |
+| Period | Weeks | Routine h/wk | One-off | Site presence | Hours |
 |---|---|---|---|---|---|
-| Health, vaccine, drug, withdrawal, quarantine, fallen stock, triage and playbook | Sign | | Reporting duty | | Authority confirms contacts |
-| Poultry biosecurity, feed-flow rule | Sign | Co-sign | | | |
-| Crop calendar, chemicals, soil, stocking, forage, drought triggers | Stocking co-sign | Sign | Chemical licensing | | |
-| **Farm Model** | Herd inputs | Co-sign | | Co-sign | Owner approves; model owner named |
-| **Ration/feed balance** | | | | | Nutritionist or vet signs |
-| **Water supply and abstraction** | | | Permit | | Hydrogeologist or permit holder |
-| Entity, contracts, tenure, labour law, privacy, fraud protocol | | | Sign | Tax view | Insurer reviews protocol |
-| Budget, controls, authority, payroll, audit scope | | | Contract terms | Sign | Owner approves |
-| All SOPs | | | | | Field-tested by lead/manager and workers |
+| G0 | 3 | 3 | 6 | | 15 |
+| G0 to G1 | 12 | 2.5 | 14 | 24 | 68 |
+| G2 | 18 | 2.5 | 36 | | 81 |
+| G2b | 8 | 4 | | 40 | 72 |
+| Pilot | 10 | 3.5 | | 24 | 59 |
+| Quarterly reviews | 4 | | 32 | | 32 |
+| Crisis reserve | | | 64 | | 64 |
+| **Year 1** | 51 | | | | **~390 (range 330–450)** |
 
-## 9. This-season memo (weeks 1–2)
-The irreversible acts (buying seed, fertiliser or chemicals, planting, restocking, long contracts) inside the current window are decided **once, in this memo**, not deferred to G1 and not left to the incumbent's unreviewed plan. The agronomist or extension officer reviews the incumbent's crop plan against the local window; you approve a capped input spend with a feed-first default; receipts and application records are reconciled by someone other than the incumbent. Everything else continues as is.
+Routine hours include the owner-only control tasks (about 0.5 h/week: vendor checks, exception reports, call-backs, 72-h reviews, representative cross-check). A later manager start adds ~2.5 h per extra week. A3: 2.25 h/week routine + 36 monthly + 32 quarterly + 24–48 visits + 64 reserve = ~280 h/yr. Auditors do spot-counts, not you.
+**Approval queue:** set Tier 1 on audited purchase lines only, so >=90% fall within it; pre-approved annual supply agreements keep call-offs at Tier 1; target Tier 2 queue 30–45 min/week.
 
-| Window | N temperate | S temperate | Tropics / other |
-|---|---|---|---|
-| Now–Nov 2026 | Tupping, winter feed check | Lambing/calving, summer planting | Agronomist builds the calendar from local rainfall records at G0 |
-| Dec–Feb | Winter feeding, order seed | Hay, weaning | |
-| Mar–May | Calving/lambing, planting | Harvest, autumn breeding, winter cereals | |
-| Jun–Sep | Harvest, hay, annual count | Winter feeding, order seed | |
+## 6. Controls and alerts (summary)
+Appendix B: tiers T0–T3; scheduled recurring payments pre-approved by you per period; owner-only vendor creation; non-preparer reconciliation at least quarterly; fraud protocol routed to you and the lawyer. Appendix A: two-step triage for isolated sudden deaths; poultry red means lockdown plus vet phone triage within 2 h, with report and standstill only on specific signs or if the vet cannot attribute a cause; silence is an alert.
 
-Rule: no new enterprise, poultry restock, long contract or manager start inside a peak.
+## 7. Human sign-off matrix
+Agents draft; licensed humans decide; sources recorded.
+
+| Output | Signers |
+|---|---|
+| Health, vaccine, drug, withdrawal, quarantine, triage, playbook | Vet (authority confirms contacts; lawyer: reporting duty) |
+| Poultry biosecurity, feed-flow rule | Vet, agronomist |
+| Crop, chemicals, soil, stocking, forage, drought plan | Agronomist (vet co-signs stocking) |
+| **Farm Model** | Agronomist, accountant, vet inputs; you approve |
+| **Ration balance / water supply** | Nutritionist or vet / hydrogeologist or permit holder (or documented conditional G1 without) |
+| Entity, contracts, tenure, labour law, privacy, fraud protocol | Lawyer (insurer reviews protocol) |
+| Budget, controls, authority, payroll, audit scope | Accountant (lawyer: terms); you approve |
+
+All SOPs are field-tested by the interim lead or manager and workers.
+
+## 8. Window memo (weeks 1–2, then rolling)
+Irreversible acts in the current window (seed, fertiliser, chemicals, planting, restocking, long contracts, winter feed, seed orders for the next window) are decided **once per window** in a memo, not deferred to G1 and not left to the incumbent's unreviewed plan. The agronomist or extension officer reviews the incumbent's plan against the local window and supplies interim season-points and a feed-days count; commitments with lead time inside the next window default to the agronomist's minimum quantity, with top-ups after G1. **Input-spend cap:** the lesser of your figure and the last year's input spend for that window; it is operating budget (outside the pre-G1 cap); shrinkage found counts toward the loss limit. Until G2: owner-only new payees, statements direct to you and the accountant, and the named reconciler (accountant or coordinator) checks receipts and application records. Refreshed at each season boundary (next 1 Dec). Feed-first is the default.
