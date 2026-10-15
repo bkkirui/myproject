@@ -1,6 +1,29 @@
 # Change log
 
-## Part 1: v3 → v4 (round-3 reviews)
+**Numbering note:** Parts 2–4 cite the section numbers of the version they describe (v4, v3, v2 respectively); for example v3 "section 9" is the window memo, now section 8, and v3 "A6" is now A7. Part 1 uses v5 numbering.
+
+## Part 1: v4 → v5 (round-4 reviews)
+Round 4 found 0 MAJOR from livestock and agronomy, 1 each from governance and economics. Codes: R4-G governance, R4-E economics, R4-L livestock, R4-A agronomy.
+
+| Item | Where / how addressed |
+|---|---|
+| R4-G1 [MAJOR] interim period has only a Day-7 snapshot | Appendix B0 rebuilt as an interim regime: same-day count and access changes cleared by the lawyer; interim spot-counts at ~6–8 weeks and at G1, signed handover count at manager start; baseline books-review tests (vendor bank vs employee master, payroll muster, existing-payee review); numeric interim authority (float 0.1% AOB per item, 0.5% per 30 days; emergency letter with the B5 caps and a non-payee approver); no disposal or sale without owner's written OK, buyers pay direct, cash receipt rules, goods-received by a non-orderer. PLAN section 2 summarises and G0 exit requires it |
+| R4-E1 [MAJOR] risk premium on land | PLAN section 4: premium applies to operating capital at risk (stock, machinery, working capital); land only against a sale alternative. Appendix B12 gives a worked 500k example in which proceed is reachable (hurdle 98k vs 121k) and shows the land-based premium would add 80k and make it unreachable |
+
+**Rejected or modified:**
+- R4-G (interim count schedule): the owner sees only the schedule in the body; auditors, not the owner, do the counts, so owner hours are unchanged.
+- R4-E (item 5, hours to G1): added (~83 h). The G1-only spend figure stays an owner-set cap on quotes, not a point estimate.
+- R4-G12 (pre-G1 cost thin): not raised; the body now says the cap is likely reached with no incumbent or a small farm and quotes lawyer and books-review lines separately. I did not raise the default range because no quotes exist.
+- R4-A12 (nutrient/chemical regulation): added to the sign-off row; no new numeric limits invented.
+- Body length: PLAN.md is about 2,240 words including tables (v4: 2,200); the extra interim-period content went to Appendix B0.
+
+**MINORs folded in**
+- Governance: R4-G2 counter named, disputes listed, roll-forward (B0.1); R4-G3 sequencing (B0); R4-G4 interim representative view and call-back only; R4-G5 delegate T2 powers, POA until entity, scheduled-payment schedule and +10% return, one route per call-off (B1, B2); R4-G6 different firm and accountant PI cover (B3, B9); R4-G7 "annual external review", statutory audit only where required; R4-G8 incumbent test defined and quiet sourcing; R4-G9 recount rule for counts only, bank/hotline start at once (B8); R4-G10 role map (B12); R4-G11 feasibility screen margin-based and one threshold.
+- Economics: R4-E2 screen margin-based; R4-E3 set-up counted once (PLAN section 4); R4-E4 cap-exhaustion expected, cap vs margin (decision sheet, B12); R4-E5 hours to G1; R4-E6 footnotes (weeks, range ±15%, monthly digest, approval queue inside routine); R4-E7 "assumptions, unsourced" statement on the sheet; R4-E8 indicative lease and management-company ranges (B12).
+- Livestock: R4-L1 layer red wording, week-1 placeholder red, continuous floor and cumulative leg (A2); R4-L2 respiratory/egg-drop scoping (A1); R4-L3 young-stock group definition (A2); R4-L4 interim treatment list (A0.9); R4-L5 interim poultry biosecurity (A0.8); R4-L6 species-appropriate notifiable scenario; R4-L7 euthanasia timing as G0 exit with on-call fallback; R4-L8 poultry outbreak PPE, suspect carcass; R4-L9 count tolerance; R4-L10 remote verification during standstill; R4-L11 threshold; R4-L12 "default" and species-specific labels.
+- Agronomy: R4-A1 interim lead term (ends with the peak in progress at manager start plus handover; consultant covers the next peak); R4-A2 S slip rule and S peak row; R4-A3 G2 length and G3/A2 wording; R4-A4 provisional naming and standby sourcing; R4-A5 one cost classification; R4-A6 memo cap on audited spend, stock purchases and sales, agronomist conflict declaration; R4-A7 A4 operator is the interim lead; R4-A8 non-temperate calendar in G0 exit; R4-A10 Farm Model upkeep in B10; R4-A11 interim staged rows in the memo; R4-A12 continuous floor; R4-A13 numbering note above.
+
+## Part 2: v3 → v4 (round-3 reviews)
 Codes: R3-L livestock, R3-A agronomy, R3-G governance, R3-E economics (MAJOR items). "PLAN" = PLAN.md; "A"/"B" = appendices. Section numbers in PLAN follow v4 (the v3 sections 6, 7 and 9 were folded or renumbered).
 
 | Item | Where / how addressed |
@@ -25,7 +48,7 @@ Codes: R3-L livestock, R3-A agronomy, R3-G governance, R3-E economics (MAJOR ite
 
 **MINORs folded in:** R3-L2 ruminant sign scoping (A1); R3-L3 Day-7 safety additions (A0); R3-L4 trough wording; R3-L5 emergency cap carve-outs (B5); R3-L6 medicines (A3); R3-L7 poultry vet competence, vaccination, necropsy, housing order; R3-L8 triage fallbacks; R3-L9 standstill mechanics and late-pregnancy counting (A1, A6); R3-L10 vet-only red resets; R3-L11 reporting not waiting for lawyer, euthanasia means, rabies, windrow composting; R3-A4 paper/tabletop tests in peaks; R3-A5 season-points and pre-authorised staged rows; R3-A6 interim lead and consultants placed in B10; R3-A7 control hours in labour model, leave in troughs (B11); R3-A8 feed-flow operator named (manager); R3-A9 interim poultry rules; R3-A10 hours and dates reconciled; R3-A11 conditional offers; R3-A12 incumbent exclusion rule; R3-G4 emergency payment instrument and independent approver; R3-G5 evidence layer (entity devices, clock flag, independent reviewer); R3-G6 independent registry lookups; R3-G7 graded recount; R3-G8 hotline route and alternate lead; R3-G9 lawyer scope items; R3-G10 T1 on audited lines, candidate notice; R3-G11 feasibility screen; R3-G12 owner-only tasks itemised and second admin; R3-E5 troughs; R3-E6 margin share test and USD reference; R3-E7 dates "9–15 weeks", conditional pass expected; R3-E8 A3 defined at first use; R3-E9 auditors do spot-counts.
 
-## Part 2: v2 → v3 (round-2 reviews)
+## Part 3: v2 → v3 (round-2 reviews)
 Codes: R2-L livestock, R2-A agronomy, R2-G governance, R2-E economics (MAJOR items). "PLAN" = PLAN.md; "A"/"B" = appendices. Cheap MINORs are listed at the end.
 
 | Item | Where / how addressed |
@@ -57,7 +80,7 @@ Codes: R2-L livestock, R2-A agronomy, R2-G governance, R2-E economics (MAJOR ite
 
 **MINORs folded in (cheap):** R2-L4 act-first; R2-L5 missing signs and abortion scaling, baselines tighten only (A1/A2); R2-L6 tag stays on suspect carcass (A1); R2-L7/R2-A4; R2-L8 withdrawal-check line on gate pass (A3); R2-L9 notifiable scenario in G1 and kill trigger excludes emergencies; R2-L10 vet access in G1; R2-L11 water thresholds relative to design; R2-L12 drench exceptions; R2-L13 welfare lines; R2-A6 G1 pass definitions; R2-A7 crop/feed signals; R2-A8 chemical column; R2-A9 forage separate from cash crops; R2-A10 machinery; R2-A11 "other" column; R2-A12 combined outbreak-in-peak tabletop; R2-A13 yield verification; R2-A14 capital lines; R2-G6 core set; R2-G7 leave in charter and A3 criteria; R2-G8 privacy/labour row; R2-G9 gate log reporting line; R2-G10 small-staff controls; R2-G11 auditor biosecurity; R2-G12 MFA/call-back; R2-E6 coordinator; R2-E7 charter variant and wage test; R2-E8 representative vetting; R2-E9 "clean" defined, spot-count frequency, whitelist benchmarking; R2-E10 levels renamed A1–A3 and codes disambiguated; R2-E11 presence front-loaded.
 
-## Part 3: v1 → v2 (round-1 reviews)
+## Part 4: v1 → v2 (round-1 reviews)
 Section numbers (S4, S5...) refer to PLAN-v2.md; their content now lives in the PLAN.md sections and appendices indicated in Part 1. Codes: R1-L livestock, R1-P poultry/crops, R1-G governance, R1-E economics.
 Codes: L = livestock, P = poultry-crops, G = governance, E = economics. Minor items were folded in where cheap (e.g. L13–20, P14–25, G13–24, E13–19); Stata/R dropped and deliverables made testable.
 
