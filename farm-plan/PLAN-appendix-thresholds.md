@@ -1,6 +1,6 @@
 # Appendix A: Health, biosecurity, alerts, feed and crops (design defaults)
 
-**Not for approval now.** These are design defaults to be calibrated and signed at G1/G2 (see PLAN.md section 8). Every figure is a default; the vet or agronomist replaces it. Retained enterprises only.
+**Not for approval now.** These are design defaults to be calibrated and signed at G1/G2 (see PLAN.md sections 3–4). Every figure is a default; the vet or agronomist replaces it. Retained enterprises only.
 
 ## A0. Day-7 safety pack (G0 exit criterion; baseline vet owns it)
 1. Vet-of-record with 24-h cover (poultry-competent or a lab route if poultry exist); authority number verified by live call; fallback to the authority vet if the vet is unreachable in 2 h.
@@ -16,11 +16,11 @@
 ## A1. Notifiable disease and sudden death
 Gate 0 names the authority, 24-h contact and national notifiable list. The reporting duty rests with the licensed holder and **never waits for an owner reply**. Act first, notify in parallel: the manager acts and calls the vet immediately within the emergency envelope; the ladder (owner, representative, adviser) governs who is informed and who may extend the envelope, not whether the first response happens.
 
-**Immediate standstill and report (no triage)** on: vesicles with lameness or drooling in several animals; blood from orifices or unclotted blood from a carcass; abortion storms (rule in A2, never below the national rule); poultry with swollen head/comb, or respiratory signs in multiple birds of a house with deaths at or above amber, or egg drop >=10% with deaths above the floor. **Neurological signs, skin nodules/pox lesions, drooling and mouth erosions:** report when several animals are affected, signs are generalised, or the vet cannot exclude a notifiable cause; a single animal is isolated and gets vet triage within 2 h. Standstill covers animals, carcasses, milk, eggs, manure, vehicles and people; non-essential visits (auditors, buyers) are suspended; a vet-approved exemption list covers essential feed and water deliveries, milk and egg collection, animal-care labour and carcass removal.
+**Immediate standstill and report (no triage)** on: vesicles with lameness or drooling in several animals; blood from orifices or unclotted blood from a carcass; abortion storms (rule in A2, never below the national rule); poultry with swollen head/comb, or respiratory signs in multiple birds of a house with deaths at or above amber, or egg drop >=10% together with deaths at or above the red floor (6 birds per house per day or the percentage, whichever is larger). **Neurological signs, skin nodules/pox lesions, drooling and mouth erosions:** report when several animals are affected, signs are generalised, or the vet cannot exclude a notifiable cause; a single animal is isolated and gets vet triage within 2 h. Standstill covers animals, carcasses, milk, eggs, manure, vehicles and people; non-essential visits (auditors, buyers) are suspended; a vet-approved exemption list covers essential feed and water deliveries, milk and egg collection, animal-care labour and carcass removal.
 
 **Two-step triage for an isolated sudden death (ruminants):**
 1. Leave the carcass unopened and covered, **excluding scavengers, dogs and livestock**; photograph in situ with the ear tag legible; **leave the tag on** (tag removal and sampling by the vet or authority only). Vet phone triage within 2 h, else the authority vet. No standstill at this step.
-2. The vet or authority escalates to report and standstill when: anthrax-endemic region or history; >=2 deaths in a group within 24–48 h; bleeding from orifices; fever, vesicles or neurological signs in survivors; or the vet cannot attribute a cause.
+2. The vet or authority escalates to report and standstill when: anthrax-endemic region or history; in adults, >=2 deaths in one group (same paddock, shed or age cohort) within 24–48 h; in young stock, only survivor signs (fever, vesicles, neurological signs, bleeding) or no attributable cause; bleeding from orifices; fever, vesicles or neurological signs in survivors; or the vet cannot attribute a cause.
 
 **Poultry triage mirrors this:** a red poultry threshold means house lockdown (no movement in or out of the house) and vet phone triage within 2 h; the report and standstill follow only on the poultry signs above or when the vet cannot attribute a cause. A power or temperature failure is handled as an operational welfare emergency (generator, ventilation fallback, cooling) and is not a notifiable report unless disease signs are present.
 
@@ -34,11 +34,11 @@ Baselines may **tighten** red triggers. **Only the vet may reset a red default, 
 | Broilers, after week 1 | >0.2%/day, or 2x the flock's trailing 7-day mean | >0.5%/day, or doubling in 24 h **with at least the floor below** |
 | Week 1 (broilers, day-old pullets) | >1.0% cumulative by day 7: vet review | Placeholder: >1%/day or >2% in 2 days (vet-replaceable) |
 | Layers | >0.05%/day; egg drop >=10% in 2 days; intake drop >=10% | >0.1%/day, or doubling in 24 h **with the floor**, or intake drop >=20% over 2 days, or egg drop >=20%; or amber egg-drop/intake signs together with deaths above the floor |
-| Floor (all flock sizes) | Amber and red apply at the **larger of** N birds per house per day (default 3 / 6) and the percentage; doubling counts only above the larger of 10 birds and 0.1% of the flock. Small flocks also have a vet-set 7-day cumulative leg (default >5%) | |
+| Floor (all flock sizes) | Amber and red apply at the **larger of** N birds per house per day (default 3 / 6) and the percentage; doubling counts only above the larger of 10 birds and 0.1% of the flock. Small flocks (and all week-1 broods under ~300 birds, which use the percentage leg instead of the N-bird floor) also have a 7-day cumulative leg, vet-replaceable: amber >5% (vet call within 24 h), red >10% | |
 | **Poultry red means** | | Lockdown and vet phone triage within 2 h (A1); reporting only on the specific signs |
 | Adult ruminants | >=2 unexplained deaths in 7 days | Two-step triage (A1) |
 | Abortions | Expressed as a count or percentage of females at risk, set by the vet | Never below the national reporting rule; where a single abortion is reportable, one is red |
-| Young stock | >1.5x seasonal baseline | Vet call within 2 h when >=2 deaths in one group (same paddock, shed or age cohort) within 24–48 h, excluding first-days neonatal deaths inside the seasonal baseline. Standstill only on the A1 step-2 signs |
+| Young stock | >1.5x seasonal baseline | Vet call within 2 h when >=2 deaths in one group (same paddock, shed or age cohort) within 24–48 h, excluding first-days neonatal deaths inside the seasonal baseline. Standstill only on the A1 step-2 young-stock signs (survivor signs or no attributable cause) |
 | Shrinkage/variance | 3% unexplained | 5%, or failed spot-count (starts B8) |
 | Water reserve | Below 75% of designed storage | Below 50% of designed storage |
 | Power/cold chain | Generator test failed | House over-temperature or power loss (welfare emergency, not a notifiable report); vaccine fridge outside 2-8 C for >30 min |
