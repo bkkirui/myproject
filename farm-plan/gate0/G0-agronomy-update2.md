@@ -2,7 +2,7 @@
 
 Builds on G0-season-agronomy.md and INTAKE "Intake update 2". All new facts are OWNER-REPORTED and unseen by me. **Sources:** this pass used WebSearch summaries only (WebFetch was blocked for the key sites earlier and was not retried). Nothing below was read from a primary document. Anything not in a result is **UNVERIFIED** (my professional norms). No money figures: the agronomist must quote.
 
-**Changes from the first note:** land 23 acres (9.3 ha), altitude 1,765-1,790 m (lower than my 1,800-2,200 guess: slightly warmer, less frost, still highland tea-maize belt; owner figure, GPS check needed). Flock is 2,770 birds, not 1,000 (2.8x my poultry numbers).
+**Changes from the first note:** land 23 acres (9.3 ha), altitude 1,765-1,790 m (lower than my 1,800-2,200 guess: slightly warmer, less frost, still highland tea-maize belt; owner figure, GPS check needed). Flock is **2,270 birds** (500 x 4 breeds + 100 ducks + 50 geese + 20 turkeys + 100 guinea fowl), not 1,000 (2.3x my poultry numbers). **Intake update 2 states a total of 2,770, but its own components add to 2,270; the 2,770 is an arithmetic error and the owner should confirm by count.**
 
 ## 1. Feed balance and land use
 
@@ -15,7 +15,7 @@ Builds on G0-season-agronomy.md and INTAKE "Intake update 2". All new facts are 
 | Geese (some grass) | 50 | 150-250 | 8-13 | 3-5 |
 | Turkeys | 20 | 200-300 | 4-6 | 2-3 |
 | Guinea fowl | 100 | 60-80 | 6-8 | 3 |
-| **Total** | 2,770 | | **212-285** | **about 90-122 (6.4-8.5 t/month; 77-102 t/yr)** |
+| **Total** | 2,270 | | **212-285** | **about 90-122 (6.4-8.5 t/month; 77-102 t/yr)** |
 
 A 12 t lorry load is about 170 bags, i.e. 1.4-1.9 months of feed.
 
@@ -38,7 +38,7 @@ A 12 t lorry load is about 170 bags, i.e. 1.4-1.9 months of feed.
 
 **Findings.**
 - **Ruminants:** bulk forage supply 43-69 t DM against 43-61 t need. The farm can grow roughly 70-110% of bulk feed in a normal year, but only once stands mature (12-18 months; year 1 is about 40-60%). Jan-Feb needs hay/silage. Protein, minerals and dairy meal are still bought.
-- **Poultry:** the flock is about three times what the land can feed. Even 9.3 ha of maize (about 28 t) would cover about 30% of the ration and leave nothing for stock. Realistic: **5-15% of poultry feed** from range foraging, greens and sweet-potato vines/leaf meal. Bought feed stays the main cash item.
+- **Poultry:** the flock is more than twice what the land can feed. Even 9.3 ha of maize (about 28 t) would cover about 30% of the ration and leave nothing for stock. Realistic: **5-15% of poultry feed** from range foraging, greens and sweet-potato vines/leaf meal. Bought feed stays the main cash item.
 - **Duckweed/azolla:** my searches found no usable source (UNVERIFIED). From professional knowledge it could supply a few percent of duck ration from a small lined tank (not the pans: wild-bird and algae risk). It is a trial, not a plan.
 - **Black soldier fly (BSF):** feasible as a pilot (larvae from kitchen and crop waste; protein offset of perhaps 10-20% for a small unit). Using poultry manure as substrate needs vet approval. Not a Gate 0 item. UNVERIFIED.
 - **Sunflower** (suited to this altitude, UNVERIFIED) needs a press or miller for cake: 1 ha is trial scale only.
@@ -87,7 +87,7 @@ Reading B means a water emergency today. Reading A means drinking water is not t
 
 ## 4. The lorry
 
-12 t is about 170 bags (a 1.4-1.9 month supply for 2,770 birds), so it could shuttle feed 6-8 times a year. Hay bales are volume-limited, so expect far less than 12 t of hay (UNVERIFIED). Composted litter (about 600 kg/m3, UNVERIFIED) loads 15-20 m3 per trip.
+12 t is about 170 bags (a 1.4-1.9 month supply for 2,270 birds), so it could shuttle feed 6-8 times a year. Hay bales are volume-limited, so expect far less than 12 t of hay (UNVERIFIED). Composted litter (about 600 kg/m3, UNVERIFIED) loads 15-20 m3 per trip.
 
 **Do not assume:**
 - it is a tipper, 4WD or fitted for bulk; it can reach the farm on murram roads in wet weather, or carry its rated load on rural bridges;
@@ -98,9 +98,9 @@ Reading B means a water emergency today. Reading A means drinking water is not t
 
 Controls: GPS tracker, trip log, fuel records, and a disinfect step on the gate.
 
-## 5. Manure and litter for 2,770 birds
+## 5. Manure and litter for 2,270 birds
 
-- **Volume:** previous rate (40-55 t per 1,000 birds) gives 110-150 t/yr fresh, but free-ranging birds leave much on the range: expect 50-130 t collected (UNVERIFIED). Roughly 2-3 t nitrogen/yr.
+- **Volume:** previous rate (40-55 t per 1,000 birds) gives about 90-125 t/yr fresh, but free-ranging birds leave much on the range: expect 40-105 t collected (UNVERIFIED). Roughly 1.5-2.5 t nitrogen/yr.
 - **Need:** Napier at 150-200 kg N/ha needs 300-400 kg N/yr for 2 ha. So litter far exceeds on-farm need. Apply 5-10 t/ha composted to Napier and crop land (3 ha = 15-30 t); surplus goes to sale or to neighbours as bagged compost.
 - **Composting:** covered windrows on a sloped, bunded pad, turned, 90-120 days; leachate to a lined sump. Duck/goose litter is wet: mix with dry carbon (maize stover, Napier trash).
 - **Rules (my recommendations, not legal findings):** no heaps, pads or carcass pits within 50 m of a pan and none upslope of one; no spreading within 30 m of a pan, on saturated ground, on slopes over about 12%, or 48 h before forecast heavy rain; incorporate quickly; keep a spreading log; never on sheep pasture or as cattle feed. Dead birds (30-50/month plausible) to carcass composting away from pans.
