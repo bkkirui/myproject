@@ -1,4 +1,4 @@
-# G0 Health update 2: 2,770 birds, 23 acres, Borut, Bomet
+# G0 Health update 2: 2,270 birds, 23 acres, Borut, Bomet
 
 Prepared 2026-10-15 by the health/regulatory specialist. Updates G0-health-regulatory.md. All facts about the farm are OWNER-REPORTED and unseen. All numbers are defaults for the appointed vet to calibrate. **UNVERIFIED** means I could not confirm it from a current Kenyan source; the searches returned snippets only, and I did not read full pages.
 
@@ -18,11 +18,11 @@ Sources (accessed 2026-10-15, snippets only):
 
 | Earlier statement | Change |
 |---|---|
-| ~1,000 birds in many small flocks | 2,770 birds in 8 groups. Four chicken groups of 500 are large enough for percentage rules; the four small groups (20-100) need count rules. The 3/6-per-house floors are workable for 500-bird flocks but not for the small ones. |
+| ~1,000 birds in many small flocks | 2,270 birds in 8 groups (4 x 500 + 270; an earlier brief wrongly said 2,770). Four chicken groups of 500 are large enough for percentage rules; the four small groups (20-100) need count rules. The 3/6-per-house floors are workable for 500-bird flocks but not for the small ones. |
 | Ducks/geese a side issue | 100 ducks + 50 geese on a farm with two large rain-fed pans is now a **real HPAI and Salmonella interface**. Turkeys (20) next to chickens add blackhead risk. |
 | Unknown vaccination history | Now "fully vaccinated" (claim, unseen). Treat as unverified until section 4 is done. Vaccinated flocks still die of ND if the vaccine was heat-damaged or the strain mismatched (W10). |
 | Vet visits unknown | A weekly appointed vet changes my 24-h-visit assumption: routine surveillance is feasible. But a vet appointed by the owner and reporting through staff (one a relative) is not independent; records must reach the owner directly. |
-| Drug store 6 months | Positive for continuity, but stock must be checked for expiry, cold-chain items stored without a fridge, and antimicrobials and ionophores. A 6-month feed store (~50 t by my estimate: about 2,300 chickens at ~110 g/day plus ~470 other birds) is a mould, aflatoxin and rodent risk at 1,765 m humidity. |
+| Drug store 6 months | Positive for continuity, but stock must be checked for expiry, cold-chain items stored without a fridge, and antimicrobials and ionophores. A 6-month feed store (~45 t by my estimate: 2,000 chickens at ~110 g/day plus 270 other birds) is a mould, aflatoxin and rodent risk at 1,765 m humidity. |
 | Water pans "possible attractors" | Pans also hold fluke snails (sheep/cattle), mosquitoes (fowl pox, RVF if floods) and runoff. Ruminants and poultry must not drink from them untreated. |
 | Altitude unknown | 1,765-1,790 m: cool nights (chick chilling), ticks (R. appendiculatus, ECF) still active, fewer mosquitoes than lowlands (UNVERIFIED local pox/RVF pressure). |
 | Owner on site | Owner >300 km away: every rule below assumes reading by phone photo. |
@@ -156,7 +156,7 @@ Plus footer: gate visitors (Y/N), wild-bird dead at pans (Y/N), rodent bait take
 
 ## Ten-line summary
 
-1. 2,770 birds in 8 groups make this a medium-scale mixed poultry enterprise; four 500-bird chicken flocks can use percentage rules, the four small groups need count rules.
+1. 2,270 birds in 8 groups make this a medium-scale mixed poultry enterprise; four 500-bird chicken flocks can use percentage rules, the four small groups need count rules.
 2. "Fully vaccinated" is unverified; ask for batch, label photos, cold-chain log, and do ND HI serology on 30 birds per chicken flock.
 3. Four hatchery-sourced breeds mean four different vaccine histories; ages unknown, so ND, Gumboro, pox timing cannot be judged yet.
 4. Ducks, geese and the water pans are the main HPAI and Salmonella interface; fence poultry off the pans, feed and water from troughs, net waterfowl houses.
