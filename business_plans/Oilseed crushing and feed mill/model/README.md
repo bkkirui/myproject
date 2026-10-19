@@ -4,19 +4,20 @@ One Python script (`model.py`) holds every assumption and every calculation. Run
 
 ```bash
 cd "business_plans/Oilseed crushing and feed mill/model"
-python3 model.py            # about 10 seconds; needs numpy and openpyxl only
+python3 model.py            # about 3 minutes (VOI Monte Carlo and gate calibration); needs numpy and openpyxl only
 ```
 
 ## Files produced
 
 | File | Content |
 |---|---|
-| `financial_model.xlsx` | 11 sheets (listed below) |
+| `financial_model.xlsx` | 13 sheets (listed below) |
 | `outputs.md` | Paste-ready tables for the plan writer: configuration, capex, funding, annual summary, unit economics, returns, Phase 2 gate, scenarios, tornado, seed x oil grid, survival view, checks, caveats |
 | `pnl_annual.csv` | Annual P&L, one row per year 2027-2038, KES m nominal; volumes in tonnes; USD memo columns |
 | `cashflow_annual.csv` | Annual cash flow, funding, debt balances, DSCR, project and equity flows (KES m and USD m) |
 | `mass_balance_annual.csv` | Every tonnage line (seed, oil, cake, meal, hulls, losses, feed ingredients, energy) |
 | `scenarios_annual.csv` | EBITDA, equity and project flows for each scenario |
+| `voi_draws.csv` | One row per Phase 0 value-of-information draw (inputs drawn, survival-weighted founder NPVs at 35%/40% and p_fail 30%/20%, with full and Phase-0a-only information) for both prior correlations |
 
 CSV variable names are lower-case, Stata-safe and no longer than 32 characters. In Stata:
 
@@ -35,11 +36,13 @@ list year revenue ebitda net_income if year>=2029
 | Capex & phasing | Phase 1 and Phase 2 items in USD m (low/base/high), with IDF/RDL and contingency shown separately; nominal KES phasing; VAT timing on capex; book depreciation; tax allowances |
 | Operating P&L | Ten operating years (2029-2038) plus 2027-28 pre-operating, in nominal KES m. Revenue by product, variable/fixed/selling costs, levies, EBITDA, interest, tax and net income; USD memo at the explicit FX path; unit economics |
 | Working capital | Monthly seed-stock profile (% of annual crush), December/average/peak ratios, year-end WC components, intra-year peak, revolver |
-| Cash flow & funding | Operating/investing/financing flows, equity injections and distributions, debt schedules (senior KES, USD mezzanine, Phase 2 DFI loan, revolver, DSRA), CFADS and DSCR, Phase 1 sources and uses |
-| Returns | Project and equity IRR in KES and USD (with and without terminal value; equity also after dividend WHT and CGT); NPVs at WACC, infrastructure-bond, established and greenfield hurdles; payback; peak funding. Columns: plan with auto gate, full plan, Phase 1 only. Also the Phase 2 gate tests |
-| Scenarios | Bear / base / bull, an all-adverse stress case, and Phase 2 at the technical file's original 150 t/d spec, with definitions, key inputs and annual EBITDA/equity flows |
-| Sensitivities | Tornado of 26 one-at-a-time drivers on equity IRR (KES and USD), project IRR and NPV, plus a two-way grid of seed cost x oil price |
-| Survival-weighted | Three-branch tree (failure / survive without Phase 2 / survive with Phase 2). Gives expected-cash-flow equity IRR and NPV against the 35-40% greenfield hurdle, the survivor IRR the screening report's formula requires, and the break-even failure probability |
+| Cash flow & funding | Operating/investing/financing flows, equity injections (incl. covenant cure equity), senior prepayments (cure and sweep), distributions, debt schedules (senior KES, USD mezzanine, Phase 2 DFI loan, revolver, DSRA), CFADS and DSCR, Phase 1 sources and uses |
+| Returns | Project and equity IRR in KES and USD (with and without terminal value; equity also after dividend WHT and CGT); WACC computed from the modelled Phase 1 structure and NPV at it (the financing file's 23% kept as a memo); NPVs at infrastructure-bond, established and greenfield hurdles; payback; peak funding; minimum DSCR, cure equity, breach and lock-up years. Columns: plan with auto gate, full plan, Phase 1 only. Also the Phase 2 gate tests |
+| Scenarios | Bear / base / bull, all-adverse stress, competitor response, Uganda/Tanzania upside, Phase 2 at the 150 t/d spec, a v1.1-market bridge case, and two restructure alternatives (feed-mill-first, crusher-only), with definitions, key inputs and annual EBITDA/equity flows |
+| Sensitivities | Tornado of 32 one-at-a-time drivers on equity IRR (KES and USD), project IRR, minimum DSCR, cure equity and peak equity, plus a two-way grid of seed cost x oil price index |
+| Survival-weighted | Four-branch tree (early failure / late failure / survive without Phase 2 / survive with Phase 2). Expected equity IRR and NPV against the 35-40% hurdle; founder flows with the personal-guarantee call and GM dilution; bond comparison on survival-weighted after-shareholder-tax flows; failure-probability sweep |
+| Phase 0 VOI | Value of information for Phase 0: stop now, invest now, Phase 0a only, staged 0a then 0b, perfect information; probability of passing G0; under independent and correlated priors |
+| Gates & break-evens | Calibrated kill thresholds (covenant, hurdle and kill-with-others-at-bull), and joint favourable cases |
 | Checks | Mass-balance closure, capacity limits, market-share cap, and benchmark checks against the research files (crush margin per t, feed raw-material cost, energy, EBITDA, seasonal WC peak, DSCR) |
 
 ## How the model works
@@ -59,7 +62,10 @@ list year revenue ebitda net_income if year>=2029
 
 Bear and stress set these to certain. Bull removes them.
 
+**Market (round 1).** `sam_2026` is the contestable KENYAN merchant aquafeed market (25 kt in 2026, net of Victory Farms' captive feed and SamakGro's VF-linked sales; build-up in research/round1_evidence.md s1). Uganda/Tanzania demand (`sam_regional`) is 0 in the base and an upside scenario. `feed_real_decline` (1%/yr base) lowers feed prices in real terms from 2029 for competitor response; `feed_px_mult` scales both feed list prices.
+
 **Price linkages.**
+- Crude oil (`p_crude`, KES 175k/t = reconciled CPO landed parity) is the oil price index. Refined oil = crude + `refine_spread` (KES 65k/t, so 240k/t), so the two cannot drift apart.
 - Delivered seed absorbs `seed_passthrough` (50%) of any change in oil + cake value per tonne of seed, measured against today's research prices. This is the floating, parity-linked contract recommended in feedstock_supply.md s4.2.
 - Aquafeed prices absorb `feed_cost_passthrough` (70%) of the change in a competitor's formula cost.
 
@@ -78,35 +84,46 @@ Bear and stress set these to certain. Bull removes them.
 - A seasonal revolver advances 65% of seed stock. Its interest runs on the average draw.
 
 **Funding.**
-- Phase 1 senior KES loan (15.5%, 7 years, 18-month grace, quarterly instalments). It is sized by `size_senior()` to a 1.30x minimum DSCR over 2030-34 on the Phase 1 standalone case, capped at USD 4.5m.
+- Phase 1 senior KES loan (15.5%, 7 years, 18-month grace, quarterly instalments). `size_senior()` sizes it to a 1.30x minimum DSCR over `dscr_first_year`-2034 on the **lender downside case** (CFADS x (1 - `sizing_haircut`) = x0.80), Phase 1 standalone, capped at USD 4.5m. On the round 1 base this gives **zero** senior debt.
+- **Covenant consequences.** Below the 1.10x default covenant (`default_dscr`) the sponsor injects cure equity equal to the CFADS shortfall to 1.10x, which prepays senior, and pays a waiver fee (`waiver_fee`, 1% of opening senior). Below the 1.30x lock-up, distributions stop and `sweep_share` (50%) of excess cash prepays senior. Later instalments shrink pro rata. `run_fixed()` iterates the debt schedule and the waterfall until prepayments converge.
 - USD mezzanine (13% + 15% WHT gross-up, 2 PIK years, 3-year grace, 5-year amortisation, FX loss on repayment).
 - Grants.
 - Phase 2 KES DFI loan for 55% of Phase 2 capex (14%, 9 years, 2-year grace).
 - DSRA of 6 months of senior debt service.
 - Equity covers any shortfall above minimum cash. Excess cash is distributed only when DSCR is at or above 1.30x (lock-up). When Phase 2 goes ahead, cash in the gate year (2031) is retained to part-fund the Phase 2 build rather than distributed and re-injected. Exit EV is floored at zero.
-- Debt sizing is set once on the base case and held fixed in scenarios and sensitivities.
+- Debt sizing is set once on the base case and held fixed in scenarios and sensitivities; the VOI and joint-case analyses re-size debt for each state.
+- **WACC** is computed from the modelled 2027-29 sources (equity at 35%, senior and mezzanine post-tax, mezzanine grossed up for WHT and KES drift) and reported as `wacc_model`.
+- `gm_equity` (4%) dilutes the founder group's share of distributions and exit; `pg_cover` (100%) is the founder's personal guarantee of any senior shortfall on liquidation.
 
 **Tax.**
 - 30% CIT.
 - 100% investment deduction in the year an asset enters service (`inv_ded` = 0.5 switches to the 50% + 25% reducing-balance regime). Vehicles: 25% wear-and-tear.
 - Five-year loss expiry.
 - Foreign (mezz) interest capped at 30% of EBITDA, with a 3-year carry-forward.
-- Irrecoverable VAT on exempt feed (2% of feed revenue) and an expected-value feed levy (0.5%).
-- IDF + RDL on imported equipment (in capex). VAT on capex is paid and recovered the following year.
+- Irrecoverable VAT on exempt feed's operating inputs (2% of feed revenue) and an expected-value feed levy (0.5%).
+- IDF + RDL on imported equipment (in capex). VAT on capex is paid and recovered the following year, except the exempt (feed) share of turnover when finished feed is VAT-exempt (`p_feed_exempt`), which is an up-front cash cost.
+- Minimum tax: `p_min_tax` (25%) x max(0, 1% of turnover - CIT) from 2028.
 - Unlevered tax for project returns is computed separately, with no interest deductions.
 
 **Phase 2 gate** (`run_model(mode="auto")`). Phase 2 goes ahead only if all of these hold:
 - (a) seed secured for 2035 >= 80% of Phase 2 nameplate;
 - (b) 2031 feed sales >= 8 kt at >= 20% gross margin;
 - (c) >= 70% of crude for sale is refined under the own brand;
-- (d) Phase 2's incremental project NPV at the 16.5% steady-state WACC > 0.
+- (d) Phase 2's incremental **equity** NPV at the 35% greenfield hurdle > 0 (existing shareholders fund it). The incremental project NPV at the Phase 2 funding-mix WACC (55% DFI debt post-tax, rest equity at 35% = 21.1%) is reported alongside.
 
 Use `mode="go"` or `mode="no"` to force the decision.
 
 **Survival view.**
-- Failure (p = 30%): bear-case operations to 2030, then liquidation in 2031 at 35% of gross capex plus 70% of WC, less net debt.
-- Otherwise: Phase 1 only or the full plan, with P(go) = 50%.
-- The expected equity cash flow gives the expected IRR, which is compared with the 35-40% hurdle. The hurdle holds in expectation, not conditional on survival.
+- Early failure (p = 30%): bear-case operations to 2030, then liquidation in 2031 at 35% of gross capex plus 70% of WC, less net debt.
+- Late failure (10% of survivors): base Phase 1 operations to 2034, then liquidation in 2035.
+- Otherwise: Phase 1 only or the full plan, with P(go) = 50% only when the base gate says GO (0 otherwise).
+- The expected equity cash flow gives the expected IRR, which is compared with the 35-40% hurdle. Founder flows add the guarantee call and GM dilution; the bond comparison uses survival-weighted founder flows after dividend WHT and CGT.
+
+**Phase 0 value of information** (`voi_analysis()`). 150 draws from triangular(low, base, high) priors on the market, price and capex inputs (revealed by Phase 0a) and seed cost and supply (revealed by Phase 0b), with a Gaussian copula (rho 0 or 0.5). Each draw is valued as the survival-weighted founder NPV at 35%/40%. Policies compared: stop, invest without information, Phase 0a only, staged 0a then 0b, and perfect information.
+
+**Gate calibration** (`calibrate_gates()`, `g1_calibration()`, `joint_cases()`). Single-driver values at which the minimum DSCR hits 1.10x, the conditional equity IRR hits 35%, and (the kill rule) the survival-weighted founder IRR hits 35% at p_fail 20% with every other driver at its bull value.
+
+**Restructure alternatives.** `config` = 1 (feed-mill-first, buys all protein) or 2 (crusher + refinery only) applies the capex and fixed-cost scaling in `CONFIG_CAPEX` and `CONFIG_FIXED` [ESTIMATE].
 
 ## How to change assumptions
 
@@ -120,7 +137,7 @@ Use `mode="go"` or `mode="no"` to force the decision.
    ```
 3. **Paths and tables.** These live in `VECTORS` (supply path, sunflower seed-cost path, sourcing mix, ramps, purchase seasonality), `FORM_GROW` / `FORM_START` (feed formulas), and `CAPEX_P1` / `CAPEX_P2_REF` (capex items in USD m at 2026 prices). Phase 2 items are scaled from the 150 t/d reference with exponent `scale_exp`.
 4. **Scenarios.** Edit `scenario_params()` and `SCEN_DESC`. Edit the tornado drivers and their low/high settings in `TORNADO`.
-5. **Hurdles and survival.** These are `wacc_p1`, `wacc_ss`, `hurdle_*`, `infra_bond`, `p_fail`, `p_go`, `recovery_*` and `fail_year`.
+5. **Hurdles and survival.** These are `hurdle_*`, `infra_bond`, `p_fail`, `p_late_fail`, `late_fail_year`, `p_go`, `recovery_*` and `fail_year`. `wacc_p1` and `wacc_ss` are memo items only.
 
 Re-run `python3 model.py` after any change. Every output, including `outputs.md` and the CSVs, is regenerated.
 
@@ -129,5 +146,6 @@ Re-run `python3 model.py` after any change. Every output, including `outputs.md`
 - **Phase 2 is resized** to 100 t/d crush, +3 t/h extrusion and +20 t/d refinery, against the technical file's 150 t/d, +6 t/h and 60 t/d. Seed supply (feedstock_supply.md s9) and the merchant aquafeed market (market_demand.md s5) do not fill the larger plant; scenario `p2_research_spec` shows its returns.
 - **The Phase 1 refinery is 15 t/d, not 20 t/d,** because 30% of the seed is soy, which yields only 12% oil.
 - **The feed price list is treated as retail.** A 5% dealer margin and 0.5% bad debts are deducted.
-- **Senior debt is sized to DSCR,** not taken at the financing file's USD 4.5m. The plant cannot carry USD 4.5m at a 1.30x minimum DSCR, so equity fills the gap.
+- **Senior debt is sized to DSCR on a lender downside case,** not taken at the financing file's USD 4.5m. On the round 1 base the plant cannot carry any senior debt on that test, because the 2030 ramp year's CFADS barely covers mezzanine interest; equity fills the gap. If lenders fund 2030 interest from the budget and test from 2031 (24-month grace), capacity is about KES 177m, and equity IRR does not improve, because project IRR is about equal to the cost of debt.
+- **Round 1 rebase (see the plan's revision log).** SAM 45 kt to 25 kt Kenya-only; crude 190k to 175k; refined 264k (independent) to crude + 65k = 240k; 1%/yr real feed price decline; minimum tax at 25% probability; capex VAT apportioned. Scenario `v1_market` restores the v1.1 market inputs for a bridge.
 - **The seed safety stock is calibrated** (1.5 months) so that peak stock (~41% of annual crush) falls inside feedstock_supply.md's 7-12 kt per 20 kt range.

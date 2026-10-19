@@ -51,6 +51,7 @@ TO = "research/technical_operations.md"
 RT = "research/regulatory_tax_risk.md"
 FC = "research/financing_capital.md"
 PN = "prior notes / screening report (reports/Profitable business opportunities 2026.md)"
+EV = "research/round1_evidence.md"
 
 # =============================================================================
 # 1. ASSUMPTIONS  (key, section, description, low, base, high, unit, source)
@@ -118,10 +119,16 @@ _A = [
      f"[ESTIMATE]; {TO} s3.1 (fingerling sizes carry the highest margin)"),
 
     # ---------------- Market
-    ("sam_2026", "Market", "Merchant extruded aquafeed SAM 2026 (Kenya + UG/TZ lake shores)", 30000, 45000, 60000, "t/yr",
-     f"{MD} s5(b) SAM (ii) 30-60 kt [ESTIMATE]"),
-    ("sam_growth", "Market", "Growth of merchant aquafeed SAM", 0.04, 0.08, 0.14, "%/yr",
-     f"{MD} s4: Kenya merchant ~20-40 kt (2026) -> ~45 kt (2030); cage CAGR 19.7% 2021-25 tapering; cage zoning risk ({RT} s4.5) [ESTIMATE]"),
+    ("sam_2026", "Market", "Contestable KENYAN merchant extruded aquafeed 2026 (net of Victory Farms captive feed and SamakGro sales to VF-linked farms; UG/TZ excluded)", 15000, 25000, 37000, "t/yr",
+     f"R1 rebase [ESTIMATE], build-up in {EV} s1: KNBS cage 28.1 kt (2025) -> ~32 kt (2026); VF Kenya ~14-18 kt (VF >1,400 t/month, The Star Jul 2026, https://www.the-star.co.ke/counties/nyanza/2026-07-03-victory-farms-bets-on-tech-and-talent-to-boost-fish-production; Kivu Choice Rwanda ~800 t/month, https://www.newtimes.co.rw/article/36743/National/cepgel-governors-meet-in-gisenyi/amp); non-VF cage x FCR 1.6 x (1 - VF-linked 15%) + ponds ~3 kt. Was 45 kt incl. UG/TZ in v1.1"),
+    ("sam_regional", "Market", "Uganda/Tanzania lake-shore merchant demand added to SAM (upside only)", 0, 0, 12000, "t/yr in 2026",
+     f"{MD} s1.5, s3.3: De Heus Njeru 50-100 kt and Tunga Uganda sit inside those markets; TZ commercial fish feed 6.2 kt (2023, UNCST) [DATED]. Base 0 [ESTIMATE]"),
+    ("sam_growth", "Market", "Growth of contestable merchant aquafeed SAM", 0.04, 0.08, 0.14, "%/yr",
+     f"{MD} s4: Kenya merchant ~20-40 kt (2026) -> ~45 kt (2030); cage CAGR 19.7% 2021-25 is mostly Victory Farms (captive); cage zoning risk ({RT} s4.5) [ESTIMATE]"),
+    ("feed_real_decline", "Market", "Real decline in aquafeed prices from 2029 (competitor response to over-capacity)", 0.0, 0.01, 0.03, "%/yr",
+     "[ESTIMATE] R1-01: Tunga 45 kt (Feb 2026), SamakGro 8 t/h plant aims to make feed 'more affordable' (https://capitalfm.africa/fish-feed-firms-to-invest-sh510mn-at-kengens-olkaria-park/); no observed 2026 price cut found"),
+    ("feed_px_mult", "Market", "Multiplier on both aquafeed list prices (grow-out and starter)", 0.88, 1.0, 1.20, "x",
+     f"{MD} rows 15-16: grow-out KES 110/125/150 per kg = x0.88/1.00/1.20"),
     ("feed_share_max", "Market", "Maximum share of SAM won (from op year 3)", 0.08, 0.15, 0.25, "%",
      f"{MD} s5 SOM 10-25% of merchant market; over-capacity (Tunga 45 kt, SamakGro 8 t/h, De Heus 50-100 kt) [ESTIMATE]"),
     ("refined_share_max", "Market", "Maximum share of crude sold refined under own brand (op yr 3+)", 0.50, 0.80, 0.95, "% of crude for sale",
@@ -129,11 +136,11 @@ _A = [
     ("entrant_discount", "Market", "New-entrant feed price discount, op years 1-2", 0.0, 0.05, 0.10, "% of list", "[ESTIMATE]"),
 
     # ---------------- Prices (2026 KES/t, ex-VAT)
-    ("p_crude", "Prices", "Crude sunflower oil, ex-crusher to refiners", 165000, 190000, 210000, "KES/t",
-     f"{MD} row 8 [ESTIMATE]: 5-12% below CSFO import parity ~KES 209k/t (FOB Black Sea USD 1,265-1,275/t Sep 2026, https://commodity-board.com/russia-takes-the-wheel-in-sunflower-oil-what-it-means-for-prices)"),
+    ("p_crude", "Prices", "Crude oil, ex-crusher to refiners = oil price index (refined price follows it)", 155000, 175000, 200000, "KES/t",
+     f"R1 [CONFLICT resolved, {EV} s2]: base = reconciled CPO landed parity ~KES 177k/t (FOB ~USD 1,100, Malaysia Oct reference USD 1,091 https://www.bernama.com/en/news.php?id=2604287; +60 freight, 10% duty, 4.5% IDF/RDL, USD 30 port) because refiners can switch to CPO ({FS} s2.4). High = CSFO parity KES 209k less 5%. Was 190k ({MD} row 8)"),
     ("soy_oil_factor", "Prices", "Crude soy oil price relative to sunflower", 0.90, 0.95, 1.00, "x", "[ESTIMATE]"),
-    ("p_refined", "Prices", "Refined fortified oil, bulk ex-works (20 L)", 231000, 264000, 302000, "KES/t",
-     f"{MD} row 9 [ESTIMATE] = KES 210/240/275 per L; KNTC Mama Pima palm olein KES 185/L wholesale (https://thekenyatimes.com/business/govt-unveils-mama-pima-cooking-oil-dispenser/, Jul 2026)"),
+    ("refine_spread", "Prices", "Refined fortified oil (20 L, delivered wholesale, ex-VAT) minus crude price", 40000, 65000, 90000, "KES/t",
+     f"R1-03 [ESTIMATE], parity build in {EV} s2: base refined = KES 240k/t (KES 218/L ex-VAT) = midpoint of local CPO-refiner cost-plus (~219k delivered Kisumu) and imported RBD olein ceiling (~247-269k at 25% or USD 500/t duty); 2022 jerrican KES 5,100/20 L = ~242k/t ex-VAT at similar retail prices (https://peopledaily.digital/news/makers-warn-cooking-oil-prices-to-rise) [DATED]. No sunflower premium assumed (none evidenced for institutions). Was an independent KES 264k"),
     ("soapstock_factor", "Prices", "Soapstock/acid oil value vs crude", 0.2, 0.3, 0.4, "x", "[ESTIMATE]"),
     ("p_suncake", "Prices", "Sunflower expeller cake (28-34% CP)", 32000, 40000, 50000, "KES/t",
      f"{MD} row 11: KES 40/kg Nairobi listing (https://jiji.co.ke/viwandani-makadara/feeds-supplements-seeds/sunflower-seed-cake-dTh5NuF0GdsvaWJ01XlkOR3T.html) [UNVERIFIED]; KES 25->35 [DATED]"),
@@ -189,7 +196,13 @@ _A = [
     ("wht_int", "Tax", "WHT on interest to non-resident lender (grossed up)", 0.0, 0.15, 0.15, "%", f"{RT} row 7; {FC} row 31"),
     ("div_wht", "Tax", "Dividend WHT, resident individual (<12.5% holdco route = 0)", 0.0, 0.05, 0.15, "%", f"{RT} row 6"),
     ("cgt", "Tax", "Capital gains tax on exit (share sale)", 0.0, 0.15, 0.15, "%", "[UNVERIFIED - prior knowledge: 15% since 2023; verify]"),
-    ("vat_feed_irrecov", "Tax", "Irrecoverable input VAT on exempt feed sales", 0.01, 0.02, 0.035, "% of feed revenue", f"{RT} row 19 [ESTIMATE]"),
+    ("vat_feed_irrecov", "Tax", "Irrecoverable input VAT on exempt feed sales, OPERATING inputs only (capex VAT apportioned separately)", 0.01, 0.02, 0.035, "% of feed revenue", f"{RT} row 19 [ESTIMATE]; R1-09: capex share now modelled via p_feed_exempt"),
+    ("p_feed_exempt", "Tax", "Probability finished feed is VAT-exempt (not zero-rated): capex VAT apportioned by exempt turnover share", 0.0, 1.0, 1.0, "prob",
+     f"{RT} row 19 and plan s7.2 [CONFLICT exempt vs zero-rated]; base treats feed as exempt, consistent with the 2% leakage"),
+    ("min_tax_rate", "Tax", "Minimum tax on gross turnover if reintroduced (payable where it exceeds CIT)", 0.0, 0.01, 0.01, "% of revenue",
+     "Finance Act 2020 design (1% of turnover); struck down by courts 2021-22 (https://mondaq.co.uk/capital-gains-tax/1269472/court-of-appeal-upholds-decision-declaring-minimum-tax-as-unconstitutional) [DATED]; MTRS 2024/25-2026/27 commits to a redesigned version (https://ipfglobal.or.ke/wp-content/uploads/2025/01/IS-A-MINIMUM-TAX-STILL-A-VIABLE-OPTION-FOR-KENYA.pdf)"),
+    ("p_min_tax", "Tax", "Probability minimum tax applies from 2028 (base = expected value)", 0.0, 0.25, 1.0, "prob",
+     "[ESTIMATE] R1-08: MTRS commitment, but no minimum tax in Finance Bill 2026 per search extracts (https://kpmg.com/us/en/taxnewsflash/news/2026/05/kenya-tax-proposals-finance-bill-2026.html)"),
     ("feed_levy", "Tax", "New feed-regulator levy (Livestock Bill 2026), expected value", 0.0, 0.005, 0.01, "% of feed revenue",
      f"{RT} s4.4 and s7 rank 9: 0-1% of feed revenue, P~40-50% [ESTIMATE]"),
     ("idf", "Tax", "Import Declaration Fee on imported equipment", 0.015, 0.025, 0.035, "% of CIF", f"{RT} row 13"),
@@ -257,6 +270,11 @@ _A = [
     ("util_import", "Capex", "Imported share of utilities capex", 0.5, 0.7, 0.9, "%", "[ESTIMATE]"),
     ("phase0_usd", "Capex", "Phase 0 development (outgrower pilot, FEED, ESIA, permits, LOIs), expensed 2027", 0.6, 0.8, 1.0, "USD m",
      f"{FC} s6 Phase 0 (USD 0.6-1.0m); licensing KES 8-30m per {RT} row 24"),
+    ("phase0a_usd", "Capex", "Phase 0a: cheap decisive tests (market census, VF share, feed and 20 L oil quotes, capex quotes, GM search start)", 0.2, 0.3, 0.4, "USD m",
+     "R1-05 [ESTIMATE]: plan s12.5 workstreams 1, 2 (quotes only), 4 (lab tests), 5, 6, 10"),
+    ("phase0b_usd", "Capex", "Phase 0b: pilot, toll-extruded trial sales, EIA, legal, financing (only if 0a passes)", 0.4, 0.5, 0.7, "USD m", "R1-05 [ESTIMATE]"),
+    ("pilot_seed_loss_usd", "Capex", "Expected loss on pilot seed resold back-to-back (price risk, handling, shrink)", 0.02, 0.05, 0.10, "USD m",
+     "R1-05 [ESTIMATE]: ~500-600 t at ~KES 52k/t = KES ~30m turnover, resold to a named crusher at a 5-15% loss"),
     ("preop_p1_usd", "Capex", "Phase 1 pre-operating (training, commissioning, outgrower scale-up)", 0.4, 0.6, 0.9, "USD m", f"{FC} s6 Phase 1 uses"),
     ("preop_p2_usd", "Capex", "Phase 2 pre-operating", 0.2, 0.3, 0.5, "USD m", "[ESTIMATE]"),
     ("sust_capex", "Capex", "Sustaining capex from op year 3", 0.010, 0.015, 0.025, "% of cumulative capex excl. land/yr", "[ESTIMATE]"),
@@ -286,6 +304,16 @@ _A = [
     ("fee_pct", "Financing", "Upfront/arrangement fees", 0.01, 0.015, 0.025, "% of facility", f"{FC} row 13"),
     ("dsra_months", "Financing", "Debt-service reserve", 3, 6, 6, "months of senior DS", f"{FC} row 16"),
     ("dscr_target", "Financing", "Senior sizing / lock-up DSCR", 1.20, 1.30, 1.40, "x", f"{FC} row 14"),
+    ("sizing_haircut", "Financing", "Lender downside case for sizing: CFADS haircut before applying the sizing DSCR", 0.0, 0.20, 0.30, "% of CFADS",
+     "[ESTIMATE] R1-02: senior sized so that min DSCR >= 1.30x on 80% of base CFADS (i.e. >= 1.63x on base) over 2030-34. Was 0% (sized to exactly 1.30x)"),
+    ("dscr_first_year", "Financing", "First DSCR test year (2031 = lenders accept ramp-year interest funded from the Phase 1 budget)", 2030, 2030, 2031, "year",
+     f"{FC} s5 principle 1: 'size debt to DSCR at ramp-up'; plan s10.1 asks for a 24-month grace / covenant holiday [ESTIMATE]"),
+    ("default_dscr", "Financing", "Default covenant DSCR (cure required below this)", 1.05, 1.10, 1.20, "x", f"{FC} row 14 / term table"),
+    ("waiver_fee", "Financing", "Waiver/default fee in a breach year", 0.0, 0.01, 0.02, "% of opening senior balance", "[ESTIMATE / PK-UNVERIFIED]"),
+    ("sweep_share", "Financing", "Cash sweep to senior prepayment in lock-up years (DSCR below lock-up)", 0.0, 0.5, 1.0, "% of excess cash", "[ESTIMATE / PK-UNVERIFIED]"),
+    ("pg_cover", "Financing", "Founder personal guarantee on senior debt (share of senior shortfall called on failure)", 0.0, 1.0, 1.0, "share",
+     f"{FC} s2 'typical greenfield terms' and term table: founder guarantee likely; collateral cover 125-150% [PK-UNVERIFIED]"),
+    ("gm_equity", "Financing", "GM equity incentive (dilutes founder group's share of distributions and exit)", 0.0, 0.04, 0.05, "% of equity", "Plan s8.2: 3-5% vesting over 4 years [plan recommendation]"),
     ("revolver_rate", "Financing", "Seasonal WC revolver rate", 0.13, 0.145, 0.16, "%", f"{FC} row 11"),
     ("revolver_adv", "Financing", "Revolver advance rate on seed stock", 0.50, 0.65, 0.75, "% of stock", f"{FC} row 12"),
     ("grants_usd", "Financing", "Grants/TA (outgrower and ESIA co-funding only)", 0.0, 0.3, 1.0, "USD m", f"{FC} row 22"),
@@ -297,8 +325,8 @@ _A = [
 
     # ---------------- Valuation and hurdles
     ("exit_mult", "Valuation", "Terminal EV/EBITDA at end-2038", 4.0, 5.0, 7.0, "x", f"{FC} row 27 [ESTIMATE]"),
-    ("wacc_p1", "Valuation", "WACC, Phase 1 (nominal KES, post-tax)", 0.19, 0.23, 0.27, "%", f"{FC} row 25"),
-    ("wacc_ss", "Valuation", "WACC, steady state after Phase 2", 0.14, 0.165, 0.19, "%", f"{FC} row 26"),
+    ("wacc_p1", "Valuation", "Financing-file WACC, Phase 1 (assumes 50% equity; memo only - the model now computes WACC from the modelled structure)", 0.19, 0.23, 0.27, "%", f"{FC} row 25"),
+    ("wacc_ss", "Valuation", "Financing-file WACC, steady state (memo only)", 0.14, 0.165, 0.19, "%", f"{FC} row 26"),
     ("hurdle_gf_lo", "Valuation", "Greenfield equity hurdle (survival-weighted), lower", 0.35, 0.35, 0.35, "% KES IRR", PN),
     ("hurdle_gf_hi", "Valuation", "Greenfield equity hurdle (survival-weighted), upper", 0.40, 0.40, 0.40, "% KES IRR", PN),
     ("hurdle_est", "Valuation", "Established-business hurdle", 0.25, 0.275, 0.30, "% KES IRR", PN),
@@ -317,7 +345,10 @@ _A = [
     ("fail_year", "Survival", "Year of failure (end of op year 2), liquidation following year", 2030, 2030, 2031, "year", "[ESTIMATE]"),
     ("recovery_fixed", "Survival", "Liquidation value of fixed assets", 0.20, 0.35, 0.50, "% of gross capex", "[ESTIMATE]"),
     ("recovery_wc", "Survival", "Liquidation value of working capital", 0.5, 0.7, 0.85, "% of book", "[ESTIMATE]"),
-    ("p_go", "Survival", "Probability Phase 2 gate passes, given survival", 0.3, 0.5, 0.7, "prob", "[ESTIMATE]"),
+    ("p_go", "Survival", "Probability Phase 2 gate passes, given survival (used only when the base gate says GO)", 0.3, 0.5, 0.7, "prob", "[ESTIMATE]"),
+    ("p_late_fail", "Survival", "Probability of late failure (price war, Phase 2 start-up or exit failure), given early survival", 0.05, 0.10, 0.15, "prob", "[ESTIMATE] R1-11"),
+    ("late_fail_year", "Survival", "Late-failure year (liquidation the following year)", 2033, 2034, 2035, "year", "[ESTIMATE]"),
+    ("config", "Configuration", "0 = integrated crusher + feed mill; 1 = feed-mill-first (buys protein); 2 = crusher + refinery only", 0, 0, 2, "code", "R1-05 restructure alternatives [ESTIMATE scaling]"),
 ]
 
 ASSUMPTIONS = OrderedDict()
@@ -395,6 +426,15 @@ VECTORS["capex_phase_p1"] = dict(values=[0.15, 0.70, 0.15], unit="share of P1 ca
                                  low="-", high="-", source="[ESTIMATE] FID Q4 2027 deposits; 15-month build")
 VECTORS["capex_phase_p2"] = dict(values=[0.80, 0.20], unit="share of P2 capex in 2032/2033", low="-", high="-", source="[ESTIMATE]")
 BOOK_LIFE = dict(building=25, machinery=12, vehicles=5)
+# Restructure alternatives (R1-05) [ESTIMATE]: Phase 1 capex item multipliers and fixed-opex multipliers by configuration.
+# 1 = feed-mill-first: 3 t/h extrusion line buying all protein (no crusher, refinery or seed silos);
+# 2 = crusher + refinery only: sells cake to feed millers (e.g. a protein-supply deal with Tunga/SamakGro/De Heus).
+CONFIG_CAPEX = {
+    1: dict(land=0.7, civil=0.55, silos=0.0, crushing=0.0, soy_ee=0.0, refinery=0.0, utilities=0.6, qc_lab=0.7, vehicles=0.7, engineering=0.6),
+    2: dict(land=0.85, civil=0.75, extrusion=0.0, utilities=0.75, engineering=0.75),
+}
+CONFIG_FIXED = {1: 0.55, 2: 0.75}   # labour, G&A, security, lab, demand charge, diesel [ESTIMATE]
+CONFIG_NAMES = {0: "Integrated crusher + feed mill (plan)", 1: "Feed-mill-first (buys protein; no crusher)", 2: "Crusher + refinery only (sells cake)"}
 
 
 def base_params():
@@ -494,10 +534,12 @@ def capex_items(p, phase):
     m = p["capex_mult"]
     out = OrderedDict()
     if phase == 1:
+        cfg = CONFIG_CAPEX.get(int(p.get("config", 0)), {})
         for k, (v, cat, imp, _src) in CAPEX_P1.items():
             val = v
             if k == "refinery":
                 val = v * (p["ref_tpd_p1"] / 20.0) ** p["scale_exp"]
+            val *= cfg.get(k, 1.0)
             impf = p["util_import"] if imp == "partial" else (1.0 if imp else 0.0)
             out[k] = [val * m, cat, impf]
         cont = p["contingency_p1"]
@@ -565,7 +607,8 @@ def run_core(p, go):
 
     # ---- crushing volumes (t)
     cap_crush = np.where(p2on > 0, p["p2_tpd"], p["p1_tpd"]) * p["crush_days"] * ops
-    supply = byop(VECTORS["supply_path"]["values"], pre=0.0) * p["supply_mult"]
+    cfg = int(p.get("config", 0))
+    supply = byop(VECTORS["supply_path"]["values"], pre=0.0) * p["supply_mult"] * (0.0 if cfg == 1 else 1.0)
     crush = np.minimum(cap_crush * p["max_util"], supply) * opsfrac
     soy = crush * p["soy_share"]
     sun = crush - soy
@@ -591,8 +634,8 @@ def run_core(p, go):
     seed_shrink = seed_bought - crush
 
     # ---- feed volumes
-    sam = p["sam_2026"] * (1 + p["sam_growth"]) ** t26
-    share = p["feed_share_max"] * byop(VECTORS["feed_share_ramp"]["values"], pre=0.0)
+    sam = (p["sam_2026"] + p["sam_regional"]) * (1 + p["sam_growth"]) ** t26
+    share = p["feed_share_max"] * byop(VECTORS["feed_share_ramp"]["values"], pre=0.0) * (0.0 if cfg == 2 else 1.0)
     feed_cap = (p["extr_tph_p1"] + p2on * p["p2_extr_tph"]) * p["extr_eff"] * p["extr_hours"] * ops
     feed = np.minimum(feed_cap, share * sam) * opsfrac
     f_start = feed * p["starter_share"]
@@ -632,7 +675,8 @@ def run_core(p, go):
     P = OrderedDict()
     P["crude"] = (p["p_crude"] - oil_adj) * (1 - soyfrac * (1 - p["soy_oil_factor"])) * T
     P["crude_sun"] = (p["p_crude"] - oil_adj) * T
-    P["refined"] = (p["p_refined"] - oil_adj) * T
+    # R1-03: refined price is linked to the crude/parity index through a refining spread, so the two cannot drift apart
+    P["refined"] = (p["p_crude"] + p["refine_spread"] - oil_adj) * T
     P["soap"] = p["soapstock_factor"] * (p["p_crude"] - oil_adj) * T
     P["suncake"] = p["p_suncake"] * prot * T
     P["sunmeal"] = p["p_suncake"] * p["meal_premium"] * prot * T
@@ -654,8 +698,11 @@ def run_core(p, go):
     d_grow = sum(FORM_GROW[k] * (mkt[k] - mkt0[k]) for k in FORM_GROW) / (1 - A0["feed_shrink"])
     d_start = sum(FORM_START[k] * (mkt[k] - mkt0[k]) for k in FORM_START) / (1 - A0["feed_shrink"])
     fpt = p["feed_cost_passthrough"]
-    P["feed_grow"] = (p["p_feed_grow"] + fpt * d_grow) * entrant * T
-    P["feed_start"] = (p["p_feed_start"] + fpt * d_start) * entrant * T
+    # R1-01: competitor response = real decline in feed prices from 2029 (over-capacity: Tunga 45 kt, SamakGro 8 t/h)
+    comp = (1 - p["feed_real_decline"]) ** np.maximum(Y - 2028, 0)
+    R["feed_comp_index"] = comp
+    P["feed_grow"] = (p["p_feed_grow"] * p["feed_px_mult"] + fpt * d_grow) * entrant * comp * T
+    P["feed_start"] = (p["p_feed_start"] * p["feed_px_mult"] + fpt * d_start) * entrant * comp * T
     # seed prices follow product value (floating, parity-linked contracts): pass-through of deviations from base prices
     y0o, y0c = A0["sun_oil_y"], min(A0["sun_cake_max"], 1 - A0["sun_loss"] - A0["sun_oil_y"])
     y0so, y0sc = A0["soy_oil_y"], 1 - A0["soy_oil_y"] - A0["soy_loss"]
@@ -710,8 +757,9 @@ def run_core(p, go):
     fuel_cost_per_gj = p["steam_cost"] / p["gj_per_t_steam"]
     elec_cost = kwh * p["elec_price"] * L
     thermal_cost = therm_gj * fuel_cost_per_gj * (1 - hull_cover) * L
-    demand_cost = (p["kva_p1"] + p2on * p["kva_p2"]) * p["demand_charge"] * 12 * opsfrac * L
-    diesel = (p["diesel_p1"] + p2on * p["diesel_p2"]) * opsfrac * L
+    cfx = CONFIG_FIXED.get(cfg, 1.0)
+    demand_cost = (p["kva_p1"] * cfx + p2on * p["kva_p2"]) * p["demand_charge"] * 12 * opsfrac * L
+    diesel = (p["diesel_p1"] * cfx + p2on * p["diesel_p2"]) * opsfrac * L
     cost["Energy"] = elec_cost + thermal_cost + demand_cost + diesel
     cost["Press wear, hexane"] = crush * p["press_wear"] * L + sun_solv * p["hexane"] * T
     # storage overflow
@@ -722,7 +770,7 @@ def run_core(p, go):
     variable = sum(cost.values())
 
     # ---- fixed and selling
-    fx_mult = p["opex_fixed_mult"]
+    fx_mult = p["opex_fixed_mult"] * CONFIG_FIXED.get(cfg, 1.0)
     items1 = capex_items(p, 1)
     items2 = capex_items(p, 2)
     cat1 = category_split(items1)
@@ -793,7 +841,14 @@ def run_core(p, go):
         land_spend[IDX[2032]] = items2["land"][0] * ph2[0] * 1e6 * usd_esc[IDX[2032]]
         land_spend[IDX[2033]] = items2["land"][0] * ph2[1] * 1e6 * usd_esc[IDX[2033]]
     vat_paid = p["vat_rate"] * (capex - land_spend + sust)
-    vat_recov = np.concatenate([[0.0], vat_paid[:-1]])
+    # R1-09: if finished feed is VAT-exempt, input VAT on capex is apportioned by exempt (feed) turnover share and the
+    # exempt share is an up-front cash cost. Phase 1 capex (2027-29) uses the 2029-31 turnover mix; Phase 2 capex the 2033-35 mix.
+    fshare = np.divide(rev_feed, revenue, out=np.zeros(N), where=revenue > 0)
+    es1 = float(np.mean(fshare[IDX[2029]:IDX[2031] + 1]))
+    es2 = float(np.mean(fshare[IDX[2033]:IDX[2035] + 1]))
+    exempt = np.where(Y <= 2031, es1, np.where(Y <= 2035, es2, fshare)) * p["p_feed_exempt"]
+    vat_irrecov = vat_paid * exempt
+    vat_recov = np.concatenate([[0.0], (vat_paid - vat_irrecov)[:-1]])
 
     # ---- book depreciation and tax allowances by asset pool
     def pools(cat, total_nom_by_year, service_year):
@@ -866,7 +921,7 @@ def run_core(p, go):
              sell=sell, sell_total=sell_total, levies=levies, levies_total=levies_total, devx=devx,
              opex_total=opex_total, ebitda=ebitda, feed_gm=feed_gm, feed_gm_pct=feed_gm_pct, crush_gm=crush_gm,
              crush_gm_per_t=crush_gm_per_t, capex_p1=capex_p1, capex_p2=capex_p2, capex=capex, sust=sust,
-             vat_paid=vat_paid, vat_recov=vat_recov, dep_book=dep_book, ded=ded, items1=items1, items2=items2,
+             vat_paid=vat_paid, vat_recov=vat_recov, vat_irrecov=vat_irrecov, vat_exempt_share=exempt, dep_book=dep_book, ded=ded, items1=items1, items2=items2,
              elec_cost=elec_cost, thermal_cost=thermal_cost, sp=sp, shrink=shrink, ingr_purch=ingr_purch,
              pack_feed=pack_feed, feed_input_value=feed_input_value, seed_sun_cost=seed_sun_cost, seed_soy_cost=seed_soy_cost)
 
@@ -904,10 +959,13 @@ def run_core(p, go):
     return R
 
 
-def debt_schedules(p, R, senior_kes, go):
-    """Senior P1 (KES), mezzanine (USD), Phase 2 DFI loan (KES), fees, DSRA target."""
+def debt_schedules(p, R, senior_kes, go, prepay=None, extra_fees=None):
+    """Senior P1 (KES), mezzanine (USD), Phase 2 DFI loan (KES), fees, DSRA target.
+    prepay: year-end senior prepayments (equity cures and cash sweeps); later instalments shrink pro rata.
+    extra_fees: waiver/default fees in breach years."""
     fx = R["fx"]
     capex_p1, capex_p2 = R["capex_p1"], R["capex_p2"]
+    prepay = np.zeros(N) if prepay is None else np.asarray(prepay, float)
     D = OrderedDict()
     # --- senior P1: drawn pro-rata to 2028/2029 capex; quarterly instalments after grace
     w = np.array([capex_p1[IDX[2028]], capex_p1[IDX[2029]]])
@@ -918,18 +976,31 @@ def debt_schedules(p, R, senior_kes, go):
     nq = int(p["senior_tenor"] * 4)
     gq = int(round(p["senior_grace_m"] / 3))
     ninst = nq - gq
-    prin = np.zeros(N)
+    prin_orig = np.zeros(N)
     for q in range(gq, nq):
         yr = 2028 + q // 4
         if yr in IDX:
-            prin[IDX[yr]] += senior_kes / ninst
-    bal_open = np.zeros(N); bal_close = np.zeros(N); interest = np.zeros(N)
+            prin_orig[IDX[yr]] += senior_kes / ninst
+    bal_open = np.zeros(N); bal_close = np.zeros(N); interest = np.zeros(N); prin = np.zeros(N); pre = np.zeros(N)
+    bal_pre_prepay = np.zeros(N)
     b = 0.0
+    orig_rem = 0.0                     # balance on the original schedule
     for i in range(N):
         bal_open[i] = b
-        b = b + draws[i] - prin[i]
+        orig_open = orig_rem
+        orig_rem = orig_rem + draws[i] - prin_orig[i]
+        # scheduled instalment scaled by actual/original outstanding (pro-rata reduction after prepayments)
+        ratio = (b + draws[i]) / (orig_open + draws[i]) if (orig_open + draws[i]) > 1e-6 else 0.0
+        prin[i] = min(prin_orig[i] * ratio, b + draws[i])
+        mid = b + draws[i] - prin[i]
+        interest[i] = p["senior_rate"] * (bal_open[i] + mid) / 2
+        bal_pre_prepay[i] = mid
+        pre[i] = min(prepay[i], mid)
+        b = mid - pre[i]
         bal_close[i] = b
-        interest[i] = p["senior_rate"] * (bal_open[i] + bal_close[i]) / 2
+    D["sen_prepay"] = pre
+    D["sen_bal_pre_prepay"] = bal_pre_prepay
+    D["sen_bal_open"] = bal_open
     D["sen_draw"], D["sen_prin"], D["sen_int"], D["sen_bal"] = draws, prin, interest, bal_close
     # --- mezz USD
     m_draw_usd = np.zeros(N)
@@ -990,7 +1061,8 @@ def debt_schedules(p, R, senior_kes, go):
     fees[IDX[2028]] = p["fee_pct"] * (senior_kes + D["mezz_draw"][IDX[2028]])
     if go:
         fees[IDX[2032]] = p["fee_pct"] * p2_amt
-    D["fees"] = fees
+    D["waiver_fees"] = np.zeros(N) if extra_fees is None else np.asarray(extra_fees, float)
+    D["fees"] = fees + D["waiver_fees"]
     # --- debt service and DSRA target (6 months of next-year senior + P2 DS)
     sen_ds = D["sen_int"] + D["sen_prin"]
     p2_ds = D["p2_int"] + D["p2_prin"]
@@ -1040,11 +1112,16 @@ def taxes(p, R, D, levered=True):
             taxable = ti
         taxable_out[i] = taxable
         tax[i] = p["cit"] * taxable
+        # R1-08: minimum tax (1% of turnover, payable where it exceeds CIT), weighted by its probability from 2028
+        if yr >= 2028 and R["revenue"][i] > 0:
+            mt = p["min_tax_rate"] * R["revenue"][i]
+            tax[i] += p["p_min_tax"] * max(0.0, mt - tax[i])
     return tax, taxable_out, expired
 
 
 def finance_and_returns(p, R, D, go):
-    """Cash-flow waterfall, equity flows, returns."""
+    """Cash-flow waterfall with covenant consequences (R1-02), equity flows, returns.
+    Returns (res, M, new_prepay, new_waiver_fees); run_fixed iterates until prepayments converge."""
     ebitda = R["ebitda"]
     tax, taxable, expired = taxes(p, R, D, True)
     tax_u, _, _ = taxes(p, R, D, False)
@@ -1059,24 +1136,36 @@ def finance_and_returns(p, R, D, go):
     cfi = -capex - sust - vat_net
     debt_draws = D["sen_draw"] + D["mezz_draw"] + D["p2_draw"]
     int_cash = D["sen_int"] + D["p2_int"] + D["mezz_cash_int"] + D["mezz_wht"] + R["revolver_int"]
-    prin = D["sen_prin"] + D["mezz_prin"] + D["p2_prin"]
-    cff_pre = debt_draws - int_cash - prin - D["fees"] + drev - D["ddsra"] + grants
-    pre_equity = cfo + cfi + cff_pre
-    # CFADS and DSCR
+    prin_sched = D["sen_prin"] + D["mezz_prin"] + D["p2_prin"]
+    # cash flow before equity and BEFORE senior prepayments (prepayments are decided in the waterfall below)
+    pre_x = cfo + cfi + debt_draws - int_cash - prin_sched - D["fees"] + drev - D["ddsra"] + grants
+    # CFADS and DSCR (scheduled debt service; prepayments are not debt service)
     cfads = ebitda - tax - (dwc - drev) - sust - R["revolver_int"] - R["devx"]
     ds = D["ds_total"]
-    dscr = np.where((ds > 1) & (OPK >= 2), cfads / np.maximum(ds, 1), np.nan)   # 2029 ramp year n/m: DS funded from Phase 1 budget
-    # waterfall
+    test = (ds > 1) & (OPK >= 2) & (YEARS >= p["dscr_first_year"])
+    dscr = np.where(test, cfads / np.maximum(ds, 1), np.nan)   # 2029 ramp year n/m: DS funded from Phase 1 budget
+    breach = test & (np.nan_to_num(dscr, nan=9) < p["default_dscr"])
+    lockup = test & (np.nan_to_num(dscr, nan=9) < p["dscr_target"])
+    # equity cure: sponsor injects enough to lift CFADS to the default covenant; lenders apply it to prepay senior
+    cure = np.where(breach, p["default_dscr"] * ds - cfads, 0.0)
+    waiver = np.where(breach, p["waiver_fee"] * D["sen_bal_open"], 0.0)
     min_cash = p["min_cash"] * R["L"] * (YEARS >= 2028)
     cash = 0.0
-    inj = np.zeros(N); dist = np.zeros(N); cash_bal = np.zeros(N)
+    inj = np.zeros(N); dist = np.zeros(N); cash_bal = np.zeros(N); inj_cure = np.zeros(N)
+    new_prepay = np.zeros(N); sweep = np.zeros(N)
     for i in range(N):
-        avail = cash + pre_equity[i]
+        avail = cash + pre_x[i] + cure[i]
+        inj_cure[i] = cure[i]
+        room = D["sen_bal_pre_prepay"][i]
+        pc = min(cure[i], room)
+        avail -= pc
+        room -= pc
+        new_prepay[i] = pc
         if avail < min_cash[i]:
             inj[i] = min_cash[i] - avail
             cash = min_cash[i]
         else:
-            allowed = (OPK[i] >= 2) and (np.isnan(dscr[i]) or dscr[i] >= p["dscr_target"])
+            allowed = (OPK[i] >= 2) and not lockup[i]
             # Plan-writer fix (19 Oct 2026): when Phase 2 goes ahead, retain gate-year cash to part-fund the
             # Phase 2 build instead of distributing it and re-injecting equity the following year.
             if go and YEARS[i] == p["p2_start_year"] - 2:
@@ -1086,8 +1175,16 @@ def finance_and_returns(p, R, D, go):
                 dist[i] = excess
                 cash = min_cash[i]
             else:
+                if lockup[i]:
+                    sw = min(p["sweep_share"] * excess, room)
+                    sweep[i] = sw
+                    new_prepay[i] += sw
+                    avail -= sw
                 cash = avail
         cash_bal[i] = cash
+    inj = inj + inj_cure
+    prin = prin_sched + D["sen_prepay"]
+    pre_equity = pre_x - D["sen_prepay"]
     # terminal values
     mult = p["exit_mult"]
     ev = max(0.0, mult * ebitda[-1])   # plan-writer fix: no negative exit value when terminal EBITDA < 0 (stress case)
@@ -1101,19 +1198,34 @@ def finance_and_returns(p, R, D, go):
     eq_tv_flows = eq.copy(); eq_tv_flows[-1] += eq_tv
     eq_after = dist * (1 - p["div_wht"]) - inj
     eq_after[-1] += eq_tv - cgt
+    # founder group after the GM's equity incentive (R1-12): pays all injections, receives (1 - gm) of distributions and exit
+    eq_founder = dist * (1 - p["gm_equity"]) - inj
+    eq_founder[-1] += eq_tv * (1 - p["gm_equity"])
     fx = R["fx"]
     res = OrderedDict()
     res["tax"], res["tax_unlev"], res["taxable"], res["loss_expired"] = tax, tax_u, taxable, expired
-    res["cfo"], res["cfi"], res["cff_pre"], res["pre_equity"] = cfo, cfi, cff_pre, pre_equity
+    res["cfo"], res["cfi"], res["cff_pre"], res["pre_equity"] = cfo, cfi, pre_equity - cfo - cfi, pre_equity
     res["drev"], res["grants"], res["int_cash"], res["prin"], res["debt_draws"] = drev, grants, int_cash, prin, debt_draws
     res["cfads"], res["dscr"], res["inj"], res["dist"], res["cash_bal"], res["vat_net"] = cfads, dscr, inj, dist, cash_bal, vat_net
+    res["cure"], res["sweep"], res["breach"], res["lockup"] = inj_cure, sweep, breach, lockup
     res["ev"], res["net_debt"], res["eq_tv"], res["cgt"] = ev, net_debt, eq_tv, cgt
     res["proj"], res["proj_tv"], res["eq"], res["eq_tv_flows"], res["eq_after"] = proj, proj_tv, eq, eq_tv_flows, eq_after
+    res["eq_founder"] = eq_founder
     # net income (book)
     interest_pl = D["sen_int"] + D["p2_int"] + D["mezz_int_kes"] + D["mezz_wht"] + R["revolver_int"] + D["fees"]
     ebit = ebitda - R["dep_book"]
     pbt = ebit - interest_pl - D["mezz_fxloss"]
     res["interest_pl"], res["ebit"], res["pbt"], res["ni"] = interest_pl, ebit, pbt, pbt - tax
+    # WACC from the MODELLED Phase 1 structure (R1-04): long-term sources 2027-29, layer costs post-tax
+    s3 = slice(0, 3)
+    w_eq = max(inj[s3].sum() - dist[s3].sum(), 0.0)
+    w_sen = D["sen_draw"].sum()
+    w_mz = D["mezz_draw"][s3].sum()
+    ke = p["hurdle_gf_lo"]
+    kd_sen = p["senior_rate"] * (1 - p["cit"])
+    kd_mz = ((1 + p["mezz_rate"] / (1 - p["wht_int"])) * (1 + p["kes_dep"]) - 1) * (1 - p["cit"])
+    tot = w_eq + w_sen + w_mz
+    wacc = (w_eq * ke + w_sen * kd_sen + w_mz * kd_mz) / tot if tot > 0 else float("nan")
     # returns
     M = OrderedDict()
     M["project_irr_kes"] = irr(proj_tv)
@@ -1123,6 +1235,10 @@ def finance_and_returns(p, R, D, go):
     M["equity_irr_usd"] = irr(eq_tv_flows / fx)
     M["equity_irr_kes_noTV"] = irr(eq)
     M["equity_irr_kes_after_shtax"] = irr(eq_after)
+    M["equity_irr_founder_after_gm"] = irr(eq_founder)
+    M["wacc_model"] = wacc
+    M["wacc_weights"] = (w_eq / tot, w_sen / tot, w_mz / tot) if tot > 0 else (np.nan,) * 3
+    M["npv_proj_wacc_model"] = npv(wacc, proj_tv)
     M["npv_proj_wacc_p1"] = npv(p["wacc_p1"], proj_tv)
     M["npv_proj_wacc_ss"] = npv(p["wacc_ss"], proj_tv)
     for nm, r in (("infra", p["infra_bond"]), ("est", p["hurdle_est"]), ("gf_lo", p["hurdle_gf_lo"]), ("gf_hi", p["hurdle_gf_hi"])):
@@ -1131,10 +1247,17 @@ def finance_and_returns(p, R, D, go):
     M["payback_equity"] = payback_year(eq)
     M["peak_funding_project"] = float(np.max(-np.cumsum(proj)))
     M["peak_equity"] = float(np.max(np.cumsum(inj - dist)))
+    M["peak_equity_year"] = int(YEARS[int(np.argmax(np.cumsum(inj - dist)))])
     M["equity_injected"] = float(inj.sum())
     M["peak_revolver"] = float(np.max(R["revolver_peak"]))
-    M["min_dscr"] = float(np.nanmin(dscr[(YEARS >= 2030) & (D["ds_total"] > 1)])) if np.any((YEARS >= 2030) & (D["ds_total"] > 1)) else float("nan")
-    M["dscr_2029"] = float(cfads[IDX[2029]] / max(ds[IDX[2029]], 1))
+    tmask = (YEARS >= p["dscr_first_year"]) & (D["ds_total"] > 1)
+    M["min_dscr"] = float(np.nanmin(dscr[tmask])) if np.any(tmask) else float("nan")
+    M["min_dscr_year"] = int(YEARS[tmask][int(np.nanargmin(dscr[tmask]))]) if np.any(tmask) else None
+    M["dscr_2029"] = float(cfads[IDX[2029]] / ds[IDX[2029]]) if ds[IDX[2029]] > 1 else float("nan")
+    M["cure_equity"] = float(inj_cure.sum())
+    M["breach_years"] = int(breach.sum())
+    M["lockup_years"] = int(lockup.sum())
+    M["sweep_total"] = float(sweep.sum())
     M["peak_revolver_p1"] = float(np.max(R["revolver_peak"][:IDX[2032] + 1]))
     M["peak_revolver_year"] = int(YEARS[int(np.argmax(R["revolver_peak"]))])
     M["ebitda_2031"] = float(ebitda[IDX[2031]])
@@ -1142,31 +1265,40 @@ def finance_and_returns(p, R, D, go):
     M["ebitda_2038"] = float(ebitda[-1])
     M["senior_kes"] = float(D["sen_draw"].sum())
     M["loss_expired"] = float(expired.sum())
-    return res, M
+    M["feed_2031"] = float(R["volumes"]["feed"][IDX[2031]])
+    M["feed_gm_2031"] = float(R["feed_gm_pct"][IDX[2031]])
+    M["vat_irrecov_capex"] = float(R["vat_irrecov"].sum())
+    return res, M, new_prepay, waiver
 
 
 def run_fixed(p, go, senior_kes):
     R = run_core(p, go)
-    D = debt_schedules(p, R, senior_kes, go)
-    F, M = finance_and_returns(p, R, D, go)
+    prepay = np.zeros(N); fees_x = np.zeros(N)
+    for _ in range(10):
+        D = debt_schedules(p, R, senior_kes, go, prepay, fees_x)
+        F, M, new_prepay, new_fees = finance_and_returns(p, R, D, go)
+        if np.max(np.abs(new_prepay - prepay)) < 1e4 and np.max(np.abs(new_fees - fees_x)) < 1e4:
+            break
+        prepay, fees_x = new_prepay, new_fees
     return dict(R=R, D=D, F=F, M=M, go=go, p=p, senior_kes=senior_kes)
 
 
 def size_senior(p):
-    """Size Phase 1 senior to min DSCR >= target over 2030-2034 on Phase 1 standalone; cap at research maximum."""
+    """Size Phase 1 senior so that min DSCR >= target over 2030-2034 on the LENDER DOWNSIDE case
+    (base CFADS x (1 - sizing_haircut)), Phase 1 standalone; cap at the research maximum (R1-02)."""
     smax = p["senior_usd_max"] * 1e6 * p["fx0"] * (1 + p["kes_dep"] + p["kes_dep_2027_extra"])
     s = smax
-    for _ in range(6):
+    for _ in range(8):
         out = run_fixed(p, False, s)
         R, D, F = out["R"], out["D"], out["F"]
         unit = debt_schedules(p, R, 1.0, False)
         unit_ds = unit["sen_int"] + unit["sen_prin"]
         other = D["mezz_cash_int"] + D["mezz_wht"] + D["mezz_prin"]
         cands = []
-        for yr in range(2030, 2035):
+        for yr in range(int(p["dscr_first_year"]), 2035):
             i = IDX[yr]
             if unit_ds[i] > 0:
-                cands.append((F["cfads"][i] / p["dscr_target"] - other[i]) / unit_ds[i])
+                cands.append((F["cfads"][i] * (1 - p["sizing_haircut"]) / p["dscr_target"] - other[i]) / unit_ds[i])
         s_new = float(np.clip(min(cands), 0.0, smax))
         if abs(s_new - s) < 1e3:
             s = s_new
@@ -1178,6 +1310,8 @@ def size_senior(p):
 def run_model(p, mode="auto", senior_kes=None):
     if senior_kes is None:
         senior_kes = size_senior(p)
+    if int(p.get("config", 0)) != 0 and mode == "auto":
+        mode = "no"            # restructure alternatives are Phase 1-only designs
     no = run_fixed(p, False, senior_kes)
     if mode == "no":
         no["gate"] = None
@@ -1193,19 +1327,28 @@ def run_model(p, mode="auto", senior_kes=None):
     need = p["gate_supply_frac"] * p["p2_tpd"] * p["crush_days"]
     ref_share = Rn["volumes"]["ref_in"][i31] / max(Rn["volumes"]["crude_avail"][i31], 1e-9)
     inc = yes["F"]["proj_tv"] - no["F"]["proj_tv"]
+    inc_eq = yes["F"]["eq_tv_flows"] - no["F"]["eq_tv_flows"]
+    # R1-04: Phase 2 is tested at the cost of the capital that funds it. Its equity comes from existing shareholders
+    # (hurdle 35%), so gate (d) requires positive incremental EQUITY NPV at the greenfield hurdle. The funding-mix WACC
+    # (Phase 2 DFI debt share at its post-tax rate, rest equity at 35%) is reported for the project view.
+    wacc_p2 = p["p2_debt_share"] * p["p2_rate"] * (1 - p["cit"]) + (1 - p["p2_debt_share"]) * p["hurdle_gf_lo"]
     gate = OrderedDict()
     gate["(a) seed secured 2035 vs Phase 2 need (t)"] = (supply35, need, supply35 >= need)
     gate["(b1) feed sales 2031 (t)"] = (Rn["volumes"]["feed"][i31], p["gate_feed_t"], Rn["volumes"]["feed"][i31] >= p["gate_feed_t"])
     gate["(b2) feed gross margin 2031"] = (Rn["feed_gm_pct"][i31], p["gate_feed_gm"], Rn["feed_gm_pct"][i31] >= p["gate_feed_gm"])
     gate["(c) refined share of crude 2031"] = (ref_share, p["gate_ref_share"], ref_share >= p["gate_ref_share"] - 1e-9)
-    inc_npv = npv(p["wacc_ss"], inc)
-    gate["(d) Phase 2 incremental NPV @ steady-state WACC (KES)"] = (inc_npv, 0.0, inc_npv > 0)
+    inc_eq_npv = npv(p["hurdle_gf_lo"], inc_eq)
+    gate["(d) Phase 2 incremental equity NPV @ 35% hurdle (KES)"] = (inc_eq_npv, 0.0, inc_eq_npv > 0)
     go = all(v[2] for v in gate.values())
     out = yes if go else no
     out["gate"] = gate
     out["inc_flows"] = inc
     out["inc_irr"] = irr(inc)
-    out["inc_npv"] = inc_npv
+    out["inc_eq_irr"] = irr(inc_eq)
+    out["wacc_p2"] = wacc_p2
+    out["inc_npv"] = npv(wacc_p2, inc)
+    out["inc_npv_ss"] = npv(p["wacc_ss"], inc)
+    out["inc_eq_npv"] = inc_eq_npv
     out["p1_only"] = no
     out["full"] = yes
     return out
@@ -1225,9 +1368,10 @@ def scenario_params(name, base):
         return p
     if name in ("bear", "stress"):
         f = (lambda k, s: ASSUMPTIONS[k][s]) if name == "stress" else (lambda k, s: half(p, k, s))
-        adverse_low = ["p_crude", "p_refined", "p_feed_grow", "p_feed_start", "p_suncake", "p_soycake", "feed_share_max",
+        adverse_low = ["p_crude", "refine_spread", "feed_px_mult", "p_suncake", "p_soycake", "feed_share_max",
                        "refined_share_max", "sun_oil_y", "sam_growth", "ops_months_y1", "sam_2026"]
-        adverse_high = ["seed_cost_mult", "capex_mult", "kes_dep", "elec_price", "opex_fixed_mult", "senior_rate", "revolver_rate"]
+        adverse_high = ["seed_cost_mult", "capex_mult", "kes_dep", "elec_price", "opex_fixed_mult", "senior_rate", "revolver_rate",
+                        "feed_real_decline"]
         for k in adverse_low:
             p[k] = f(k, "low")
         for k in adverse_high:
@@ -1243,10 +1387,20 @@ def scenario_params(name, base):
             p["vat_feed_irrecov"] = 0.035
     elif name == "p2_research_spec":
         p.update(p2_tpd=150, p2_extr_tph=6, p2_ref_add=40, silo_p2=15000)
+    elif name == "competitor_response":
+        p.update(feed_real_decline=0.03, entrant_discount=0.10)
+    elif name == "regional_upside":
+        p.update(sam_regional=ASSUMPTIONS["sam_regional"]["high"])
+    elif name == "v1_market":
+        p.update(sam_2026=45000, p_crude=190000, refine_spread=74000, feed_real_decline=0.0, p_min_tax=0.0, p_feed_exempt=0.0)
+    elif name == "feedmill_first":
+        p.update(config=1)
+    elif name == "crush_only":
+        p.update(config=2)
     elif name == "bull":
-        fav_high = ["p_crude", "p_refined", "p_feed_grow", "p_feed_start", "p_suncake", "p_soycake", "feed_share_max",
-                    "refined_share_max", "sun_oil_y", "sam_growth", "ops_months_y1"]
-        fav_low = ["seed_cost_mult", "capex_mult", "kes_dep", "elec_price", "opex_fixed_mult"]
+        fav_high = ["p_crude", "refine_spread", "feed_px_mult", "p_suncake", "p_soycake", "feed_share_max",
+                    "refined_share_max", "sun_oil_y", "sam_growth", "ops_months_y1", "sam_2026"]
+        fav_low = ["seed_cost_mult", "capex_mult", "kes_dep", "elec_price", "opex_fixed_mult", "feed_real_decline"]
         for k in fav_high:
             p[k] = half(p, k, "high")
         for k in fav_low:
@@ -1265,20 +1419,29 @@ SCEN_DESC = OrderedDict([
     ("bull", "Each driver half-way to its favourable bound; supply x1.12; no CPO/GMO shock, TZ levy 35%; exit 6.0x; gate auto"),
     ("stress", "Every driver at its adverse bound (all at once; not a forecast); supply x0.70; 50/25 deduction; levies high; exit 4.0x"),
     ("p2_research_spec", "Base inputs but Phase 2 forced GO at technical_operations.md spec (150 t/d, +6 t/h, +40 t/d refinery, +15 kt silos); seed and feed demand still capped by base supply path and market share"),
+    ("competitor_response", "Base, plus competitor response: feed prices fall 3%/yr in real terms from 2029 and the entrant discount doubles to 10% in op years 1-2"),
+    ("regional_upside", "Base, plus 12 kt (2026) of Uganda/Tanzania lake-shore demand in the SAM (upside only: De Heus and Tunga plants sit inside those markets)"),
+    ("v1_market", "Bridge only: v1.1 market and oil assumptions (SAM 45 kt incl. UG/TZ, crude 190k, refined 264k, no feed price decline, no min tax, capex VAT fully recovered) with R1 financing rules"),
+    ("feedmill_first", "Restructure: 3 t/h feed mill only, buying all protein at market prices; no crusher or refinery; Phase 1 only"),
+    ("crush_only", "Restructure: 50 t/d crusher + 15 t/d refinery, cake sold to feed millers; no extrusion; Phase 1 only"),
 ])
 
 TORNADO = [
     ("Seed cost (delivered)", {"seed_cost_mult": 0.79}, {"seed_cost_mult": 1.26}),
-    ("Oil prices (crude 165-210k, refined 231-302k)", {"p_crude": 165000, "p_refined": 231000}, {"p_crude": 210000, "p_refined": 302000}),
-    ("Feed prices (grow-out 110-150, starter 160-250 KES/kg)", {"p_feed_grow": 110000, "p_feed_start": 160000}, {"p_feed_grow": 150000, "p_feed_start": 250000}),
+    ("Contestable Kenyan merchant SAM 2026 (15 / 37 kt)", {"sam_2026": 15000}, {"sam_2026": 37000}),
+    ("Oil price index (crude 155-200k; refined follows)", {"p_crude": 155000}, {"p_crude": 200000}),
+    ("Refining spread (refined 215k / 265k at base crude)", {"refine_spread": 40000}, {"refine_spread": 90000}),
+    ("Feed prices (x0.88 / x1.20: grow-out 110 / 150 KES/kg)", {"feed_px_mult": 0.88}, {"feed_px_mult": 1.20}),
+    ("Feed real price decline from 2029 (3% / 0% a year)", {"feed_real_decline": 0.03}, {"feed_real_decline": 0.0}),
     ("Protein meal prices (sun cake 32-50, soy cake 65-100, SBM 80-120)", {"p_suncake": 32000, "p_soycake": 65000, "p_sbm": 80000}, {"p_suncake": 50000, "p_soycake": 100000, "p_sbm": 120000}),
     ("Seed seasonality + safety stock (55% Jun-Oct, 0.5 mo / 80%, 2.5 mo)", {"season_conc": 0.55, "safety_stock_months": 0.5}, {"season_conc": 0.80, "safety_stock_months": 2.5}),
     ("Real KES drift vs PPP (CPI -1pp / +1pp)", {"kes_real_drift": -0.01}, {"kes_real_drift": 0.01}),
-    ("Oil prices with fixed-price seed (no pass-through)", {"p_crude": 165000, "p_refined": 231000, "seed_passthrough": 0.0}, {"p_crude": 210000, "p_refined": 302000, "seed_passthrough": 0.0}),
+    ("Oil price index with fixed-price seed (no pass-through)", {"p_crude": 155000, "seed_passthrough": 0.0}, {"p_crude": 200000, "seed_passthrough": 0.0}),
     ("Seed supply / crush utilisation (x0.70 / x1.25)", {"supply_mult": 0.70}, {"supply_mult": 1.25}),
     ("Feed dealer margin (10% / 0%)", {"feed_dealer_margin": 0.10}, {"feed_dealer_margin": 0.0}),
     ("Feed market share (8% / 25% of SAM)", {"feed_share_max": 0.08}, {"feed_share_max": 0.25}),
     ("Merchant aquafeed SAM growth (4% / 14%)", {"sam_growth": 0.04}, {"sam_growth": 0.14}),
+    ("Uganda/Tanzania demand in SAM (0 / +12 kt)", {"sam_regional": 0.0}, {"sam_regional": 12000}),
     ("Capex (x0.70 / x1.45)", {"capex_mult": 0.70}, {"capex_mult": 1.45}),
     ("KES depreciation (2% / 7% p.a.; CPI follows PPP)", {"kes_dep": 0.02}, {"kes_dep": 0.07}),
     ("Sunflower oil yield (27% / 34%)", {"sun_oil_y": 0.27}, {"sun_oil_y": 0.34}),
@@ -1291,6 +1454,8 @@ TORNADO = [
     ("TAX/DUTY: CPO duty (removed for sure / stays)", {"p_cpo_removed": 1.0}, {"p_cpo_removed": 0.0}),
     ("TAX/DUTY: GMO import ban (lifted for sure / holds)", {"p_gmo": 1.0}, {"p_gmo": 0.0}),
     ("TAX/DUTY: investment deduction (50/25 RB / 100%)", {"inv_ded": 0.5}, {"inv_ded": 1.0}),
+    ("TAX/DUTY: minimum tax 1% of turnover (certain / never)", {"p_min_tax": 1.0}, {"p_min_tax": 0.0}),
+    ("TAX/DUTY: finished feed VAT-exempt / zero-rated (capex VAT)", {"p_feed_exempt": 1.0}, {"p_feed_exempt": 0.0}),
     ("TAX/DUTY: feed VAT leakage + levy (3.5%+1% / 1%+0%)", {"vat_feed_irrecov": 0.035, "feed_levy": 0.01}, {"vat_feed_irrecov": 0.01, "feed_levy": 0.0}),
     ("TAX/DUTY: TZ seed levy + AFA seed levy (on / off)", {"p_tz_levy": 1.0, "afa_levy_seed": 0.04}, {"p_tz_levy": 0.0, "afa_levy_seed": 0.0}),
     ("TAX/DUTY: CIT 30% vs SEZ 10% (domestic-sale duty not modelled)", {"cit": 0.30}, {"cit": 0.10}),
@@ -1307,6 +1472,9 @@ def tornado(base_p, senior_kes, mode, base_metrics):
             o = run_model(p, mode=mode, senior_kes=senior_kes)
             outs.append(o["M"])
         rows.append(dict(label=label, lo=lo, hi=hi,
+                         dscr_lo=outs[0]["min_dscr"], dscr_hi=outs[1]["min_dscr"],
+                         cure_lo=outs[0]["cure_equity"], cure_hi=outs[1]["cure_equity"],
+                         peak_lo=outs[0]["peak_equity"], peak_hi=outs[1]["peak_equity"],
                          eq_lo=outs[0]["equity_irr_kes"], eq_hi=outs[1]["equity_irr_kes"],
                          equsd_lo=outs[0]["equity_irr_usd"], equsd_hi=outs[1]["equity_irr_usd"],
                          pr_lo=outs[0]["project_irr_kes"], pr_hi=outs[1]["project_irr_kes"],
@@ -1326,63 +1494,313 @@ def grid_seed_oil(base_p, senior_kes, mode):
             p = copy.deepcopy(base_p)
             p["seed_cost_mult"] = s
             p["p_crude"] = base_p["p_crude"] * o
-            p["p_refined"] = base_p["p_refined"] * o
+            p["refine_spread"] = base_p["refine_spread"] * o      # refined price moves by the same factor
             r = run_model(p, mode=mode, senior_kes=senior_kes)
             pg[i, j] = r["M"]["project_irr_kes"]
             eg[i, j] = r["M"]["equity_irr_kes"]
     return seeds, oils, pg, eg
 
 
-def survival_tree(base_p, senior_kes):
-    """Three branches: failure (bear operations, liquidation), survive without Phase 2, survive with Phase 2."""
+def _liquidate(base_p, out, fy, ops_eq, ops_proj):
+    """Truncate a run's flows after failure year fy and add a liquidation in fy+1.
+    Returns company equity flows, founder flows (incl. personal-guarantee call), project flows and diagnostics."""
+    R, D, F = out["R"], out["D"], out["F"]
+    i = IDX[fy]
+    eq = ops_eq.copy(); proj = ops_proj.copy()
+    eq[i + 1:] = 0.0; proj[i + 1:] = 0.0
+    gross_fixed = np.cumsum(R["capex"] + R["sust"])[i]
+    liq_assets = base_p["recovery_fixed"] * gross_fixed + base_p["recovery_wc"] * R["wc"][i]
+    cash_like = D["dsra"][i] + F["cash_bal"][i]
+    debt = D["sen_bal"][i] + D["mezz_bal_kes"][i] + D["p2_bal"][i] + R["revolver_bal"][i] - cash_like
+    eq_liq = max(0.0, liq_assets - debt)
+    # senior shortfall after the revolver (secured on stock) is paid from recoveries; founder guarantee covers pg_cover of it
+    avail_senior = max(0.0, liq_assets + cash_like - R["revolver_bal"][i])
+    sen_short = max(0.0, D["sen_bal"][i] + D["p2_bal"][i] - avail_senior)
+    guar = base_p["pg_cover"] * sen_short
+    founder = eq.copy()
+    if i + 1 < N:
+        eq[i + 1] = eq_liq
+        founder[i + 1] = eq_liq - guar
+        proj[i + 1] = liq_assets
+    return eq, founder, proj, dict(liq_assets=liq_assets, debt=debt, eq_liq=eq_liq, guarantee=guar)
+
+
+def survival_tree(base_p, senior_kes, base_go=None):
+    """Four branches (R1-11): early failure (bear operations to fail_year, liquidation next year); late failure
+    (base Phase 1 operations to late_fail_year, then liquidation); survive without Phase 2; survive with Phase 2.
+    Company equity flows are to all shareholders before personal taxes. Founder flows add the personal-guarantee call
+    on failure, the GM's equity dilution and shareholder taxes (dividend WHT, CGT) - the comparator for the tax-free bond."""
     pf = base_p["p_fail"]
-    pg = base_p["p_go"]
+    pl = base_p["p_late_fail"]
+    if base_go is None:
+        base_go = run_model(base_p, mode="auto", senior_kes=senior_kes)["go"]
+    pg = base_p["p_go"] if base_go else 0.0
     go = run_model(base_p, mode="go", senior_kes=senior_kes)
     no = run_model(base_p, mode="no", senior_kes=senior_kes)
     bear_p = scenario_params("bear", base_p)
     fail = run_model(bear_p, mode="no", senior_kes=senior_kes)
     fy = int(base_p["fail_year"])
-    i = IDX[fy]
-    R, D, F = fail["R"], fail["D"], fail["F"]
-    eq = F["eq"].copy()
-    proj = F["proj"].copy()
-    eq[i + 1:] = 0.0
-    proj[i + 1:] = 0.0
-    gross_fixed = np.cumsum(R["capex"] + R["sust"])[i]
-    liq_assets = base_p["recovery_fixed"] * gross_fixed + base_p["recovery_wc"] * R["wc"][i]
-    debt = D["sen_bal"][i] + D["mezz_bal_kes"][i] + D["p2_bal"][i] + R["revolver_bal"][i] - D["dsra"][i] - F["cash_bal"][i]
-    eq_liq = max(0.0, liq_assets - debt)
-    if i + 1 < N:
-        eq[i + 1] = eq_liq
-        proj[i + 1] = liq_assets
+    e_eq, e_f, e_pr, e_d = _liquidate(base_p, fail, fy, fail["F"]["eq"], fail["F"]["proj"])
+    ly = int(base_p["late_fail_year"])
+    l_eq, l_f, l_pr, l_d = _liquidate(base_p, no, ly, no["F"]["eq"], no["F"]["proj"])
+    # founder after-tax flows for survivors: GM dilution on distributions and exit, dividend WHT, CGT
+    def founder_after(o):
+        F = o["F"]; g = base_p["gm_equity"]
+        f = F["dist"] * (1 - g) * (1 - base_p["div_wht"]) - F["inj"]
+        f[-1] += (F["eq_tv"] - F["cgt"]) * (1 - g)
+        return f
+    def founder_pre(o):
+        return o["F"]["eq_founder"]
     branches = OrderedDict()
-    branches["Failure (bear ops to %d, liquidation %d)" % (fy, fy + 1)] = dict(prob=pf, eq=eq, proj=proj)
-    branches["Survive, Phase 2 no-go (Phase 1 only)"] = dict(prob=(1 - pf) * (1 - pg), eq=no["F"]["eq_tv_flows"], proj=no["F"]["proj_tv"])
-    branches["Survive, Phase 2 go (full plan)"] = dict(prob=(1 - pf) * pg, eq=go["F"]["eq_tv_flows"], proj=go["F"]["proj_tv"])
+    branches["Early failure (bear ops to %d, liquidation %d)" % (fy, fy + 1)] = dict(prob=pf, eq=e_eq, founder=e_f, founder_at=e_f, proj=e_pr, diag=e_d)
+    branches["Late failure (base Phase 1 ops to %d, liquidation %d)" % (ly, ly + 1)] = dict(prob=(1 - pf) * pl, eq=l_eq, founder=l_f, founder_at=l_f, proj=l_pr, diag=l_d)
+    branches["Survive, Phase 2 no-go (Phase 1 only)"] = dict(prob=(1 - pf) * (1 - pl) * (1 - pg), eq=no["F"]["eq_tv_flows"], founder=founder_pre(no),
+                                                            founder_at=founder_after(no), proj=no["F"]["proj_tv"], diag={})
+    branches["Survive, Phase 2 go (full plan)"] = dict(prob=(1 - pf) * (1 - pl) * pg, eq=go["F"]["eq_tv_flows"], founder=founder_pre(go),
+                                                       founder_at=founder_after(go), proj=go["F"]["proj_tv"], diag={})
     exp_eq = sum(b["prob"] * b["eq"] for b in branches.values())
+    exp_f = sum(b["prob"] * b["founder"] for b in branches.values())
+    exp_fat = sum(b["prob"] * b["founder_at"] for b in branches.values())
     exp_proj = sum(b["prob"] * b["proj"] for b in branches.values())
     for b in branches.values():
         b["eq_irr"] = irr(b["eq"])
         b["proj_irr"] = irr(b["proj"])
         b["eq_npv35"] = npv(base_p["hurdle_gf_lo"], b["eq"])
+        b["founder_npv35"] = npv(base_p["hurdle_gf_lo"], b["founder"])
     surv_eq = ((1 - pg) * no["F"]["eq_tv_flows"] + pg * go["F"]["eq_tv_flows"])
-    out = dict(branches=branches, exp_eq=exp_eq, exp_proj=exp_proj, exp_eq_irr=irr(exp_eq), exp_proj_irr=irr(exp_proj),
-               surv_eq_irr=irr(surv_eq),
+    out = dict(branches=branches, exp_eq=exp_eq, exp_founder=exp_f, exp_founder_at=exp_fat, exp_proj=exp_proj,
+               exp_eq_irr=irr(exp_eq), exp_proj_irr=irr(exp_proj), exp_founder_irr=irr(exp_f), exp_founder_at_irr=irr(exp_fat),
+               surv_eq_irr=irr(surv_eq), pg=pg,
                exp_npv35=npv(base_p["hurdle_gf_lo"], exp_eq), exp_npv40=npv(base_p["hurdle_gf_hi"], exp_eq),
-               eq_liq=eq_liq, liq_assets=liq_assets, debt_at_fail=debt)
-    # required survivor IRR (screening-report formula, 5-year horizon)
-    out["req_cond_35"] = ((1.35 ** 5) / (1 - pf)) ** (1 / 5) - 1
-    out["req_cond_40"] = ((1.40 ** 5) / (1 - pf)) ** (1 / 5) - 1
-    # break-even failure probability for expected equity IRR = 35%
+               exp_founder_npv35=npv(base_p["hurdle_gf_lo"], exp_f), exp_founder_npv40=npv(base_p["hurdle_gf_hi"], exp_f),
+               bond_npv_surv_cond=npv(base_p["infra_bond"], surv_eq),
+               bond_npv_exp_pre=npv(base_p["infra_bond"], exp_eq),
+               bond_npv_exp_founder_at=npv(base_p["infra_bond"], exp_fat),
+               eq_liq=e_d["eq_liq"], liq_assets=e_d["liq_assets"], debt_at_fail=e_d["debt"], guarantee_early=e_d["guarantee"],
+               guarantee_late=l_d["guarantee"], total_fail_prob=pf + (1 - pf) * pl)
+    out["req_cond_35"] = ((1.35 ** 5) / (1 - out["total_fail_prob"])) ** (1 / 5) - 1
+    out["req_cond_40"] = ((1.40 ** 5) / (1 - out["total_fail_prob"])) ** (1 / 5) - 1
+    # sweep of the early-failure probability (late-failure share held)
+    sweep_ = []
+    for q in (0.0, 0.10, 0.15, 0.20, 0.30, 0.45, 0.60):
+        e = q * e_eq + (1 - q) * (pl * l_eq + (1 - pl) * surv_eq)
+        sweep_.append((q, irr(e), npv(base_p["hurdle_gf_lo"], e)))
+    out["pfail_sweep"] = sweep_
     be = None
     for q in np.linspace(0, 0.9, 181):
-        e = q * branches[list(branches)[0]]["eq"] + (1 - q) * surv_eq
+        e = q * e_eq + (1 - q) * (pl * l_eq + (1 - pl) * surv_eq)
         r = irr(e)
-        if not np.isnan(r) and r < base_p["hurdle_gf_lo"]:
+        if np.isnan(r) or r < base_p["hurdle_gf_lo"]:
             be = q
             break
     out["breakeven_pfail_35"] = be
     return out
+
+
+def _components(p, senior_kes=None):
+    if senior_kes is None:
+        senior_kes = size_senior(p)
+    auto = run_model(p, mode="auto", senior_kes=senior_kes)
+    no = auto["p1_only"] if "p1_only" in auto else auto
+    fail = run_model(scenario_params("bear", p), mode="no", senior_kes=senior_kes)
+    _, e_f, _, _ = _liquidate(p, fail, int(p["fail_year"]), fail["F"]["eq"], fail["F"]["proj"])
+    _, l_f, _, _ = _liquidate(p, no, int(p["late_fail_year"]), no["F"]["eq"], no["F"]["proj"])
+    return dict(e_f=e_f, l_f=l_f, surv=auto["F"]["eq_founder"], auto=auto, senior=senior_kes)
+
+
+def _ev_from(p, c, pf):
+    pl = p["p_late_fail"]
+    exp_f = pf * c["e_f"] + (1 - pf) * (pl * c["l_f"] + (1 - pl) * c["surv"])
+    M = c["auto"]["M"]
+    return dict(npv35=npv(p["hurdle_gf_lo"], exp_f), npv40=npv(p["hurdle_gf_hi"], exp_f), exp_irr=irr(exp_f),
+                cond_irr=M["equity_irr_kes"], min_dscr=M["min_dscr"], go=c["auto"]["go"], senior=c["senior"],
+                peak_equity=M["peak_equity"], cure=M["cure_equity"])
+
+
+def expected_value(p, senior_kes=None, pfail=None):
+    """Lean survival-weighted valuation of one state of the world (used by VOI and calibration), on founder flows
+    (GM dilution, guarantee call on failure). Senior debt is re-sized to the state (lenders size on what Phase 0 reveals)."""
+    c = _components(p, senior_kes)
+    return _ev_from(p, c, p["p_fail"] if pfail is None else pfail)
+
+
+VOI_VARS = OrderedDict([   # input -> (stage that reveals it, favourable direction)
+    ("sam_2026", ("0a", +1)), ("feed_px_mult", ("0a", +1)), ("feed_share_max", ("0a", +1)), ("feed_real_decline", ("0a", -1)),
+    ("capex_mult", ("0a", -1)), ("p_crude", ("0a", +1)), ("refine_spread", ("0a", +1)),
+    ("seed_cost_mult", ("0b", -1)), ("supply_mult", ("0b", +1)),
+])
+
+
+def _tri_inv(u, lo, mode, hi):
+    if hi <= lo:
+        return float(mode)
+    fc = (mode - lo) / (hi - lo)
+    if u < fc:
+        return lo + np.sqrt(u * (hi - lo) * (mode - lo))
+    return hi - np.sqrt((1 - u) * (hi - lo) * (hi - mode))
+
+
+def voi_analysis(P0, n_draws=150, seed=20261019, rho=0.0):
+    """Value of information for Phase 0 (R1-05). Priors: triangular(low, base, high) on each VOI_VARS input [ESTIMATE],
+    joined by a Gaussian copula with equicorrelation rho among 'goodness' (rho=0: independent; rho=0.5: favourable
+    outcomes cluster, which is generous to the project). For each draw, V_full = survival-weighted founder equity NPV with
+    all inputs at the draw; V_a = the same with the 0b (seed) inputs at base, i.e. the board's view after Phase 0a only.
+    Phase 0 spend is excluded from V (it is the price of the option, charged separately)."""
+    from math import erf, sqrt
+    rng = np.random.default_rng(seed)
+    pf_list = (P0["p_fail"], 0.20)
+    nv = len(VOI_VARS)
+    C = np.full((nv, nv), rho) + np.eye(nv) * (1 - rho)
+    Lc = np.linalg.cholesky(C)
+    rows = []
+    for k in range(n_draws):
+        z = Lc @ rng.standard_normal(nv)
+        st = {}
+        for j, (v, (stage, sgn)) in enumerate(VOI_VARS.items()):
+            u = 0.5 * (1 + erf(z[j] / sqrt(2)))
+            u = u if sgn > 0 else 1 - u
+            lo, hi = (ASSUMPTIONS[v]["low"], ASSUMPTIONS[v]["high"]) if v != "supply_mult" else (0.70, 1.25)
+            st[v] = _tri_inv(u, lo, P0[v], hi)
+        pfull = copy.deepcopy(P0); pfull.update(st); pfull["phase0_usd"] = 0.0
+        pa = copy.deepcopy(pfull)
+        for v, (stage, _s) in VOI_VARS.items():
+            if stage == "0b":
+                pa[v] = P0[v]
+        cf, ca = _components(pfull), _components(pa)
+        row = dict(st)
+        for pf in pf_list:
+            vf, va = _ev_from(pfull, cf, pf), _ev_from(pa, ca, pf)
+            row[f"Vfull35_{pf:.2f}"] = vf["npv35"]; row[f"Vfull40_{pf:.2f}"] = vf["npv40"]
+            row[f"Va35_{pf:.2f}"] = va["npv35"]; row[f"Va40_{pf:.2f}"] = va["npv40"]
+            row[f"exp_irr_{pf:.2f}"] = vf["exp_irr"]
+        row["cond_irr"] = cf["auto"]["M"]["equity_irr_kes"]
+        rows.append(row)
+    fx27 = P0["fx0"] * (1 + P0["kes_dep"] + P0["kes_dep_2027_extra"])
+    cost_a = P0["phase0a_usd"] * 1e6 * fx27
+    cost_b = (P0["phase0b_usd"] + P0["pilot_seed_loss_usd"]) * 1e6 * fx27
+    res = OrderedDict(n=n_draws, rho=rho, cost_a=cost_a, cost_b=cost_b, rows=rows)
+    for pf in pf_list:
+        for h in ("35", "40"):
+            Vf = np.array([r[f"Vfull{h}_{pf:.2f}"] for r in rows]); Va = np.array([r[f"Va{h}_{pf:.2f}"] for r in rows])
+            key = f"{h}_{pf:.2f}"
+            best = (-1e30, None)
+            for tau in np.linspace(-1.5e9, 0.5e9, 41):
+                val = -cost_a + float(np.where(Va > tau, np.maximum(Vf, 0) - cost_b, 0).mean())
+                if val > best[0]:
+                    best = (val, tau)
+            res[key] = dict(stop=0.0, invest_now=float(Vf.mean()),
+                            perfect_info=float(np.maximum(Vf, 0).mean()) - cost_a - cost_b,
+                            phase0a_only=float(np.where(Va > 0, Vf, 0).mean()) - cost_a,
+                            staged=best[0], staged_tau=best[1], p_pass_full=float((Vf > 0).mean()), p_pass_a=float((Va > 0).mean()),
+                            p_go_0b=float((Va > best[1]).mean()), evpi_gross=float(np.maximum(Vf, 0).mean()),
+                            cond_mean_given_pass=float(Vf[Vf > 0].mean()) if np.any(Vf > 0) else float("nan"),
+                            p_cond_irr_35=float(np.mean([r["cond_irr"] >= 0.35 for r in rows])))
+    return res
+
+
+CAL_DRIVERS = OrderedDict([   # key, favourable direction (+1 = higher is better), search bounds
+    ("sam_2026", (+1, 8000, 60000)), ("feed_px_mult", (+1, 0.70, 1.50)), ("feed_share_max", (+1, 0.04, 0.40)),
+    ("seed_cost_mult", (-1, 0.50, 1.60)), ("capex_mult", (-1, 0.40, 2.00)), ("refine_spread", (+1, 0.0, 140000)),
+    ("p_crude", (+1, 120000, 240000)),
+])
+
+
+def _bisect(f, lo, hi, target, sign, it=14):
+    """Find x in [lo,hi] where f(x) crosses target; sign=+1 if f increases with x. Returns None if no crossing."""
+    flo, fhi = f(lo), f(hi)
+    if np.isnan(flo) or np.isnan(fhi):
+        pass
+    if (fhi - target) * (flo - target) > 0:
+        return None
+    for _ in range(it):
+        mid = 0.5 * (lo + hi)
+        fm = f(mid)
+        if np.isnan(fm):
+            fm = -9.0
+        if (fm - target) * (flo - target) > 0:
+            lo, flo = mid, fm
+        else:
+            hi = mid
+    return 0.5 * (lo + hi)
+
+
+def calibrate_gates(P0, senior_base):
+    """R1-10: thresholds from the re-run model.
+    (1) Covenant: single-driver value at which min DSCR = default (1.10x) with debt at base sizing, others at base.
+    (2) Hurdle, others at base: value at which the conditional equity IRR = 35%.
+    (3) Kill rule: value at which the survival-weighted founder IRR = 35% (p_fail 20%) when EVERY OTHER driver is at its
+        bull value (half-way to favourable). Worse than this, no plausible combination of the others passes.
+    (4) Covenant on the bull-others case: value at which min DSCR = 1.30x (lock-up) with debt re-sized to the case."""
+    out = OrderedDict()
+    bull = scenario_params("bull", P0)
+    for key, (sgn, lo, hi) in CAL_DRIVERS.items():
+        def f_dscr(x):
+            q = copy.deepcopy(P0); q[key] = x
+            return run_model(q, "auto", senior_base)["M"]["min_dscr"]
+        def f_irr(x):
+            q = copy.deepcopy(P0); q[key] = x
+            v = run_model(q, "auto", senior_base)["M"]["equity_irr_kes"]
+            return -1.0 if np.isnan(v) else v
+        others = copy.deepcopy(bull)          # every other driver at its bull value (incl. policy, exit 6x, supply x1.12)
+        others[key] = P0[key]
+        others["phase0_usd"] = 0.0
+        def f_kill(x):
+            q = copy.deepcopy(others); q[key] = x
+            v = expected_value(q, pfail=0.20)["exp_irr"]
+            return -1.0 if np.isnan(v) else v
+        def f_lock(x):
+            q = copy.deepcopy(others); q[key] = x
+            return run_model(q, "auto", None)["M"]["min_dscr"]
+        out[key] = dict(sign=sgn, base=P0[key],
+                        covenant=_bisect(f_dscr, lo, hi, P0["default_dscr"], sgn),
+                        hurdle=_bisect(f_irr, lo, hi, P0["hurdle_gf_lo"], sgn),
+                        kill=_bisect(f_kill, lo, hi, P0["hurdle_gf_lo"], sgn, it=10),
+                        bull_other=bull.get(key, P0[key]))
+    return out
+
+
+def g1_calibration(P0):
+    """R1-10: calibrate the Phase 2 gate on the bull case (the only case in which Phase 2 is live). For each driver, find
+    the value at which Phase 2's incremental equity NPV at the 35% hurdle is zero (others at bull)."""
+    bull = scenario_params("bull", P0)
+    sen = size_senior(bull)
+    ob = run_model(bull, "auto", sen)
+    out = OrderedDict(bull_feed_gm=float(ob["p1_only"]["R"]["feed_gm_pct"][IDX[2031]]),
+                      bull_feed_t=float(ob["p1_only"]["R"]["volumes"]["feed"][IDX[2031]]),
+                      bull_dscr_2031=float(ob["p1_only"]["F"]["dscr"][IDX[2031]]),
+                      bull_inc_eq_npv=ob["inc_eq_npv"], bull_inc_eq_irr=ob["inc_eq_irr"], bull_inc_irr=ob["inc_irr"], bull_go=ob["go"])
+    for key, lo, hi, sgn in (("feed_px_mult", 0.70, 1.40, +1), ("seed_cost_mult", 0.60, 1.60, -1), ("refine_spread", 0.0, 140000, +1),
+                             ("supply_mult", 0.50, 1.40, +1)):
+        def f(x):
+            q = copy.deepcopy(bull); q[key] = x
+            return run_model(q, "go", sen)["M"]["npv_eq_gf_lo"] - run_model(q, "no", sen)["M"]["npv_eq_gf_lo"]
+        out[key] = dict(bull=bull.get(key, 1.0), breakeven=_bisect(f, lo, hi, 0.0, sgn, it=12))
+    return out
+
+
+JOINT_CASES = OrderedDict([
+    ("Base (R1)", {}),
+    ("Case A of v1.1: feed +10%, seed -10%, capex -15%", {"feed_px_mult": 1.10, "seed_cost_mult": 0.90, "capex_mult": 0.85}),
+    ("Case A + SAM 32 kt", {"feed_px_mult": 1.10, "seed_cost_mult": 0.90, "capex_mult": 0.85, "sam_2026": 32000}),
+    ("Case B: SAM 32 kt, share 20%, feed +10%, seed -10%, capex -15%, refined 250k", {"sam_2026": 32000, "feed_share_max": 0.20, "feed_px_mult": 1.10, "seed_cost_mult": 0.90, "capex_mult": 0.85, "refine_spread": 75000}),
+    ("Case B + Uganda/Tanzania 12 kt", {"sam_2026": 32000, "feed_share_max": 0.20, "feed_px_mult": 1.10, "seed_cost_mult": 0.90, "capex_mult": 0.85, "refine_spread": 75000, "sam_regional": 12000}),
+    ("Bull scenario (all drivers half-way favourable)", "bull"),
+])
+
+
+def joint_cases(P0):
+    rows = OrderedDict()
+    for nm, d in JOINT_CASES.items():
+        q = scenario_params("bull", P0) if d == "bull" else copy.deepcopy(P0)
+        if isinstance(d, dict):
+            q.update(d)
+        r = OrderedDict()
+        for pf in (0.30, 0.20):
+            ev = expected_value(q, pfail=pf)
+            r[f"exp_irr_{pf:.2f}"] = ev["exp_irr"]; r[f"npv35_{pf:.2f}"] = ev["npv35"]
+        r.update(cond_irr=ev["cond_irr"], min_dscr=ev["min_dscr"], senior=ev["senior"], peak_equity=ev["peak_equity"], go=ev["go"])
+        rows[nm] = r
+    return rows
 
 
 # =============================================================================
@@ -1432,7 +1850,11 @@ def checks(res, p):
         f"KES {pk20/1e6:,.0f}m per 20 kt; peak seed stock {R['sp']['peak']:.0%} of annual crush = {R['sp']['peak']*20:.1f} kt per 20 kt (FS 7-12 kt)")
     add("Losses expiring under 5-year cap", True, f"KES {M['loss_expired']/1e6:,.1f}m nominal")
     md = M["min_dscr"]
-    add("Min DSCR 2030+ >= lock-up target", (not np.isnan(md)) and md >= p["dscr_target"] - 1e-6, f"min {md:.2f}x (2029 ramp year not tested: CFADS/DS {M['dscr_2029']:.2f}x, funded from Phase 1 budget)")
+    add("Min DSCR >= default covenant (no cure needed)", (not np.isnan(md)) and md >= p["default_dscr"] - 1e-6,
+        f"min {md:.2f}x in {M['min_dscr_year']}; cure equity KES {M['cure_equity']/1e6:,.0f}m over {M['breach_years']} year(s); senior sized KES {M['senior_kes']/1e6:,.0f}m (2029 ramp year not tested; 2029 debt service is funded from the Phase 1 budget)")
+    pr = (p["p_crude"] + p["refine_spread"])
+    add("Refined oil price inside the R1 parity band (KES 215-265k/t, 2026 KES)", 215000 <= pr <= 265000, f"KES {pr:,.0f}/t = KES {pr/p['l_per_t']:.0f}/L ex-VAT")
+    add("Feed SAM is the contestable Kenyan merchant market (UG/TZ excluded)", p["sam_regional"] == 0, f"SAM 2026 {p['sam_2026']:,.0f} t + regional {p['sam_regional']:,.0f} t")
     return C
 
 
@@ -1506,7 +1928,7 @@ def fmt_m(x):
     return "n/a" if x is None or (isinstance(x, float) and np.isnan(x)) else f"{x/1e6:,.0f}"
 
 
-def write_excel(path, P0, base, scen, torn, grid, surv, chk, senior_kes):
+def write_excel(path, P0, base, scen, torn, grid, surv, chk, senior_kes, X):
     wb = Workbook()
     R, D, F, M = base["R"], base["D"], base["F"], base["M"]
     V = R["volumes"]
@@ -1726,7 +2148,7 @@ def write_excel(path, P0, base, scen, torn, grid, surv, chk, senior_kes):
 
     # ---------------- Cash flow & funding
     ws = wb.create_sheet("Cash flow & funding")
-    r = ws_title(ws, "Cash flow & funding (nominal KES m)", f"Senior P1 sized to {P0['dscr_target']:.2f}x min DSCR (2030-34) on Phase 1 standalone, capped at USD {P0['senior_usd_max']}m: KES {senior_kes/1e6:,.0f}m.")
+    r = ws_title(ws, "Cash flow & funding (nominal KES m)", f"Senior P1 sized to {P0['dscr_target']:.2f}x min DSCR ({P0['dscr_first_year']:.0f}-34) on the lender downside case (CFADS x {1-P0['sizing_haircut']:.2f}), Phase 1 standalone, capped at USD {P0['senior_usd_max']}m: KES {senior_kes/1e6:,.0f}m. Below {P0['default_dscr']:.2f}x the sponsor injects cure equity that prepays senior; below {P0['dscr_target']:.2f}x distributions stop and {P0['sweep_share']:.0%} of excess cash prepays senior.")
     r = year_header(ws, r)
     r = section(ws, r, "Cash flow")
     for lab, arr, b in (("EBITDA", R["ebitda"], False), ("Tax paid", -F["tax"], False), ("Change in working capital", -R["dwc"], False),
@@ -1734,8 +2156,10 @@ def write_excel(path, P0, base, scen, torn, grid, surv, chk, senior_kes):
                         ("VAT on capex (net timing)", -F["vat_net"], False), ("Cash flow from investing", F["cfi"], True),
                         ("Debt drawdowns", F["debt_draws"], False), ("Interest paid (cash)", -F["int_cash"], False), ("Principal repaid", -F["prin"], False),
                         ("Fees", -D["fees"], False), ("Revolver change", F["drev"], False), ("DSRA funding (-) / release (+)", -D["ddsra"], False),
+                        ("Senior prepayment (cure + sweep)", -D["sen_prepay"], False),
                         ("Grants", F["grants"], False), ("Cash flow before equity", F["pre_equity"], True),
-                        ("Equity injected", F["inj"], False), ("Distributions to equity", -F["dist"], False), ("Closing cash", F["cash_bal"], True)):
+                        ("Equity injected (incl. cure)", F["inj"], False), ("  of which covenant cure equity", F["cure"], False),
+                        ("Distributions to equity", -F["dist"], False), ("Closing cash", F["cash_bal"], True)):
         r = yrow(ws, r, lab, arr, scale=1e6, unit="KES m", bold=b)
     r = section(ws, r, "Debt schedules")
     for lab, arr in (("Senior P1: drawdown", D["sen_draw"]), ("Senior P1: principal", D["sen_prin"]), ("Senior P1: interest", D["sen_int"]),
@@ -1801,8 +2225,10 @@ def write_excel(path, P0, base, scen, torn, grid, surv, chk, senior_kes):
         ("Equity IRR, USD (with TV)", "equity_irr_usd", "pct", ""),
         ("Equity IRR, KES (no TV)", "equity_irr_kes_noTV", "pct", ""),
         ("Equity IRR, KES after 5% dividend WHT and 15% CGT", "equity_irr_kes_after_shtax", "pct", "Compare to tax-free bond"),
-        (f"Project NPV @ WACC Phase 1 {P0['wacc_p1']:.0%} (KES m)", "npv_proj_wacc_p1", "m", ""),
-        (f"Project NPV @ steady-state WACC {P0['wacc_ss']:.1%} (KES m)", "npv_proj_wacc_ss", "m", ""),
+        ("Phase 1 WACC from the modelled structure", "wacc_model", "pct", "Equity at 35%, senior and mezz post-tax, weights from 2027-29 sources (R1-04)"),
+        ("Project NPV @ modelled WACC (KES m)", "npv_proj_wacc_model", "m", ""),
+        (f"Project NPV @ financing-file WACC {P0['wacc_p1']:.0%} (memo, KES m)", "npv_proj_wacc_p1", "m", "Assumes 50% equity; not the modelled structure"),
+        ("Equity IRR, founder group after GM equity incentive", "equity_irr_founder_after_gm", "pct", "R1-12"),
         (f"Equity NPV @ infra bond {P0['infra_bond']:.2%} (KES m)", "npv_eq_infra", "m", "Opportunity cost floor"),
         (f"Equity NPV @ established hurdle {P0['hurdle_est']:.1%} (KES m)", "npv_eq_est", "m", ""),
         (f"Equity NPV @ greenfield {P0['hurdle_gf_lo']:.0%} (KES m)", "npv_eq_gf_lo", "m", "Hurdle is survival-weighted: see sheet"),
@@ -1815,7 +2241,10 @@ def write_excel(path, P0, base, scen, torn, grid, surv, chk, senior_kes):
         ("Peak WC revolver draw, Phase 1 years 2029-32 (KES m)", "peak_revolver_p1", "m", "Intra-year, separate from term funding"),
         ("Peak WC revolver draw, any year (KES m)", "peak_revolver", "m", "Nominal; usually the last year"),
         ("Senior P1 loan sized (KES m)", "senior_kes", "m", ""),
-        ("Min DSCR 2030+", "min_dscr", "x", "Lock-up/sizing 1.30x"),
+        ("Min DSCR (from first test year)", "min_dscr", "x", "Lock-up 1.30x; default 1.10x"),
+        ("Covenant cure equity, total (KES m)", "cure_equity", "m", "Injected and applied to prepay senior"),
+        ("Years below default covenant", "breach_years", "yr", ""),
+        ("Years in lock-up (below 1.30x)", "lockup_years", "yr", ""),
         ("CFADS / debt service 2029 (ramp year, n/m)", "dscr_2029", "x", "Not tested: 2029 WC build and debt service funded from Phase 1 budget"),
         ("EBITDA 2031 (KES m)", "ebitda_2031", "m", ""), ("EBITDA 2035 (KES m)", "ebitda_2035", "m", ""), ("EBITDA 2038 (KES m)", "ebitda_2038", "m", ""),
     ]
@@ -1847,7 +2276,7 @@ def write_excel(path, P0, base, scen, torn, grid, surv, chk, senior_kes):
                 c.number_format = "0.0%" if ("margin" in k or "share" in k) else "#,##0"
             ws.cell(row=r, column=4, value="PASS" if ok else "FAIL")
             r += 1
-        ws.cell(row=r, column=1, value=f"Decision: Phase 2 {'GO' if base['go'] else 'NO-GO'}. Incremental Phase 2 project IRR {fmt_pct(base['inc_irr'])}, NPV @ {P0['wacc_ss']:.1%} KES {base['inc_npv']/1e6:,.0f}m.").font = BOLD
+        ws.cell(row=r, column=1, value=f"Decision: Phase 2 {'GO' if base['go'] else 'NO-GO'}. Incremental Phase 2 project IRR {fmt_pct(base['inc_irr'])}; incremental equity IRR {fmt_pct(base['inc_eq_irr'])}; incremental project NPV @ Phase 2 funding WACC {base['wacc_p2']:.1%} KES {base['inc_npv']/1e6:,.0f}m.").font = BOLD
         r += 2
     r = year_header(ws, r)
     r = yrow(ws, r, "Project cash flow (unlevered, incl. TV in 2038)", base["F"]["proj_tv"], scale=1e6, unit="KES m")
@@ -1896,7 +2325,7 @@ def write_excel(path, P0, base, scen, torn, grid, surv, chk, senior_kes):
         r += 1
     r += 1
     r = section(ws, r, "Key inputs by scenario", 6)
-    for k in ["seed_cost_mult", "p_crude", "p_refined", "p_feed_grow", "p_suncake", "supply_mult", "feed_share_max", "refined_share_max",
+    for k in ["config", "sam_2026", "sam_regional", "feed_px_mult", "feed_real_decline", "entrant_discount", "seed_cost_mult", "p_crude", "refine_spread", "p_suncake", "supply_mult", "feed_share_max", "refined_share_max",
               "capex_mult", "kes_dep", "sun_oil_y", "p_cpo_removed", "p_gmo", "p_tz_levy", "exit_mult", "ops_months_y1",
               "p2_tpd", "p2_extr_tph", "p2_ref_add"]:
         ws.cell(row=r, column=1, value=k)
@@ -1925,15 +2354,18 @@ def write_excel(path, P0, base, scen, torn, grid, surv, chk, senior_kes):
     r = ws_title(ws, "Sensitivities: tornado (one driver at a time, low / high)",
                  "Sorted by swing in equity IRR. Phase 2 decision held at the base-case result so bars are continuous; senior debt held at base sizing.")
     r = header(ws, r, ["Driver", "Low setting", "High setting", "Equity IRR KES low", "Equity IRR KES high", "Swing (pp)", "Equity IRR USD low", "Equity IRR USD high",
-                       "Project IRR KES low", "Project IRR KES high", f"Project NPV@{P0['wacc_p1']:.0%} low (KES m)", "Project NPV high (KES m)"])
+                       "Project IRR KES low", "Project IRR KES high", "Min DSCR low", "Min DSCR high", "Cure equity low (KES m)", "Cure equity high (KES m)",
+                       "Peak equity low (KES m)", "Peak equity high (KES m)"])
     for t in torn:
         vals = [t["label"], ", ".join(f"{k}={v:g}" for k, v in t["lo"].items()), ", ".join(f"{k}={v:g}" for k, v in t["hi"].items()),
-                t["eq_lo"], t["eq_hi"], t["swing"] * 100, t["equsd_lo"], t["equsd_hi"], t["pr_lo"], t["pr_hi"], t["npv_lo"] / 1e6, t["npv_hi"] / 1e6]
+                t["eq_lo"], t["eq_hi"], t["swing"] * 100, t["equsd_lo"], t["equsd_hi"], t["pr_lo"], t["pr_hi"], t["dscr_lo"], t["dscr_hi"],
+                t["cure_lo"] / 1e6, t["cure_hi"] / 1e6, t["peak_lo"] / 1e6, t["peak_hi"] / 1e6]
         for j, v in enumerate(vals):
             c = ws.cell(row=r, column=1 + j, value=None if isinstance(v, float) and np.isnan(v) else v)
             if j in (3, 4, 6, 7, 8, 9): c.number_format = "0.0%"
             elif j == 5: c.number_format = "0.0"
-            elif j in (10, 11): c.number_format = "#,##0"
+            elif j in (10, 11): c.number_format = "0.00"
+            elif j >= 12: c.number_format = "#,##0"
         r += 1
     ws.cell(row=r, column=1, value=f"Base: equity IRR {fmt_pct(M['equity_irr_kes'])}, project IRR {fmt_pct(M['project_irr_kes'])}.").font = BOLD
     r += 2
@@ -1957,39 +2389,89 @@ def write_excel(path, P0, base, scen, torn, grid, surv, chk, senior_kes):
     # ---------------- Survival-weighted
     ws = wb.create_sheet("Survival-weighted")
     r = ws_title(ws, "Survival-weighted view: expected equity IRR vs the 35-40% greenfield hurdle",
-                 "Three-branch tree. Failure branch runs bear-case operations (Phase 1 only) to the failure year, then liquidates: equity gets max(0, recovery - net debt). Hurdles are met in expectation, not conditional on survival.")
-    r = header(ws, r, ["Branch", "Probability", "Equity IRR", "Project IRR", "Equity NPV @35% (KES m)"])
+                 "Four-branch tree (R1-11). Failure branches liquidate at recovery_fixed x gross capex + recovery_wc x WC; equity gets max(0, recovery - net debt); the founder also pays the personal-guarantee call on any senior shortfall.")
+    r = header(ws, r, ["Branch", "Probability", "Equity IRR", "Project IRR", "Equity NPV @35% (KES m)", "Founder NPV @35% (KES m)"])
     for nm, b in surv["branches"].items():
-        vals = [nm, b["prob"], b["eq_irr"], b["proj_irr"], b["eq_npv35"] / 1e6]
+        vals = [nm, b["prob"], b["eq_irr"], b["proj_irr"], b["eq_npv35"] / 1e6, b["founder_npv35"] / 1e6]
         for j, v in enumerate(vals):
             c = ws.cell(row=r, column=1 + j, value=None if isinstance(v, float) and np.isnan(v) else v)
             c.number_format = "0.0%" if j in (1, 2, 3) else "#,##0"
         r += 1
     r += 1
-    rows = [("Expected (probability-weighted) equity IRR, KES", surv["exp_eq_irr"], "pct"),
+    rows = [("Expected (probability-weighted) equity IRR, KES, all shareholders", surv["exp_eq_irr"], "pct"),
+            ("Expected founder-group IRR (GM dilution, guarantee calls)", surv["exp_founder_irr"], "pct"),
+            ("Expected founder-group IRR after dividend WHT and CGT", surv["exp_founder_at_irr"], "pct"),
             ("Expected project IRR, KES", surv["exp_proj_irr"], "pct"),
-            ("Equity IRR conditional on survival (blend of no-go/go)", surv["surv_eq_irr"], "pct"),
+            ("Equity IRR conditional on survival", surv["surv_eq_irr"], "pct"),
+            ("Total failure probability (early + late)", surv["total_fail_prob"], "pct"),
             ("Greenfield hurdle (expected), lower / upper", f"{P0['hurdle_gf_lo']:.0%} / {P0['hurdle_gf_hi']:.0%}", "txt"),
-            (f"Required survivor IRR at p_fail={P0['p_fail']:.0%} (report formula, 5 yrs) for 35% / 40%", f"{surv['req_cond_35']:.1%} / {surv['req_cond_40']:.1%}", "txt"),
-            ("Expected equity NPV @35% (KES m)", surv["exp_npv35"] / 1e6, "m"),
-            ("Expected equity NPV @40% (KES m)", surv["exp_npv40"] / 1e6, "m"),
-            ("Break-even failure probability for 35% expected IRR", surv["breakeven_pfail_35"], "pct"),
-            ("Liquidation: asset recovery (KES m)", surv["liq_assets"] / 1e6, "m"),
-            ("Liquidation: net debt at failure (KES m)", surv["debt_at_fail"] / 1e6, "m"),
-            ("Liquidation: equity recovery (KES m)", surv["eq_liq"] / 1e6, "m")]
+            ("Expected equity NPV @35% / @40% (KES m)", f"{surv['exp_npv35']/1e6:,.0f} / {surv['exp_npv40']/1e6:,.0f}", "txt"),
+            ("Expected founder NPV @35% / @40% (KES m)", f"{surv['exp_founder_npv35']/1e6:,.0f} / {surv['exp_founder_npv40']/1e6:,.0f}", "txt"),
+            (f"Bond comparison: NPV @ {P0['infra_bond']:.2%} of survival-CONDITIONAL equity flows (KES m)", surv["bond_npv_surv_cond"] / 1e6, "m"),
+            (f"Bond comparison: NPV @ {P0['infra_bond']:.2%} of survival-WEIGHTED founder flows after shareholder tax (KES m)", surv["bond_npv_exp_founder_at"] / 1e6, "m"),
+            ("Early-failure probability at which expected IRR falls below 35%", surv["breakeven_pfail_35"], "pct"),
+            ("Early failure: asset recovery / net debt / equity recovery / guarantee call (KES m)",
+             f"{surv['liq_assets']/1e6:,.0f} / {surv['debt_at_fail']/1e6:,.0f} / {surv['eq_liq']/1e6:,.0f} / {surv['guarantee_early']/1e6:,.0f}", "txt")]
     for lab, v, kind in rows:
         ws.cell(row=r, column=1, value=lab)
-        c = ws.cell(row=r, column=2, value="n/a (below 0% at any p)" if v is None else (None if isinstance(v, float) and np.isnan(v) else v))
+        c = ws.cell(row=r, column=2, value="n/a" if v is None else (None if isinstance(v, float) and np.isnan(v) else v))
         c.number_format = "0.0%" if kind == "pct" else "#,##0"
+        r += 1
+    r += 1
+    r = header(ws, r, ["Early-failure probability", "Expected equity IRR", "Expected equity NPV @35% (KES m)"])
+    for q, ir, nv in surv["pfail_sweep"]:
+        for j, v in enumerate((q, ir, nv / 1e6)):
+            ws.cell(row=r, column=1 + j, value=None if isinstance(v, float) and np.isnan(v) else v).number_format = "0.0%" if j < 2 else "#,##0"
         r += 1
     r += 1
     r = year_header(ws, r, "Equity flows, KES m")
     for nm, b in surv["branches"].items():
         r = yrow(ws, r, nm, b["eq"], scale=1e6, unit="KES m")
     r = yrow(ws, r, "Expected equity flow", surv["exp_eq"], scale=1e6, unit="KES m", bold=True)
-    ws.column_dimensions["A"].width = 70
+    r = yrow(ws, r, "Expected founder flow after shareholder tax", surv["exp_founder_at"], scale=1e6, unit="KES m", bold=True)
+    ws.column_dimensions["A"].width = 80
     for col in "BCDEFGHIJKLMN":
         ws.column_dimensions[col].width = 14
+
+    # ---------------- Phase 0 value of information
+    ws = wb.create_sheet("Phase 0 VOI")
+    r = ws_title(ws, "Phase 0: value of information (R1-05)",
+                 "Expected founder NPV (KES m, value date 2027) of each policy. Priors: triangular(low, base, high) per input; rho = copula correlation among favourable outcomes. Invest only if the survival-weighted NPV at the hurdle is positive.")
+    for v in X["voi"]:
+        r = section(ws, r, f"rho = {v['rho']}; {v['n']} draws; Phase 0a cost KES {v['cost_a']/1e6:,.0f}m; Phase 0b cost incl. pilot seed loss KES {v['cost_b']/1e6:,.0f}m", 10)
+        r = header(ws, r, ["Hurdle / early-failure prob.", "Stop now", "Invest now (no info)", "Phase 0a only", "Staged 0a -> 0b", "Perfect information",
+                           "P(pass | full info)", "P(pass | 0a info)", "Gross EVPI", "P(cond. IRR >= 35%)"])
+        for key in ("35_0.30", "40_0.30", "35_0.20", "40_0.20"):
+            d = v[key]
+            vals = [key.replace("_", "% hurdle, p_fail "), 0.0, d["invest_now"] / 1e6, d["phase0a_only"] / 1e6, d["staged"] / 1e6, d["perfect_info"] / 1e6,
+                    d["p_pass_full"], d["p_pass_a"], d["evpi_gross"] / 1e6, d["p_cond_irr_35"]]
+            for j, x in enumerate(vals):
+                ws.cell(row=r, column=1 + j, value=x).number_format = "0.0%" if j in (6, 7, 9) else "#,##0"
+            r += 1
+        r += 1
+    ws.column_dimensions["A"].width = 34
+    for col in "BCDEFGHIJ":
+        ws.column_dimensions[col].width = 18
+
+    # ---------------- Gates & break-evens
+    ws = wb.create_sheet("Gates & break-evens")
+    r = ws_title(ws, "Gate calibration (R1-10) and joint cases",
+                 "Covenant = value at which min DSCR hits the 1.10x default (others at base, base debt). Hurdle = value for a 35% conditional equity IRR (others at base). Kill = value at which the survival-weighted founder IRR is 35% at p_fail 20% with every other driver at its bull value.")
+    r = header(ws, r, ["Driver", "Base", "Covenant (1.10x)", "Hurdle 35% (others base)", "Kill threshold (others bull)", "Bull value"])
+    for k, d in X["cal"].items():
+        for j, x in enumerate([k, d["base"], d["covenant"], d["hurdle"], d["kill"], d["bull_other"]]):
+            ws.cell(row=r, column=1 + j, value="not reached" if x is None else x).number_format = "#,##0.000"
+        r += 1
+    r += 1
+    r = header(ws, r, ["Joint case", "Cond. equity IRR", "Exp. IRR p_fail 30%", "Exp. IRR p_fail 20%", "NPV35 p_fail 30%", "NPV35 p_fail 20%", "Min DSCR", "Senior (KES m)", "Peak equity", "Phase 2"])
+    for nm, d in X["jc"].items():
+        vals = [nm, d["cond_irr"], d["exp_irr_0.30"], d["exp_irr_0.20"], d["npv35_0.30"] / 1e6, d["npv35_0.20"] / 1e6, d["min_dscr"], d["senior"] / 1e6, d["peak_equity"] / 1e6, "GO" if d["go"] else "NO-GO"]
+        for j, x in enumerate(vals):
+            ws.cell(row=r, column=1 + j, value=None if isinstance(x, float) and np.isnan(x) else x).number_format = "0.0%" if j in (1, 2, 3) else ("0.00" if j == 6 else "#,##0")
+        r += 1
+    ws.column_dimensions["A"].width = 70
+    for col in "BCDEFGHIJ":
+        ws.column_dimensions[col].width = 16
 
     # ---------------- Checks
     ws = wb.create_sheet("Checks")
@@ -2006,7 +2488,7 @@ def write_excel(path, P0, base, scen, torn, grid, surv, chk, senior_kes):
     wb.save(path)
 
 
-def write_csvs(base, scen):
+def write_csvs(base, scen, X=None):
     R, D, F = base["R"], base["D"], base["F"]
     V = R["volumes"]
     def w(name, cols):
@@ -2046,7 +2528,18 @@ def write_csvs(base, scen):
     cf["principal"] = F["prin"] / 1e6; cf["senior_bal"] = D["sen_bal"] / 1e6; cf["mezz_bal"] = D["mezz_bal_kes"] / 1e6
     cf["p2_loan_bal"] = D["p2_bal"] / 1e6; cf["revolver_bal"] = R["revolver_bal"] / 1e6; cf["dsra"] = D["dsra"] / 1e6
     cf["proj_tv_usd"] = F["proj_tv"] / R["fx"] / 1e6; cf["eq_tv_usd"] = F["eq_tv_flows"] / R["fx"] / 1e6
+    cf["cure_equity"] = F["cure"] / 1e6; cf["senior_prepay"] = D["sen_prepay"] / 1e6; cf["sweep"] = F["sweep"] / 1e6
+    cf["eq_founder"] = F["eq_founder"] / 1e6
     w("cashflow_annual.csv", cf)
+    if X is not None:
+        # VOI draws for Stata (one row per draw and prior correlation)
+        with open(os.path.join(HERE, "voi_draws.csv"), "w", newline="") as f:
+            wr = csv.writer(f, lineterminator="\n")
+            keys = list(X["voi"][0]["rows"][0].keys())
+            wr.writerow(["rho", "draw"] + [k.replace(".", "").lower() for k in keys])   # Stata-safe names
+            for v in X["voi"]:
+                for j, row in enumerate(v["rows"]):
+                    wr.writerow([v["rho"], j] + [f"{float(row[k]):.6g}" for k in keys])
     mb = OrderedDict((k, v) for k, v in V.items())
     w("mass_balance_annual.csv", mb)
     sc = OrderedDict()
@@ -2064,7 +2557,7 @@ def md_table(headers, rows):
     return "\n".join(out)
 
 
-def write_md(path, P0, base, scen, torn, grid, surv, chk, senior_kes):
+def write_md(path, P0, base, scen, torn, grid, surv, chk, senior_kes, X):
     R, D, F, M = base["R"], base["D"], base["F"], base["M"]
     V = R["volumes"]
     fx = R["fx"]
@@ -2106,8 +2599,8 @@ def write_md(path, P0, base, scen, torn, grid, surv, chk, senior_kes):
              ["Grants (outgrower/ESIA co-funding)", fmt_m(F["grants"].sum()), f"{P0['grants_usd']:.2f}"],
              ["WC revolver at end-2029 (65% of seed stock)", fmt_m(R["revolver_bal"][IDX[2029]]), f"{R['revolver_bal'][IDX[2029]]/fxa/1e6:.2f}"]]
     L.append(md_table(["Source", "KES m", "USD m (2028 FX)"], srows))
-    L.append(f"\nSenior debt is sized to a {P0['dscr_target']:.2f}x minimum DSCR over 2030-34 on the Phase 1 standalone case and capped at the financing file's USD {P0['senior_usd_max']}m: result KES {senior_kes/1e6:,.0f}m (USD {senior_kes/fxa/1e6:.2f}m). "
-             f"Peak net equity committed (whole plan): KES {M['peak_equity']/1e6:,.0f}m (USD {M['peak_equity']/fx[IDX[2029]]/1e6:.1f}m). Peak project funding need: KES {M['peak_funding_project']/1e6:,.0f}m. Peak intra-year revolver draw: KES {M['peak_revolver_p1']/1e6:,.0f}m in Phase 1 (2029-32), KES {M['peak_revolver']/1e6:,.0f}m nominal by {M['peak_revolver_year']}.\n")
+    L.append(f"\nSenior debt is sized to a {P0['dscr_target']:.2f}x minimum DSCR over {P0['dscr_first_year']:.0f}-34 on the lender downside case (CFADS x {1-P0['sizing_haircut']:.2f}), Phase 1 standalone, capped at the financing file's USD {P0['senior_usd_max']}m: result KES {senior_kes/1e6:,.0f}m (USD {senior_kes/fxa/1e6:.2f}m). "
+             f"Peak net equity committed (whole plan, incl. cure equity): KES {M['peak_equity']/1e6:,.0f}m in {M['peak_equity_year']} (USD {M['peak_equity']/fx[IDX[M['peak_equity_year']]]/1e6:.1f}m at that year's FX). Peak project funding need: KES {M['peak_funding_project']/1e6:,.0f}m. Peak intra-year revolver draw: KES {M['peak_revolver_p1']/1e6:,.0f}m in Phase 1 (2029-32), KES {M['peak_revolver']/1e6:,.0f}m nominal by {M['peak_revolver_year']}.\n")
     L.append("## 4. Base case, annual summary (KES m nominal)\n")
     hdr = ["Item"] + [str(int(y)) for y in YEARS[2:]]
     def rowf(lab, arr, scale=1e6, f="{:,.0f}"):
@@ -2118,7 +2611,8 @@ def write_md(path, P0, base, scen, torn, grid, surv, chk, senior_kes):
            rowf("Revenue", R["revenue"]), rowf("EBITDA", R["ebitda"]),
            ["EBITDA margin"] + [fmt_pct(R["ebitda"][i] / R["revenue"][i]) if R["revenue"][i] > 0 else "-" for i in range(2, N)],
            rowf("Net income", F["ni"]), rowf("CFADS", F["cfads"]), ["DSCR"] + [f"{F['dscr'][i]:.2f}" if not np.isnan(F['dscr'][i]) else "-" for i in range(2, N)],
-           rowf("Capex (incl. sustaining)", R["capex"] + R["sust"]), rowf("Equity injected", F["inj"]), rowf("Distributions", F["dist"]),
+           rowf("Capex (incl. sustaining)", R["capex"] + R["sust"]), rowf("Equity injected (incl. cure)", F["inj"]), rowf("  of which cure equity", F["cure"]),
+           rowf("Senior prepayment (cure + sweep)", D["sen_prepay"]), rowf("Distributions", F["dist"]),
            rowf("EBITDA (USD m)", R["ebitda"] / fx, 1e6, "{:,.2f}"), ["KES/USD"] + [f"{fx[i]:.1f}" for i in range(2, N)]]
     L.append(md_table(hdr, tbl))
     L.append("")
@@ -2134,29 +2628,42 @@ def write_md(path, P0, base, scen, torn, grid, surv, chk, senior_kes):
     L.append(md_table(["Year", "Crush gross margin, KES/t seed", "Feed gross margin, KES/t feed", "Feed GM %", "EBITDA per t seed", "EBITDA KES m (real)"], ue))
     L.append("\nCrush gross margin values oil at crude-to-refiner prices and cake at market; feed margin charges own cake/oil at market transfer prices. Research benchmarks: ~KES 12k/t (feedstock_supply s8, oil 175/cake 35/seed 57) to ~31k/t (market_demand s6, oil 190/cake 40/seed 60); feed cash cost KES 88-93/kg vs KES 110-150 price (technical_operations s3.3).\n")
     L.append("## 6. Returns\n")
-    cols = [("Plan (gate auto)", base), ("Full plan (Phase 2 go)", base.get("full", base)), ("Phase 1 only", base.get("p1_only", base))]
+    cols = [("Plan (gate auto)", base), ("Full plan (Phase 2 forced go)", base.get("full", base)), ("Phase 1 only", base.get("p1_only", base))]
     rr = []
     for lab, key, kind in (("Project IRR, KES", "project_irr_kes", "pct"), ("Project IRR, USD", "project_irr_usd", "pct"),
                            ("Project IRR, KES, no terminal value", "project_irr_kes_noTV", "pct"),
+                           ("Phase 1 WACC from the modelled structure (equity 35%, debt post-tax)", "wacc_model", "pct"),
+                           ("Project NPV @ modelled WACC (KES m)", "npv_proj_wacc_model", "m"),
+                           (f"Project NPV @ financing-file {P0['wacc_p1']:.0%} (memo; assumes 50% equity) (KES m)", "npv_proj_wacc_p1", "m"),
                            ("Equity IRR, KES", "equity_irr_kes", "pct"), ("Equity IRR, USD", "equity_irr_usd", "pct"),
                            ("Equity IRR, KES, no terminal value", "equity_irr_kes_noTV", "pct"),
                            ("Equity IRR, KES, after dividend WHT + CGT", "equity_irr_kes_after_shtax", "pct"),
-                           (f"Project NPV @ {P0['wacc_p1']:.0%} (KES m)", "npv_proj_wacc_p1", "m"),
-                           (f"Project NPV @ {P0['wacc_ss']:.1%} (KES m)", "npv_proj_wacc_ss", "m"),
-                           (f"Equity NPV @ {P0['infra_bond']:.2%} infra bond (KES m)", "npv_eq_infra", "m"),
+                           ("Equity IRR, founder group after GM equity incentive", "equity_irr_founder_after_gm", "pct"),
+                           (f"Equity NPV @ {P0['infra_bond']:.2%} infra bond (survival assumed) (KES m)", "npv_eq_infra", "m"),
                            (f"Equity NPV @ {P0['hurdle_gf_lo']:.0%} (KES m)", "npv_eq_gf_lo", "m"),
                            (f"Equity NPV @ {P0['hurdle_gf_hi']:.0%} (KES m)", "npv_eq_gf_hi", "m"),
                            ("Project payback (year)", "payback_project", "yr"), ("Equity payback (year)", "payback_equity", "yr"),
-                           ("Peak project funding need (KES m)", "peak_funding_project", "m"), ("Peak net equity (KES m)", "peak_equity", "m"),
-                           ("Min DSCR 2030+", "min_dscr", "x")):
+                           ("Peak project funding need (KES m)", "peak_funding_project", "m"), ("Peak net equity incl. cures (KES m)", "peak_equity", "m"),
+                           ("Peak net equity year", "peak_equity_year", "yr"),
+                           ("Senior debt sized (KES m)", "senior_kes", "m"),
+                           ("Min DSCR (from first test year)", "min_dscr", "x"), ("Covenant cure equity (KES m)", "cure_equity", "m"),
+                           ("Years below 1.10x default / below 1.30x lock-up", None, "breach"),
+                           ("Irrecoverable capex VAT (feed-exempt share) (KES m)", "vat_irrecov_capex", "m")):
         row = [lab]
         for _n, o in cols:
+            if kind == "breach":
+                row.append(f"{o['M']['breach_years']} / {o['M']['lockup_years']}")
+                continue
             v = o["M"][key]
             row.append(fmt_pct(v) if kind == "pct" else fmt_m(v) if kind == "m" else (f"{v:.2f}" if kind == "x" and v is not None and not np.isnan(v) else ("not by 2038" if v is None else str(v))))
         rr.append(row)
     L.append(md_table(["Metric"] + [c[0] for c in cols], rr))
+    ww = M["wacc_weights"]
+    L.append(f"\nModelled Phase 1 structure (2027-29 long-term sources): equity {ww[0]:.0%}, senior {ww[1]:.0%}, mezzanine {ww[2]:.0%}. "
+             f"Layer costs: equity {P0['hurdle_gf_lo']:.0%}; senior {P0['senior_rate']:.1%} x (1 - {P0['cit']:.0%}); mezzanine {P0['mezz_rate']:.0%} grossed up for {P0['wht_int']:.0%} WHT plus {P0['kes_dep']:.0%} KES drift, post-tax. "
+             f"The financing file's 23% assumed 50% equity and is kept only as a memo.\n")
     if base.get("gate"):
-        L.append("\n**Phase 2 gate (evaluated on 2031 results):**\n")
+        L.append("**Phase 2 gate (evaluated on 2031 results):**\n")
         g = []
         for k, (v, th, ok) in base["gate"].items():
             if "KES" in k:
@@ -2166,65 +2673,113 @@ def write_md(path, P0, base, scen, torn, grid, surv, chk, senior_kes):
             else:
                 g.append([k, f"{v:,.0f}", f"{th:,.0f}", "PASS" if ok else "FAIL"])
         L.append(md_table(["Test", "Value", "Threshold", "Result"], g))
-        L.append(f"\nPhase 2 incremental project IRR: {fmt_pct(base['inc_irr'])}; incremental NPV @ {P0['wacc_ss']:.1%}: KES {base['inc_npv']/1e6:,.0f}m. Decision: **{'GO' if base['go'] else 'NO-GO'}**.\n")
-    L.append("## 7. Scenarios\n")
+        L.append(f"\nPhase 2 incremental project IRR {fmt_pct(base['inc_irr'])}; incremental equity IRR {fmt_pct(base['inc_eq_irr'])}; incremental project NPV at the Phase 2 funding-mix WACC ({base['wacc_p2']:.1%}: {P0['p2_debt_share']:.0%} DFI debt post-tax, rest equity at 35%) KES {base['inc_npv']/1e6:,.0f}m; at the financing file's {P0['wacc_ss']:.1%}: KES {base['inc_npv_ss']/1e6:,.0f}m. Decision: **{'GO' if base['go'] else 'NO-GO'}**.\n")
+    # ask and FX (R1-06)
+    A = X["ask"]
+    L.append("### The ask, by stage, at stated FX\n")
+    L.append(md_table(["Item", "KES m (nominal)", "FX (KES/USD) and year", "USD m"], [[a, fmt_m(b), f"{c:.1f} ({d})", f"{b/c/1e6:.2f}"] for a, b, c, d in A]))
+    L.append("")
+    L.append("### Senior debt under alternative lender structures\n")
+    L.append(md_table(["Structure", "Senior sized (KES m)", "Equity IRR", "Min DSCR", "Cure equity (KES m)", "Peak equity (KES m)"],
+                      [[nm, fmt_m(d["senior"]), fmt_pct(d["eq"]), f"{d['dscr']:.2f}", fmt_m(d["cure"]), fmt_m(d["peak"])] for nm, d in X["debt_alt"].items()]))
+    L.append("")
+    L.append("## 7. Scenarios (senior debt held at base sizing; every case reports minimum DSCR and cure equity)\n")
     names = list(scen.keys())
-    srow = [["Definition"] + [SCEN_DESC[n] for n in names], ["Phase 2"] + ["GO" if scen[n]["go"] else "NO-GO" for n in names]]
-    for lab, key, kind in (("Project IRR, KES", "project_irr_kes", "pct"), ("Project IRR, USD", "project_irr_usd", "pct"),
-                           ("Equity IRR, KES", "equity_irr_kes", "pct"), ("Equity IRR, USD", "equity_irr_usd", "pct"),
-                           ("Equity IRR after shareholder tax", "equity_irr_kes_after_shtax", "pct"),
-                           (f"Project NPV @ {P0['wacc_p1']:.0%} (KES m)", "npv_proj_wacc_p1", "m"),
+    srow = [["Phase 2"] + ["GO" if scen[n]["go"] else "NO-GO" for n in names]]
+    for lab, key, kind in (("Project IRR, KES", "project_irr_kes", "pct"), ("Equity IRR, KES", "equity_irr_kes", "pct"), ("Equity IRR, USD", "equity_irr_usd", "pct"),
+                           ("Project NPV @ modelled WACC (KES m)", "npv_proj_wacc_model", "m"),
                            (f"Equity NPV @ {P0['hurdle_gf_lo']:.0%} (KES m)", "npv_eq_gf_lo", "m"),
-                           ("EBITDA 2031 (KES m)", "ebitda_2031", "m"), ("EBITDA 2035 (KES m)", "ebitda_2035", "m"),
-                           ("Peak net equity (KES m)", "peak_equity", "m"), ("Min DSCR 2030+", "min_dscr", "x"), ("Equity payback", "payback_equity", "yr")):
+                           ("EBITDA 2031 (KES m)", "ebitda_2031", "m"), ("EBITDA 2035 (KES m)", "ebitda_2035", "m"), ("Feed sold 2031 (t)", "feed_2031", "t"),
+                           ("Peak net equity incl. cures (KES m)", "peak_equity", "m"), ("Min DSCR", "min_dscr", "x"), ("Cure equity (KES m)", "cure_equity", "m"),
+                           ("Years below 1.10x", "breach_years", "yr"), ("Equity payback", "payback_equity", "yr")):
         row = [lab]
         for n in names:
             v = scen[n]["M"][key]
-            row.append(fmt_pct(v) if kind == "pct" else fmt_m(v) if kind == "m" else (f"{v:.2f}" if kind == "x" and v is not None and not np.isnan(v) else ("not by 2038" if v is None else str(v))))
+            row.append(fmt_pct(v) if kind == "pct" else fmt_m(v) if kind == "m" else (f"{v:,.0f}" if kind == "t" else (f"{v:.2f}" if kind == "x" and v is not None and not np.isnan(v) else ("not by 2038" if v is None else str(v)))))
         srow.append(row)
-    L.append(md_table(["Metric"] + [n.upper() for n in names], srow))
-    L.append("\n## 8. Tornado (equity IRR, KES; one driver at a time)\n")
-    trow = [[t["label"], fmt_pct(t["eq_lo"]), fmt_pct(t["eq_hi"]), f"{t['swing']*100:.1f}", fmt_pct(t["equsd_lo"]), fmt_pct(t["equsd_hi"]),
-             fmt_pct(t["pr_lo"]), fmt_pct(t["pr_hi"])] for t in torn]
-    L.append(md_table(["Driver (low / high setting)", "Equity IRR KES low", "Equity IRR KES high", "Swing pp", "Equity IRR USD low", "Equity IRR USD high",
-                       "Project IRR KES low", "Project IRR KES high"], trow))
-    L.append(f"\nBase: equity IRR {fmt_pct(M['equity_irr_kes'])}, project IRR {fmt_pct(M['project_irr_kes'])}. Phase 2 decision held at base result; senior debt held at base sizing.\n")
+    L.append(md_table(["Metric"] + [n for n in names], srow))
+    L.append("\nDefinitions:\n")
+    for n in names:
+        L.append(f"- **{n}**: {SCEN_DESC[n]}")
+    L.append("\n## 8. Tornado (one driver at a time; equity IRR, minimum DSCR and cure equity)\n")
+    trow = [[t["label"], fmt_pct(t["eq_lo"]), fmt_pct(t["eq_hi"]), f"{t['swing']*100:.1f}",
+             f"{t['dscr_lo']:.2f}" if not np.isnan(t['dscr_lo']) else "n/a", f"{t['dscr_hi']:.2f}" if not np.isnan(t['dscr_hi']) else "n/a",
+             fmt_m(t["cure_lo"]), fmt_m(t["cure_hi"]), fmt_m(t["peak_lo"]), fmt_m(t["peak_hi"])] for t in torn]
+    L.append(md_table(["Driver (low / high setting)", "Equity IRR low", "Equity IRR high", "Swing pp", "Min DSCR low", "Min DSCR high",
+                       "Cure KES m low", "Cure KES m high", "Peak equity low", "Peak equity high"], trow))
+    L.append(f"\nBase: equity IRR {fmt_pct(M['equity_irr_kes'])}, project IRR {fmt_pct(M['project_irr_kes'])}, min DSCR {M['min_dscr']:.2f}x. Phase 2 decision held at the base result; senior debt held at base sizing (KES {senior_kes/1e6:,.0f}m). Cure equity is injected whenever DSCR falls below {P0['default_dscr']:.2f}x and prepays senior; it is included in the equity IRR and peak equity.\n")
     seeds, oils, pg, eg = grid
-    L.append("### Seed cost x oil price (project IRR, KES)\n")
-    L.append(md_table(["Seed cost \\ oil price"] + [f"x{o:.2f}" for o in oils],
-                      [[f"x{s_:.2f}"] + [fmt_pct(pg[i, j]) for j in range(len(oils))] for i, s_ in enumerate(seeds)]))
-    L.append("\n### Seed cost x oil price (equity IRR, KES)\n")
-    L.append(md_table(["Seed cost \\ oil price"] + [f"x{o:.2f}" for o in oils],
+    L.append("### Seed cost x oil price index (equity IRR, KES; refined price moves with the index)\n")
+    L.append(md_table(["Seed cost \\ oil index"] + [f"x{o:.2f}" for o in oils],
                       [[f"x{s_:.2f}"] + [fmt_pct(eg[i, j]) for j in range(len(oils))] for i, s_ in enumerate(seeds)]))
     L.append("\n## 9. Survival-weighted view\n")
-    b = [[nm, f"{v['prob']:.1%}", fmt_pct(v["eq_irr"]), fmt_pct(v["proj_irr"]), fmt_m(v["eq_npv35"])] for nm, v in surv["branches"].items()]
-    L.append(md_table(["Branch", "Probability", "Equity IRR", "Project IRR", "Equity NPV @35% (KES m)"], b))
+    b = [[nm, f"{v['prob']:.1%}", fmt_pct(v["eq_irr"]), fmt_m(v["eq_npv35"]), fmt_m(v["founder_npv35"])] for nm, v in surv["branches"].items()]
+    L.append(md_table(["Branch", "Probability", "Equity IRR", "Equity NPV @35% (KES m)", "Founder NPV @35% incl. guarantee and GM (KES m)"], b))
     L.append("")
     be = surv["breakeven_pfail_35"]
     L.append(md_table(["Measure", "Value"], [
-        ["Expected (probability-weighted cash flow) equity IRR, KES", fmt_pct(surv["exp_eq_irr"])],
+        ["Expected equity IRR, all shareholders", fmt_pct(surv["exp_eq_irr"])],
+        ["Expected founder-group IRR (GM dilution, guarantee calls)", fmt_pct(surv["exp_founder_irr"])],
+        ["Expected founder-group IRR after dividend WHT and CGT", fmt_pct(surv["exp_founder_at_irr"])],
         ["Equity IRR conditional on survival", fmt_pct(surv["surv_eq_irr"])],
+        ["Total failure probability (early + late)", f"{surv['total_fail_prob']:.0%}"],
         ["Greenfield hurdle (expected)", f"{P0['hurdle_gf_lo']:.0%}-{P0['hurdle_gf_hi']:.0%}"],
-        [f"Survivor IRR needed at p_fail {P0['p_fail']:.0%} (report formula)", f"{surv['req_cond_35']:.1%}-{surv['req_cond_40']:.1%}"],
+        [f"Survivor IRR needed at total failure probability {surv['total_fail_prob']:.0%} (report formula)", f"{surv['req_cond_35']:.1%}-{surv['req_cond_40']:.1%}"],
         ["Expected equity NPV @35% / @40% (KES m)", f"{fmt_m(surv['exp_npv35'])} / {fmt_m(surv['exp_npv40'])}"],
-        ["Failure probability at which expected IRR falls below 35%", "already below at p=0" if be == 0 else (fmt_pct(be) if be is not None else "never (within 0-90%)")],
+        ["Expected founder NPV @35% / @40% (KES m)", f"{fmt_m(surv['exp_founder_npv35'])} / {fmt_m(surv['exp_founder_npv40'])}"],
+        [f"NPV @ {P0['infra_bond']:.2%} bond, survival-CONDITIONAL equity flows (KES m)", fmt_m(surv["bond_npv_surv_cond"])],
+        [f"NPV @ {P0['infra_bond']:.2%} bond, survival-WEIGHTED founder flows after shareholder tax (KES m)", fmt_m(surv["bond_npv_exp_founder_at"])],
+        ["Early-failure probability at which expected IRR falls below 35%", "already below at p=0" if be == 0 else (fmt_pct(be) if be is not None else "never (within 0-90%)")],
+        ["Early failure: asset recovery / net debt / equity recovery / guarantee call (KES m)",
+         f"{fmt_m(surv['liq_assets'])} / {fmt_m(surv['debt_at_fail'])} / {fmt_m(surv['eq_liq'])} / {fmt_m(surv['guarantee_early'])}"],
     ]))
-    L.append("\n## 10. Checks\n")
+    L.append("\nEarly-failure probability sweep (late-failure share held at {:.0%}):\n".format(P0["p_late_fail"]))
+    L.append(md_table(["Early-failure probability", "Expected equity IRR", "Expected equity NPV @35% (KES m)"],
+                      [[f"{q:.0%}", fmt_pct(ir), fmt_m(nv)] for q, ir, nv in surv["pfail_sweep"]]))
+    L.append("\n## 10. Phase 0 value of information\n")
+    for v in X["voi"]:
+        L.append(f"**Prior correlation rho = {v['rho']}** ({v['n']} draws). Phase 0a cost KES {v['cost_a']/1e6:,.0f}m; Phase 0b cost incl. expected pilot seed loss KES {v['cost_b']/1e6:,.0f}m. Expected founder NPV, KES m (value date 2027):\n")
+        rows_ = []
+        for key in ("35_0.30", "40_0.30", "35_0.20", "40_0.20"):
+            d = v[key]
+            h, pfk = key.split("_")
+            rows_.append([f"{h}% hurdle, p_fail {float(pfk):.0%}", "0", fmt_m(d["invest_now"]), fmt_m(d["phase0a_only"]), fmt_m(d["staged"]),
+                          fmt_m(d["perfect_info"]), f"{d['p_pass_full']:.1%}", f"{d['p_pass_a']:.1%}", fmt_m(d["evpi_gross"]), f"{d['p_cond_irr_35']:.1%}"])
+        L.append(md_table(["Case", "Stop now", "Invest now, no info", "Phase 0a only", "Staged 0a then 0b", "Perfect information (upper bound)",
+                           "P(pass) full info", "P(pass) after 0a", "Gross value of perfect info", "P(conditional IRR >= 35%)"], rows_))
+        L.append("")
+    L.append("Priors: triangular(low, base, high) on SAM, feed price, share, feed price decline, capex, oil index, refining spread (revealed by 0a) and seed cost and supply (revealed by 0b). Phase 0 spend is excluded from V and charged as the option price. 'Pass' = survival-weighted founder NPV at the hurdle > 0.\n")
+    L.append("## 11. Gate calibration (R1-10) and joint cases\n")
+    def fv(k, x):
+        if x is None:
+            return "not reached in search range"
+        return f"{x:,.0f}" if abs(x) > 100 else f"{x:.3f}"
+    L.append(md_table(["Driver", "Base", "Min DSCR = 1.10x (others base, base debt)", "Conditional equity IRR 35% (others base)",
+                       "KILL threshold: survival-weighted 35% at p_fail 20% with every other driver at bull", "Bull value"],
+                      [[k, fv(k, d["base"]), fv(k, d["covenant"]), fv(k, d["hurdle"]), fv(k, d["kill"]), fv(k, d["bull_other"])] for k, d in X["cal"].items()]))
+    L.append("")
+    L.append(md_table(["Joint case", "Conditional equity IRR", "Expected IRR (p_fail 30%)", "Expected IRR (p_fail 20%)", "Founder NPV @35% (30% / 20%), KES m",
+                       "Min DSCR", "Senior sized, KES m", "Peak equity, KES m", "Phase 2"],
+                      [[nm, fmt_pct(d["cond_irr"]), fmt_pct(d["exp_irr_0.30"]), fmt_pct(d["exp_irr_0.20"]), f"{fmt_m(d['npv35_0.30'])} / {fmt_m(d['npv35_0.20'])}",
+                        f"{d['min_dscr']:.2f}", fmt_m(d["senior"]), fmt_m(d["peak_equity"]), "GO" if d["go"] else "NO-GO"] for nm, d in X["jc"].items()]))
+    G = X["g1"]
+    L.append(f"\nPhase 2 gate calibration on the bull case (the only modelled case where Phase 2 is live): 2031 feed {G['bull_feed_t']:,.0f} t at {G['bull_feed_gm']:.0%} gross margin; 2031 DSCR {G['bull_dscr_2031']:.2f}x; Phase 2 incremental equity IRR {fmt_pct(G['bull_inc_eq_irr'])}. "
+             f"Phase 2's incremental equity NPV at 35% turns negative at feed price x{G['feed_px_mult']['breakeven'] or float('nan'):.2f}, seed cost x{G['seed_cost_mult']['breakeven'] or float('nan'):.2f} or seed supply x{G['supply_mult']['breakeven'] or float('nan'):.2f} (others at bull).\n")
+    L.append("## 12. Checks\n")
     L.append(md_table(["Check", "Result", "Detail"], [[a, b_, c] for a, b_, c in chk]))
-    L.append("\n## 11. Modelling caveats\n")
+    L.append("\n## 13. Modelling caveats\n")
     L.append("\n".join([
         "- Inputs are research estimates, mostly [ESTIMATE] or [UNVERIFIED]. There are no binding quotes yet for seed, crude-oil offtake, cake, capex or debt terms. Read IRRs as +/- 10 pp.",
-        "- The base case is an expected-value policy case. Oil prices carry 60% of the CPO-duty removal haircut. Protein meals carry 40% of a GMO-import shock plus one duty-waiver year in three. Seed carries 70% of the Tanzanian levy. Bear and stress apply the shocks in full.",
-        "- Prices are linked. Delivered seed absorbs 50% of any move in oil+cake value per tonne (floating, parity-linked contracts per feedstock_supply s4.2). Aquafeed prices absorb 70% of any move in competitors' ingredient cost. Both are measured against today's research prices. A fixed-price seed contract (0% pass-through) roughly doubles oil-price risk (see tornado).",
-        "- Aquafeed is the profit engine: about 60% of revenue and most of the gross margin. The crush margin is thin and policy-exposed. Feed prices from the research are retail/farm-level lists, so a 5% dealer margin is deducted. The feed margin (~37% gross, before conversion and selling) sits at the top of the research range and is the first number to verify with distributor quotes.",
-        "- Phase 2 is resized to 100 t/day and +3 t/h, against the technical file's 150 t/day and +6 t/h. The research spec forced through (scenario p2_research_spec) earns less, because seed and feed demand cannot fill it. The gate is evaluated mechanically with perfect knowledge of the scenario's prices. In practice the decision is made under uncertainty.",
-        "- Nominal KES IRRs rise with faster KES depreciation because CPI follows the FX path (PPP). USD IRRs are the cleaner FX view, and both are reported.",
-        "- The model is annual. Intra-year seed seasonality uses a steady-state monthly profile (peak, average and December ratios), not a monthly cash model. Revolver interest is charged on the average draw. Debt service in 2029 is funded from the Phase 1 budget, and DSCR is tested from 2030.",
-        "- Taxes modelled: a 100% investment deduction (the threshold conflict is unresolved), 5-year loss expiry, the 30%-of-EBITDA cap on foreign (mezz) interest, the WHT gross-up and VAT timing on capex. Not in the base case: the SEZ route, minimum tax, eTIMS disallowance and VAT refund delays.",
-        "- Equity IRR is to all shareholders combined. Dilution from Phase 2 outside equity at a step-up valuation is not modelled. Terminal value is an exit multiple on 2038 EBITDA and dominates equity value; see the no-TV rows.",
-        "- Distribution policy: excess cash is paid out when DSCR >= 1.30x, except in the Phase 2 gate year (2031) when Phase 2 goes ahead; that cash is retained to part-fund the build (it was previously distributed and re-injected in 2032, which flattered equity IRR by ~0.4 pp). Exit EV is floored at zero.",
-        "- In bear and stress the model keeps injecting equity to fund losses, which overstates peak equity. A real owner would stop; the survival view models that stop as failure plus liquidation.",
-        "- Failure probability (30%), liquidation recovery (35% of capex) and P(Phase 2 go | survive) (50%) are judgement. The 30% is anchored on the screening report's example.",
+        "- Round 1 changes: the feed SAM is the contestable KENYAN merchant market (25 kt in 2026, net of Victory Farms' captive feed and SamakGro's VF-linked sales); Uganda/Tanzania is an upside scenario only. Feed prices decline 1%/yr in real terms from 2029 (competitor response); 3%/yr in the competitor_response scenario.",
+        "- Oil prices are linked: crude is the oil price index (base KES 175k/t = reconciled CPO landed parity) and refined = crude + a refining spread (base KES 65k/t, giving KES 240k/t). The seed pass-through is indexed to crude, so all oil prices and seed move together.",
+        "- Senior debt is sized on a lender downside case (CFADS x 0.80 at 1.30x). Below the 1.10x default covenant the sponsor injects cure equity that prepays senior and pays a waiver fee; below 1.30x distributions stop and half of excess cash prepays senior. Cure equity is in the equity IRR and peak equity.",
+        "- The base case is an expected-value policy case: CPO-duty removal 60%, GM imports 40%, duty waiver 1 year in 3, Tanzanian levy 70%, minimum tax (1% of turnover where it exceeds CIT) 25% from 2028. Capex VAT is apportioned by the exempt (feed) share of turnover when feed is VAT-exempt.",
+        "- WACC is computed from the modelled Phase 1 structure, not the financing file's 50%-equity illustration. Phase 2's gate (d) requires positive incremental equity NPV at the 35% hurdle, because existing shareholders fund it.",
+        "- The survival tree has early failure (bear operations to 2030, liquidation 2031), late failure (base Phase 1 operations to 2034, liquidation 2035) and survival. Founder flows add the personal-guarantee call on any senior shortfall and the GM's equity dilution; the bond comparison uses survival-weighted founder flows after shareholder tax.",
+        "- Restructure alternatives (feed-mill-first, crusher-only) use [ESTIMATE] capex and fixed-cost scaling factors (CONFIG_CAPEX, CONFIG_FIXED in model.py); acquisition and JV are not modelled.",
+        "- VOI uses independent (rho=0) or correlated (rho=0.5) triangular priors that are judgement, not data, and treats Phase 0 as revealing the true value of the tested inputs; real tests are noisy, so the VOI figures are upper bounds.",
+        "- The model is annual with a steady-state monthly seed profile. Nominal KES IRRs rise with faster KES depreciation because CPI follows FX (PPP); USD IRRs are the cleaner FX view.",
+        "- In bear and stress the model keeps injecting equity (including cures) to fund losses, which overstates peak equity; the survival view models that stop as failure plus liquidation.",
     ]))
     with open(path, "w") as f:
         f.write("\n".join(L) + "\n")
@@ -2242,7 +2797,8 @@ def main():
     print(f"  senior KES {senior/1e6:,.0f}m; Phase 2 {'GO' if base['go'] else 'NO-GO'}")
     print("Scenarios ...")
     scen = OrderedDict()
-    for n in ("bear", "base", "bull", "stress", "p2_research_spec"):
+    for n in ("bear", "base", "bull", "stress", "competitor_response", "regional_upside", "p2_research_spec", "v1_market",
+              "feedmill_first", "crush_only"):
         p = scenario_params(n, P0)
         scen[n] = run_model(p, mode="go" if n == "p2_research_spec" else "auto", senior_kes=senior)
         scen[n]["p"] = p
@@ -2251,23 +2807,55 @@ def main():
     print("Seed x oil grid ...")
     grid = grid_seed_oil(P0, senior, base_mode)
     print("Survival-weighted tree ...")
-    surv = survival_tree(P0, senior)
-    chk = checks(base.get("p1_only", base), P0) if not base["go"] else checks(base, P0)
+    surv = survival_tree(P0, senior, base_go=base["go"])
+    X = OrderedDict()
+    print("Alternative debt structures ...")
+    X["debt_alt"] = OrderedDict()
+    for nm, d in (("R1 base: downside sizing (CFADS x0.80 at 1.30x), tests from 2030, 18-month grace", {}),
+                  ("Ramp-year interest funded from budget: tests from 2031, 24-month grace", {"dscr_first_year": 2031, "senior_grace_m": 24}),
+                  ("v1.1 rule: no haircut (sized to exactly 1.30x), tests from 2030", {"sizing_haircut": 0.0})):
+        q = copy.deepcopy(P0); q.update(d)
+        sq = size_senior(q); o = run_model(q, "auto", sq)
+        X["debt_alt"][nm] = dict(senior=sq, eq=o["M"]["equity_irr_kes"], dscr=o["M"]["min_dscr"], cure=o["M"]["cure_equity"], peak=o["M"]["peak_equity"])
+    print("Gate calibration ...")
+    X["cal"] = calibrate_gates(P0, senior)
+    X["g1"] = g1_calibration(P0)
+    X["jc"] = joint_cases(P0)
+    print("Phase 0 value of information (two priors) ...")
+    X["voi"] = [voi_analysis(P0, n_draws=150, rho=0.0), voi_analysis(P0, n_draws=150, rho=0.5)]
+    # the ask at stated FX (R1-06)
+    Rb, Fb, Mb = base["R"], base["F"], base["M"]
+    fx = Rb["fx"]
+    fx27, fx28 = fx[IDX[2027]], fx[IDX[2028]]
+    ph0a = P0["phase0a_usd"] * 1e6 * fx27
+    ph0b = P0["phase0b_usd"] * 1e6 * fx27
+    ph0 = P0["phase0_usd"] * 1e6 * fx27 * Rb["T"][IDX[2027]] / (fx27 / P0["fx0"])
+    eq_p1 = (Fb["inj"] - Fb["dist"])[:3].sum()
+    py = Mb["peak_equity_year"]
+    X["ask"] = [("Phase 0a (cheap decisive tests)", ph0a, fx27, 2027),
+                ("Phase 0b (pilot, trials, EIA, financing; only if 0a passes)", ph0b, fx27, 2027),
+                ("Phase 1 equity 2027-29 incl. Phase 0 (as modelled)", eq_p1, fx28, 2028),
+                ("Phase 1 equity net of Phase 0 (incremental FID ask)", eq_p1 - ph0, fx28, 2028),
+                ("Standby equity for overruns (15% of Phase 1 capex)", 0.15 * Rb["capex_p1"].sum(), fx28, 2028),
+                ("Covenant cure equity, base case (in peak equity)", Mb["cure_equity"], fx[IDX[2030]], 2030),
+                (f"Peak net equity, whole plan (reached {py})", Mb["peak_equity"], fx[IDX[py]], py)]
     chk_full = checks(base, P0)
     print("Writing outputs ...")
-    write_excel(os.path.join(HERE, "financial_model.xlsx"), P0, base, scen, torn, grid, surv, chk_full, senior)
-    write_md(os.path.join(HERE, "outputs.md"), P0, base, scen, torn, grid, surv, chk_full, senior)
-    write_csvs(base, scen)
+    write_excel(os.path.join(HERE, "financial_model.xlsx"), P0, base, scen, torn, grid, surv, chk_full, senior, X)
+    write_md(os.path.join(HERE, "outputs.md"), P0, base, scen, torn, grid, surv, chk_full, senior, X)
+    write_csvs(base, scen, X)
     M = base["M"]
     print("\nKEY RESULTS (base, gate auto)")
-    for k in ("project_irr_kes", "project_irr_usd", "equity_irr_kes", "equity_irr_usd", "equity_irr_kes_after_shtax"):
+    for k in ("project_irr_kes", "project_irr_usd", "equity_irr_kes", "equity_irr_usd", "equity_irr_kes_after_shtax", "wacc_model"):
         print(f"  {k:32s} {fmt_pct(M[k])}")
-    for k in ("npv_proj_wacc_p1", "npv_eq_gf_lo", "peak_equity", "peak_funding_project", "ebitda_2031", "ebitda_2035"):
+    for k in ("npv_proj_wacc_model", "npv_eq_gf_lo", "peak_equity", "peak_funding_project", "ebitda_2031", "ebitda_2035", "cure_equity"):
         print(f"  {k:32s} KES {M[k]/1e6:,.0f}m")
-    print(f"  min DSCR 2030+: {M['min_dscr']:.2f}")
+    print(f"  min DSCR: {M['min_dscr']:.2f}")
     for n, o in scen.items():
-        print(f"  {n:7s} P2={'GO' if o['go'] else 'NO':3s} projIRR {fmt_pct(o['M']['project_irr_kes'])} eqIRR {fmt_pct(o['M']['equity_irr_kes'])} NPV@23% {fmt_m(o['M']['npv_proj_wacc_p1'])}")
-    print(f"  expected (survival-weighted) equity IRR {fmt_pct(surv['exp_eq_irr'])}")
+        print(f"  {n:20s} P2={'GO' if o['go'] else 'NO':3s} projIRR {fmt_pct(o['M']['project_irr_kes'])} eqIRR {fmt_pct(o['M']['equity_irr_kes'])} minDSCR {o['M']['min_dscr']:.2f} cure {fmt_m(o['M']['cure_equity'])}")
+    print(f"  expected (survival-weighted) equity IRR {fmt_pct(surv['exp_eq_irr'])}; founder after tax {fmt_pct(surv['exp_founder_at_irr'])}")
+    for v in X["voi"]:
+        print(f"  VOI rho={v['rho']}: " + "; ".join(f"{k} staged {v[k]['staged']/1e6:,.0f} perfect {v[k]['perfect_info']/1e6:,.0f} P(pass) {v[k]['p_pass_full']:.1%}" for k in ("35_0.30", "35_0.20")))
     for c in chk_full:
         print(f"  [{c[1]}] {c[0]}: {c[2]}")
 
